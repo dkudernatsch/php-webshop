@@ -1,0 +1,28 @@
+version: '3.2'
+
+services:
+
+
+  backend:
+    container_name: api-server
+    image: webdevops/php-nginx-dev:7.1
+    volumes:
+      - ./backend/app:/app/
+#      - ./backend/config/nginx/vhost.conf:/opt/docker/etc/nginx/vhost.common.d/vhost.conf
+    ports:
+      - '8080:80'
+    environment:
+      - WEB_DOCUMENT_ROOT=/app/public
+      - PHP_DEBUGGER=xdebug
+      - APPLICTAION_UID=1000
+      - APPLICTAION_GID=1001
+
+
+  frontend:
+    container_name: app-server
+    image: node:alpine
+    ports:
+      - "80:4200"
+    volumes:
+      - ./frontend/web-shop:/app
+    command: /bin/sh -c "cd /app && npm start -- --host 0.0.0.0 --poll 500"
