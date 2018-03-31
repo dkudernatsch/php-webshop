@@ -1,14 +1,18 @@
 version: '3.2'
 
+volumes:
+  mariadb-data:
+
 services:
 
-
+#php slim rest
   backend:
     container_name: api-server
+    depends_on:
+      - database
     image: webdevops/php-nginx-dev:7.1
     volumes:
       - ./backend/app:/app/
-#      - ./backend/config/nginx/vhost.conf:/opt/docker/etc/nginx/vhost.common.d/vhost.conf
     ports:
       - '8080:80'
     environment:
@@ -17,12 +21,42 @@ services:
       - APPLICTAION_UID=1000
       - APPLICTAION_GID=1001
 
-
+#node angular
   frontend:
+    depends_on:
+      - backend
     container_name: app-server
     image: node:alpine
     ports:
-      - "80:4200"
+      - "4200:4200"
     volumes:
       - ./frontend/web-shop:/app
     command: /bin/sh -c "cd /app && npm start -- --host 0.0.0.0 --poll 500"
+
+#nginx proxy
+  gateway:
+    depends_on:
+      - frontend
+    container_name: reverse-proxy
+    image: nginx:alpine
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./rev-proxy/certs:/certs
+      - ./rev-proxy/config:/etc/nginx/conf.d
+
+#mysql server
+  database:
+    container_name: database-server
+    image: mariadb:10.3
+    ports:
+      - "3306:3306"
+    volumes:
+      - mariadb-data:/var/lib/mysql
+    environment:
+      - MYSQL_RANDOM_ROOT_PASSWORD=yes
+      - MYSQL_DATABASE=webshop
+      - MYSQL_USER=api
+      - MYSQL_PASSWORD=api
+
