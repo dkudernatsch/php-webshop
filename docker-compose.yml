@@ -13,13 +13,14 @@ services:
     image: webdevops/php-nginx-dev:7.1
     volumes:
       - ./backend/app:/app/
+    command: /app/startup.sh
     ports:
       - '8080:80'
     environment:
       - WEB_DOCUMENT_ROOT=/app/public
       - PHP_DEBUGGER=xdebug
       - APPLICTAION_UID=1000
-      - APPLICTAION_GID=1001
+      - APPLICTAION_GID=1000
 
 #node angular
   frontend:
@@ -27,11 +28,12 @@ services:
       - backend
     container_name: app-server
     image: node:alpine
+    working_dir: /app
     ports:
       - "4200:4200"
     volumes:
       - ./frontend/web-shop:/app
-    command: /bin/sh -c "cd /app && npm start -- --host 0.0.0.0 --poll 500"
+    command: /app/startup.sh
 
 #nginx proxy
   gateway:
