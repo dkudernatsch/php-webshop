@@ -15,8 +15,7 @@ CREATE TABLE USERS (
   u_mail VARCHAR(30) NOT NULL,
   u_username VARCHAR(20) NOT NULL,
 
-  u_password BINARY(64) NOT NULL,
-  u_pw_salt CHAR(16) NOT NULL,
+  u_password VARCHAR(255) NOT NULL,
 
   u_isadmin BOOL DEFAULT 0,
 
