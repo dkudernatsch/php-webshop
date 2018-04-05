@@ -8,7 +8,7 @@ CREATE TABLE IF NOT EXISTS USERS (
   u_firstname  VARCHAR(25)  NOT NULL,
   u_lastname   VARCHAR(25)  NOT NULL,
 
-  u_adress     VARCHAR(25)  NOT NULL,
+  u_address     VARCHAR(25)  NOT NULL,
   u_plz        VARCHAR(10)  NOT NULL,
   u_city       VARCHAR(25)  NOT NULL,
 
