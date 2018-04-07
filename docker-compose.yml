@@ -5,6 +5,22 @@ volumes:
 
 services:
 
+  test:
+    container_name: test-php
+    image: webdevops/php-nginx-dev:7.1
+    ports:
+      - '8888:80'
+    volumes:
+      - ./test:/html
+    environment:
+      - PHP_DEBUGGER=xdebug
+      - WEB_DOCUMENT_ROOT=/html
+      - XDEBUG_REMOTE_PORT=9010
+      - XDEBUG_IDE_KEY=PHPSTORM
+      - XDEBUG_REMOTE_CONNECT_BACK=1
+      - XDEBUG_REMOTE_AUTOSTART=1
+
+
 #php slim rest
   backend:
     container_name: api-server
@@ -13,6 +29,7 @@ services:
     image: webdevops/php-nginx-dev:7.1
     volumes:
       - ./backend/app:/app/
+      - ./backend/config/php.ini:/usr/local/etc/php/conf.d/php.ini
     command: /app/startup.sh
     ports:
       - '8080:80'
@@ -21,6 +38,10 @@ services:
       - PHP_DEBUGGER=xdebug
       - APPLICTAION_UID=1000
       - APPLICTAION_GID=1000
+      - DATABASE_HOST=database:3306
+      - DATABASE_USER=api
+      - DATABASE_PASSWORD=api
+      - DATABASE_SCHEMA=webshop
 
 #node angular
   frontend:

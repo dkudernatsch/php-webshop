@@ -4,9 +4,11 @@ return [
         'displayErrorDetails' => true, // set to false in production
         'addContentLengthHeader' => false, // Allow the web server to send the content-length header
 
-        // Renderer settings
-        'renderer' => [
-            'template_path' => __DIR__ . '/../templates/',
+        'db-config' => [
+            'user' => getenv('DATABASE_USER'),
+            'password' => getenv('DATABASE_PASSWORD'),
+            'host' => getenv('DATABASE_HOST'),
+            'schema' => getenv('DATABASE_SCHEMA')
         ],
 
         // Monolog settings

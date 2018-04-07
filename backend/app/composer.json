@@ -24,7 +24,9 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Tests\\": "tests/"
+            "Tests\\": "tests/",
+            "": "src/classes",
+            "PDOs\\": "src/classes/PDOs"
         }
     },
     "config": {

@@ -3,12 +3,6 @@
 
 $container = $app->getContainer();
 
-// view renderer
-$container['renderer'] = function ($c) {
-    $settings = $c->get('settings')['renderer'];
-    return new Slim\Views\PhpRenderer($settings['template_path']);
-};
-
 // monolog
 $container['logger'] = function ($c) {
     $settings = $c->get('settings')['logger'];
@@ -16,4 +10,10 @@ $container['logger'] = function ($c) {
     $logger->pushProcessor(new Monolog\Processor\UidProcessor());
     $logger->pushHandler(new Monolog\Handler\StreamHandler($settings['path'], $settings['level']));
     return $logger;
+};
+
+$container['db'] = function ($config) {
+    $db_config = $config->get('settings')['db-config'];
+    $conn = new mysqli($db_config['host'], $db_config['user'], $db_config['password'], $db_config['schema']);
+    return new Database($conn);
 };
