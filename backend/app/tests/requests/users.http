@@ -1,0 +1,55 @@
+### user action
+GET https://webshop.at/user/1
+Accept: application/json
+Cache-Control: no-cache
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MjMxOTg1NDIsImV4cCI6MTUyMzI4NDk0MiwianRpIjoiYURXZFwvYVJWakE4VkFZSEhFclM0dHc9PSIsInN1YiI6MSwic2NvcGUiOlsidXNlciJdfQ.xLFPE3zzy3az8rp9d60Pj0IBrCuw0jcz3O6QDlNu6QE
+
+### admin action
+GET http://localhost:8080/user/
+Accept: application/json
+Cache-Control: no-cache
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MjMxOTg1NDIsImV4cCI6MTUyMzI4NDk0MiwianRpIjoiYURXZFwvYVJWakE4VkFZSEhFclM0dHc9PSIsInN1YiI6MSwic2NvcGUiOlsidXNlciJdfQ.xLFPE3zzy3az8rp9d60Pj0IBrCuw0jcz3O6QDlNu6QE
+
+### eg new user
+POST http://localhost:8080/user
+Accept: application/json
+Cache-Control: no-cache
+Content-Type: application/json
+
+{
+    "user": {
+        "appellation": "Herr",
+        "username": "if17b094",
+        "password": "hellokitty",
+        "mail": "abc@gmail.com",
+        "first_name": "Daniel",
+        "last_name": "Kudernastch",
+        "address": "Burggasse 1",
+        "post_code": "1200",
+        "city": "Wien"
+    }
+}
+
+###
+
+POST http://localhost:8080/user
+Accept: application/json
+Cache-Control: no-cache
+Content-Type: application/json
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MjMxOTkyMTEsImV4cCI6MTUyMzI4NTYxMSwianRpIjoibk9Ud2t2Q3ZISXdDTHV6M1FndnMwQT09Iiwic3ViIjpudWxsLCJzY29wZSI6dHJ1ZX0.m-7mTR0ED5BgEYCr7hA-8Poq1AWAzfxlLTOUjypEy7k
+
+{
+    "user": {
+        "appellation": "",
+        "username": "admin",
+        "password": "admin",
+        "mail": "admin@webshop.at",
+        "first_name": "Admin",
+        "last_name": "Admin",
+        "address": "",
+        "post_code": "",
+        "city": ""
+    }
+}
+
+###
