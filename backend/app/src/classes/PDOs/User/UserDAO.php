@@ -74,9 +74,21 @@ class UserDAO
             ['s' => $user->address],
             ['s' => $user->post_code],
             ['s' => $user->city],
-            ['b' => false],
-            ['b' => false]
+            ['i' => 0],
+            ['i' => 0]
         ]);
         return $this->db->get_last_auto_inc();
+    }
+
+    public function authenticate(string $username, string $password): ?User {
+        $id_and_hash = $this->db->prepare_and_run(/** @lang MySQL */
+            "SELECT u_id as id, u_password as password FROM USERS WHERE u_username = (?)", [['s' => $username]]);
+
+        if(password_verify($password, $id_and_hash['password'])){
+            return $this->byId($id_and_hash['id']);
+        }else{
+            return null;
+        }
+
     }
 }

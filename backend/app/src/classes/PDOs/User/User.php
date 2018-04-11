@@ -24,4 +24,9 @@ class User
 
     public $is_admin;
 
+    function get_scopes(){
+        return $this->is_admin
+            ? ["user", "admin"]
+            : ["user"];
+    }
 }

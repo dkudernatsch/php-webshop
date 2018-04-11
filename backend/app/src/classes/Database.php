@@ -49,7 +49,7 @@ class Database
             } elseif ($obj) {
                 return $result->fetch_object($obj);
             } else {
-                return $result->fetch_all();
+                return $result->fetch_assoc();
             }
         }else {
             return null;

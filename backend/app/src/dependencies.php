@@ -17,3 +17,7 @@ $container['db'] = function ($config) {
     $conn = new mysqli($db_config['host'], $db_config['user'], $db_config['password'], $db_config['schema']);
     return new Database($conn);
 };
+
+$container['errorHandler'] = function ($c){
+    return new \errors\SlimServerErrorHandler();
+};
