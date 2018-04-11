@@ -4,7 +4,7 @@ Accept: application/json
 Cache-Control: no-cache
 
 ### get user token
-POST http://localhost:8080/token
+POST https://api.webshop.at/token
 Accept: application/json
 Cache-Control: no-cache
 Content-Type: application/json
@@ -15,7 +15,7 @@ Content-Type: application/json
 }
 
 ### get user token
-POST http://localhost:8080/token
+POST https://api.webshop.at/token
 Accept: application/json
 Cache-Control: no-cache
 Content-Type: application/json
