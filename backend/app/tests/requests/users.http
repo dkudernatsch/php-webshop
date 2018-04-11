@@ -1,0 +1,55 @@
+### user action
+GET https://api.webshop.at/user/1
+Accept: application/json
+Cache-Control: no-cache
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MjMzNjIwMzAsImV4cCI6MTUyMzQ0ODQzMCwianRpIjoiMVVZMHowNjNzRDJNZkkwUW5VNFwvOFE9PSIsInN1YiI6bnVsbCwic2NvcGUiOlsiYW5vbnltb3VzIl19.ck7_Vzcx3B7CYqlmlOTXGsruHUlQotFFBb3sa_gnUcA
+
+### admin action
+GET https://api.webshop.at/user/
+Accept: application/json
+Cache-Control: no-cache
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MjMxOTg1NDIsImV4cCI6MTUyMzI4NDk0MiwianRpIjoiYURXZFwvYVJWakE4VkFZSEhFclM0dHc9PSIsInN1YiI6MSwic2NvcGUiOlsidXNlciJdfQ.xLFPE3zzy3az8rp9d60Pj0IBrCuw0jcz3O6QDlNu6QE
+
+### eg new user
+POST https://api.webshop.at/user
+Accept: application/json
+Cache-Control: no-cache
+Content-Type: application/json
+#Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MjMzNDQ4MzgsImV4cCI6MTUyMzQzMTIzOCwianRpIjoibUZEdG5UWlpyRDZ2dnFcL3FBXC8yXC9tdz09Iiwic3ViIjpudWxsLCJzY29wZSI6WyJhbm9ueW1vdXMiXX0.7mpeBmA1eKodZMeOROYUzHrUtu77gdb4XlD4ukh7N0I
+
+{
+    "user": {
+        "appellation": "Herr",
+        "username": "if17b094",
+        "password": "hellokitty",
+        "mail": "abc@gmail.com",
+        "first_name": "Daniel",
+        "last_name": "Kudernastch",
+        "address": "Burggasse 1",
+        "post_code": "1200",
+        "city": "Wien"
+    }
+}
+
+###
+POST https://api.webshop.at/user
+Accept: application/json
+Cache-Control: no-cache
+Content-Type: application/json
+#Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MjMzNDQ4MzgsImV4cCI6MTUyMzQzMTIzOCwianRpIjoibUZEdG5UWlpyRDZ2dnFcL3FBXC8yXC9tdz09Iiwic3ViIjpudWxsLCJzY29wZSI6WyJhbm9ueW1vdXMiXX0.7mpeBmA1eKodZMeOROYUzHrUtu77gdb4XlD4ukh7N0I
+
+{
+    "user": {
+        "appellation": "",
+        "username": "admin",
+        "password": "admin",
+        "mail": "admin@webshop.at",
+        "first_name": "Admin",
+        "last_name": "Admin",
+        "address": "",
+        "post_code": "",
+        "city": ""
+    }
+}
+
+###
