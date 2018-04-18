@@ -15,7 +15,7 @@ POST https://api.webshop.at/user
 Accept: application/json
 Cache-Control: no-cache
 Content-Type: application/json
-#Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MjMzNDQ4MzgsImV4cCI6MTUyMzQzMTIzOCwianRpIjoibUZEdG5UWlpyRDZ2dnFcL3FBXC8yXC9tdz09Iiwic3ViIjpudWxsLCJzY29wZSI6WyJhbm9ueW1vdXMiXX0.7mpeBmA1eKodZMeOROYUzHrUtu77gdb4XlD4ukh7N0I
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MjM5ODY1MDAsImV4cCI6MTUyNDA3MjkwMCwianRpIjoiUDhDenlaanBaY1pOc3FkXC9hSmdmS0E9PSIsInN1YiI6bnVsbCwic2NvcGUiOlsiYW5vbnltb3VzIl19.jNRp2L8GaedV3lD1Bw3NxbKodvJwT_YlcPpcWHqiXsY
 
 {
     "user": {
@@ -36,7 +36,7 @@ POST https://api.webshop.at/user
 Accept: application/json
 Cache-Control: no-cache
 Content-Type: application/json
-#Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MjMzNDQ4MzgsImV4cCI6MTUyMzQzMTIzOCwianRpIjoibUZEdG5UWlpyRDZ2dnFcL3FBXC8yXC9tdz09Iiwic3ViIjpudWxsLCJzY29wZSI6WyJhbm9ueW1vdXMiXX0.7mpeBmA1eKodZMeOROYUzHrUtu77gdb4XlD4ukh7N0I
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MjM5ODY1MDAsImV4cCI6MTUyNDA3MjkwMCwianRpIjoiUDhDenlaanBaY1pOc3FkXC9hSmdmS0E9PSIsInN1YiI6bnVsbCwic2NvcGUiOlsiYW5vbnltb3VzIl19.jNRp2L8GaedV3lD1Bw3NxbKodvJwT_YlcPpcWHqiXsY
 
 {
     "user": {
@@ -49,6 +49,27 @@ Content-Type: application/json
         "address": "",
         "post_code": "",
         "city": ""
+    }
+}
+
+###
+
+PUT https://api.webshop.at/user/1
+Accept: application/json
+Cache-Control: no-cache
+Content-Type: application/json
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MjQwODU5ODcsImV4cCI6MTUyNDE3MjM4NywianRpIjoidU92TnFZd01SYUwrNkpsY0ZDUVlBUT09Iiwic3ViIjoxLCJzY29wZSI6WyJ1c2VyIl19.r8xr8xZtJXCxmmwYgLwzo5Ft9nSUY1t4eV7d86ZVvgE
+
+{
+    "user": {
+        "appellation": "Herr",
+        "username": "if17b094",
+        "mail": "abc@gmail.com",
+        "first_name": "Daniel",
+        "last_name": "Kudernastch",
+        "address": "Burggasse 1",
+        "post_code": "1200",
+        "city": "Guntramsdorf"
     }
 }
 

@@ -16,8 +16,9 @@ class HttpServerException extends \Exception
 
     private $http_error_code;
     private $server_error_msg;
+    private $log;
 
-    public function __construct(int $http_code, string $err_msg)
+    public function __construct(int $http_code, string $err_msg, $log = '')
     {
         parent::__construct();
         $this->http_error_code = $http_code;
@@ -40,6 +41,8 @@ class HttpServerException extends \Exception
         return $this->server_error_msg;
     }
 
-
+    public function getLog(){
+        return $this->log;
+    }
 
 }

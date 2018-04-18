@@ -18,6 +18,6 @@ $container['db'] = function ($config) {
     return new Database($conn);
 };
 
-$container['errorHandler'] = function ($c){
-    return new \errors\SlimServerErrorHandler();
+$container['errorHandler'] = function ($c) use ($container) {
+    return new \errors\SlimServerErrorHandler($container->get('logger'));
 };

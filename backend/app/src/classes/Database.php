@@ -22,6 +22,7 @@ class Database
      * @param string | null $obj
      * @param bool $as_list
      * @return array | object | array[object]
+     * @throws \errors\DatabaseException
      */
     public function prepare_and_run(string $query, array $args, string $obj = null, $as_list = false)
     {
@@ -37,22 +38,25 @@ class Database
         if($types) {
             $stmt->bind_param($types, ...$vals);
         }
-        $stmt->execute();
-        $result = $stmt->get_result();
 
-        if ($result) {
-            if ($obj && $as_list) {
-                $ret_arr = [];
-                /** @noinspection PhpStatementHasEmptyBodyInspection */
-                while ($ret_arr[] = $result->fetch_object($obj)) ;
-                return $ret_arr;
-            } elseif ($obj) {
-                return $result->fetch_object($obj);
-            } else {
-                return $result->fetch_assoc();
+        if ($stmt->execute() && !$this->conn->error_list) {
+            $result = $stmt->get_result();
+            if($result) {
+                if ($obj && $as_list) {
+                    $ret_arr = [];
+                    /** @noinspection PhpStatementHasEmptyBodyInspection */
+                    while ($ret_arr[] = $result->fetch_object($obj)) ;
+                    return $ret_arr;
+                } elseif ($obj) {
+                    return $result->fetch_object($obj);
+                } else {
+                    return $result->fetch_assoc();
+                }
+            }else{
+                return null;
             }
         }else {
-            return null;
+            throw new \errors\DatabaseException($this->conn);
         }
     }
 

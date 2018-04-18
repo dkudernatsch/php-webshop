@@ -1,0 +1,32 @@
+
+
+POST https://api.webshop.at/user/1/paymentMethod
+Accept: application/json
+Cache-Control: no-cache
+Content-Type: application/json
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MjQwODU5ODcsImV4cCI6MTUyNDE3MjM4NywianRpIjoidU92TnFZd01SYUwrNkpsY0ZDUVlBUT09Iiwic3ViIjoxLCJzY29wZSI6WyJ1c2VyIl19.r8xr8xZtJXCxmmwYgLwzo5Ft9nSUY1t4eV7d86ZVvgE
+
+{
+    "paymentMethod": {
+        "id": 1,
+        "method": "VISA 123490439032"
+    }
+}
+
+###
+
+GET https://api.webshop.at/user/1/paymentMethod
+Accept: application/json
+Cache-Control: no-cache
+Content-Type: application/json
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MjQwODU5ODcsImV4cCI6MTUyNDE3MjM4NywianRpIjoidU92TnFZd01SYUwrNkpsY0ZDUVlBUT09Iiwic3ViIjoxLCJzY29wZSI6WyJ1c2VyIl19.r8xr8xZtJXCxmmwYgLwzo5Ft9nSUY1t4eV7d86ZVvgE
+
+###
+
+DELETE https://api.webshop.at/user/1/paymentMethod/1
+Accept: application/json
+Cache-Control: no-cache
+Content-Type: application/json
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MjQwODU5ODcsImV4cCI6MTUyNDE3MjM4NywianRpIjoidU92TnFZd01SYUwrNkpsY0ZDUVlBUT09Iiwic3ViIjoxLCJzY29wZSI6WyJ1c2VyIl19.r8xr8xZtJXCxmmwYgLwzo5Ft9nSUY1t4eV7d86ZVvgE
+
+###
