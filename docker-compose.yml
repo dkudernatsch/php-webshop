@@ -38,7 +38,7 @@ services:
     ports:
       - "4200:4200"
     volumes:
-      - ./frontend/web-shop:/app
+      - ./frontend/webshop-app:/app
     command: /app/startup.sh
 
 #nginx proxy
