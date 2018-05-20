@@ -21,7 +21,7 @@ class Database
      * @param array $args
      * @param string | null $obj
      * @param bool $as_list
-     * @return array | object | array[object]
+     * @return array | object | array[object] | null
      * @throws \errors\DatabaseException
      */
     public function prepare_and_run(string $query, array $args, string $obj = null, $as_list = false)
