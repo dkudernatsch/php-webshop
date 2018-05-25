@@ -6,7 +6,7 @@ use Slim\Http\Response;
 
 
 // Routes
-$app->get('/user', function (Request $request, Response $response, array $args) {
+$app->get('/user/', function (Request $request, Response $response, array $args) {
     $this->logger->info("GET: all users");
     $repo = new UserDAO($this->db);
     $user = $repo->getAll();
