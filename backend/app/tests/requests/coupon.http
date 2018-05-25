@@ -1,0 +1,31 @@
+
+###
+POST https://api.webshop.at/coupon/
+Accept: application/json
+Cache-Control: no-cache
+Content-Type: application/json
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MjcyNTgxMTcsImV4cCI6MTUyNzM0NDUxNywianRpIjoibmo3Q2o3YnlWK1wvazY2RHdjeHBLOFE9PSIsInN1YiI6Miwic2NvcGUiOlsidXNlciIsImFkbWluIl19.IJZMvNUH2n7igFwLfxdWRYTbJB88K5rRBpIZmRkk1NY
+
+{
+    "value": "100.00"
+}
+
+###
+
+GET https://api.webshop.at/coupon/2
+Accept: application/json
+Cache-Control: no-cache
+Content-Type: application/json
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MjcyNTgxMTcsImV4cCI6MTUyNzM0NDUxNywianRpIjoibmo3Q2o3YnlWK1wvazY2RHdjeHBLOFE9PSIsInN1YiI6Miwic2NvcGUiOlsidXNlciIsImFkbWluIl19.IJZMvNUH2n7igFwLfxdWRYTbJB88K5rRBpIZmRkk1NY
+
+###
+
+PUT https://api.webshop.at/coupon/2/redeem/1
+Accept: application/json
+Cache-Control: no-cache
+Content-Type: application/json
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MjcyNTkyMDgsImV4cCI6MTUyNzM0NTYwOCwianRpIjoiVnRTNmI1Mnk0cWVaQUUrenFDOTJqQT09Iiwic3ViIjoxLCJzY29wZSI6WyJ1c2VyIl19.KDNOXMJWnc6ALaQqsL0VZzrIfzaiwm1cKw2gmL-FAwM
+
+###
+
+
