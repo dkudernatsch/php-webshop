@@ -2,20 +2,20 @@
 GET https://api.webshop.at/user/1
 Accept: application/json
 Cache-Control: no-cache
-Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MjMzNjIwMzAsImV4cCI6MTUyMzQ0ODQzMCwianRpIjoiMVVZMHowNjNzRDJNZkkwUW5VNFwvOFE9PSIsInN1YiI6bnVsbCwic2NvcGUiOlsiYW5vbnltb3VzIl19.ck7_Vzcx3B7CYqlmlOTXGsruHUlQotFFBb3sa_gnUcA
+Authorization: Bearer {{user_token}}
 
 ### admin action
 GET https://api.webshop.at/user/
 Accept: application/json
 Cache-Control: no-cache
-Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MjMxOTg1NDIsImV4cCI6MTUyMzI4NDk0MiwianRpIjoiYURXZFwvYVJWakE4VkFZSEhFclM0dHc9PSIsInN1YiI6MSwic2NvcGUiOlsidXNlciJdfQ.xLFPE3zzy3az8rp9d60Pj0IBrCuw0jcz3O6QDlNu6QE
+Authorization: Bearer {{admin_token}}
 
 ### eg new user
 POST https://api.webshop.at/user
 Accept: application/json
 Cache-Control: no-cache
 Content-Type: application/json
-Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MjM5ODY1MDAsImV4cCI6MTUyNDA3MjkwMCwianRpIjoiUDhDenlaanBaY1pOc3FkXC9hSmdmS0E9PSIsInN1YiI6bnVsbCwic2NvcGUiOlsiYW5vbnltb3VzIl19.jNRp2L8GaedV3lD1Bw3NxbKodvJwT_YlcPpcWHqiXsY
+Authorization: Bearer {{anonymous_token}}
 
 {
     "user": {
@@ -36,7 +36,7 @@ POST https://api.webshop.at/user
 Accept: application/json
 Cache-Control: no-cache
 Content-Type: application/json
-Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MjM5ODY1MDAsImV4cCI6MTUyNDA3MjkwMCwianRpIjoiUDhDenlaanBaY1pOc3FkXC9hSmdmS0E9PSIsInN1YiI6bnVsbCwic2NvcGUiOlsiYW5vbnltb3VzIl19.jNRp2L8GaedV3lD1Bw3NxbKodvJwT_YlcPpcWHqiXsY
+Authorization: Bearer {{anonymous_token}}
 
 {
     "user": {
@@ -58,7 +58,7 @@ PUT https://api.webshop.at/user/1
 Accept: application/json
 Cache-Control: no-cache
 Content-Type: application/json
-Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MjQwODU5ODcsImV4cCI6MTUyNDE3MjM4NywianRpIjoidU92TnFZd01SYUwrNkpsY0ZDUVlBUT09Iiwic3ViIjoxLCJzY29wZSI6WyJ1c2VyIl19.r8xr8xZtJXCxmmwYgLwzo5Ft9nSUY1t4eV7d86ZVvgE
+Authorization: Bearer {{user_token}}
 
 {
     "user": {

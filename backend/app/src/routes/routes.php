@@ -9,3 +9,4 @@
 include "user.php";
 include "token.php";
 include "coupon.php";
+include "category.php";

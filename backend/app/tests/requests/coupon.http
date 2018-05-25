@@ -4,28 +4,43 @@ POST https://api.webshop.at/coupon/
 Accept: application/json
 Cache-Control: no-cache
 Content-Type: application/json
-Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MjcyNTgxMTcsImV4cCI6MTUyNzM0NDUxNywianRpIjoibmo3Q2o3YnlWK1wvazY2RHdjeHBLOFE9PSIsInN1YiI6Miwic2NvcGUiOlsidXNlciIsImFkbWluIl19.IJZMvNUH2n7igFwLfxdWRYTbJB88K5rRBpIZmRkk1NY
+Authorization: Bearer {{admin_token}}
 
 {
     "value": "100.00"
 }
 
+> {%
+    client.test("Request successful", function() {
+        client.assert(response.status === 201, "Could not create new coupon")
+    });
+
+    //client.assert(false, JSON.stringify(response.body));
+    client.global.set("last_coupon", response.body.success.id);
+%}
+
 ###
 
-GET https://api.webshop.at/coupon/2
+GET https://api.webshop.at/coupon/{{last_coupon}}
 Accept: application/json
 Cache-Control: no-cache
 Content-Type: application/json
-Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MjcyNTgxMTcsImV4cCI6MTUyNzM0NDUxNywianRpIjoibmo3Q2o3YnlWK1wvazY2RHdjeHBLOFE9PSIsInN1YiI6Miwic2NvcGUiOlsidXNlciIsImFkbWluIl19.IJZMvNUH2n7igFwLfxdWRYTbJB88K5rRBpIZmRkk1NY
+Authorization: Bearer {{admin_token}}
 
+> {%
+    client.test("Request successful", function() {
+      client.assert(response.status === 200, "Cloud not get coupon");
+    });
+ %}
 ###
 
-PUT https://api.webshop.at/coupon/2/redeem/1
+PUT https://api.webshop.at/coupon/{{last_coupon}}/redeem/1
 Accept: application/json
 Cache-Control: no-cache
 Content-Type: application/json
-Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MjcyNTkyMDgsImV4cCI6MTUyNzM0NTYwOCwianRpIjoiVnRTNmI1Mnk0cWVaQUUrenFDOTJqQT09Iiwic3ViIjoxLCJzY29wZSI6WyJ1c2VyIl19.KDNOXMJWnc6ALaQqsL0VZzrIfzaiwm1cKw2gmL-FAwM
+Authorization: Bearer {{user_token}}
 
+> {% client.assert(response.status === 204, "Unable to redeem token"); %}
 ###
 
 
