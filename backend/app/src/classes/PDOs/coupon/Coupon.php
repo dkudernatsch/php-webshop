@@ -15,14 +15,17 @@ class Coupon
      * @var int
      */
     public $id;
+
     /**
      * @var string
      */
     public $code;
+
     /**
      * @var string
      */
     public $value;
+
     /**
      * @var int | null
      */
