@@ -15,6 +15,7 @@ $container['logger'] = function ($c) {
 $container['db'] = function ($config) {
     $db_config = $config->get('settings')['db-config'];
     $conn = new mysqli($db_config['host'], $db_config['user'], $db_config['password'], $db_config['schema']);
+    $conn->set_charset("utf8mb4");
     return new Database($conn);
 };
 

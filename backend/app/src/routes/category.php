@@ -24,8 +24,7 @@ $app->post("/category/", function (Request $request, Response $response, array $
 
     $body = $request->getParsedBody();
 
-    if($name = $body['name']
-    && $slug = $body['slug'])
+    if(($name = $body['name']) && ($slug = $body['slug']))
     {
 
         $dao = new CategoryDao($this->db);

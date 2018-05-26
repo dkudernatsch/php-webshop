@@ -2,3 +2,4 @@
 /logs/*
 composer.lock
 *.pid
+public/images/*.png

@@ -44,11 +44,19 @@ class Database
             if($result) {
                 if ($obj && $as_list) {
                     $ret_arr = [];
-                    /** @noinspection PhpStatementHasEmptyBodyInspection */
-                    while ($ret_arr[] = $result->fetch_object($obj)) ;
+                    while ($i = $result->fetch_object($obj)){
+                        if($i) $ret_arr[] = $i;
+                    };
+
                     return $ret_arr;
                 } elseif ($obj) {
                     return $result->fetch_object($obj);
+                } elseif($as_list) {
+                    $ret_arr = [];
+                    while ($i = $result->fetch_row()[0]){
+                            if($i) $ret_arr[] = $i;
+                    };
+                    return $ret_arr;
                 } else {
                     return $result->fetch_assoc();
                 }
