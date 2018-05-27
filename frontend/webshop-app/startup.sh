@@ -1,5 +1,5 @@
 #!/bin/sh
 cd /app/
-npm install bootstrap@4
+npm install
 npm update --dev
 npm start

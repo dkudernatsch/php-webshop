@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 
 // for bootstrap
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {TokenService} from "./core/token.service";
 
 @NgModule({
   declarations: [
@@ -14,7 +15,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
     BrowserModule,
     NgbModule.forRoot()
   ],
-  providers: [],
+  providers: [TokenService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
