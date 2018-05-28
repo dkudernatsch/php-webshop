@@ -5,7 +5,7 @@ use PDOs\User\UserDAO;
 use Slim\Http\Request;
 use Slim\Http\Response;
 
-$app->post("/token", function (Request $request, Response $response) {
+$app->post("/token/", function (Request $request, Response $response) {
     $req = $request->getParsedBody();
     $user = null;
     $user_repo = new UserDAO($this->db);
