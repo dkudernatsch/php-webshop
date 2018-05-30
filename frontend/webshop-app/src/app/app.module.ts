@@ -4,29 +4,48 @@ import { NgModule } from '@angular/core';
 
 // for Two-Way-Binding (ngModel directive)
 import {FormsModule} from '@angular/forms';
+// for routing
+import {RouterModule, Routes} from '@angular/router';
 
 import { AppComponent } from './app.component';
 
 // for bootstrap
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
-import {NavbarComponent} from './components/home-page/navbar/navbar.component';
-import {NavComponent} from './components/home-page/nav/nav.component';
-import {LoginComponent} from './components/home-page/login/login.component';
+import {NavbarComponent} from './components/header/navbar/navbar.component';
+import {LoginComponent} from './components/header/login/login.component';
+import {HomePageComponent} from './components/home-page/home-page';
+import {AdminPageComponent} from './components/admin-page/admin-page';
+import {ProductPageComponent} from './components/product-page/product-page';
+import {ShoppingCartPageComponent} from './components/shoppingCart-page/shoppingCart-page';
+import {UserPageComponent} from './components/user-page/user-page';
 
+const appRoutes: Routes = [
+  {path: '', component: HomePageComponent},
+  {path: 'products', component: ProductPageComponent},
+  {path: 'cart', component: ShoppingCartPageComponent},
+  {path: 'account', component: UserPageComponent},
+  {path: 'admin', component: AdminPageComponent},
+];
 
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
-    NavComponent,
+    HomePageComponent,
+    AdminPageComponent,
+    ProductPageComponent,
+    ShoppingCartPageComponent,
+    UserPageComponent,
     LoginComponent
   ],
   imports: [
     BrowserModule,
     NgbModule.forRoot(),
-    FormsModule
+    FormsModule,
+    // register routes in app
+    RouterModule.forRoot(appRoutes)
   ],
   providers: [],
   bootstrap: [AppComponent]
