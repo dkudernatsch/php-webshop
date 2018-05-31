@@ -1,4 +1,19 @@
-<h2>Admin Page</h2>
-<a routerLink="products">products</a><br>
-<a routerLink="coupons">coupons</a><br>
-<a routerLink="users">users</a>
+<h2 class="text-center">Admin Page</h2>
+<div class="container-fluid">
+  <div class="row">
+    <!--sub navigation for admin area on the left side-->
+    <div class="col-2">
+      <div class="list-group">
+        <a routerLink="products" routerLinkActive="active" class="list-group-item list-group-item-action">Products</a>
+        <a routerLink="coupons" routerLinkActive="active"  class="list-group-item list-group-item-action">Coupons</a>
+        <a routerLink="users" routerLinkActive="active" class="list-group-item list-group-item-action">Users</a>
+      </div>
+    </div>
+    <div class="col-10">
+      <!--outlet for sub pages-->
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>
+
+

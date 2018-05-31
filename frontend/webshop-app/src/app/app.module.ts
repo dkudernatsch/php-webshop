@@ -1,13 +1,13 @@
 // generally needed
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
 
 // for Two-Way-Binding (ngModel directive)
 import {FormsModule} from '@angular/forms';
 // for routing
 import {RouterModule, Routes} from '@angular/router';
 
-import { AppComponent } from './app.component';
+import {AppComponent} from './app.component';
 
 // for bootstrap
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
@@ -35,10 +35,13 @@ const appRoutes: Routes = [
   {path: 'products', component: ProductPageComponent},
   {path: 'cart', component: ShoppingCartPageComponent},
   {path: 'account', component: UserPageComponent},
-  {path: 'admin', component: AdminPageComponent},
-  {path: 'admin/products', component: ManageProductsPageComponent},
-  {path: 'admin/coupons', component: ManageCouponsPageComponent},
-  {path: 'admin/users', component: ManageUsersPageComponent},
+  {
+    path: 'admin', component: AdminPageComponent, children: [
+      {path: 'products', component: ManageProductsPageComponent},
+      {path: 'coupons', component: ManageCouponsPageComponent},
+      {path: 'users', component: ManageUsersPageComponent},
+    ]
+  }
 ];
 
 
@@ -66,4 +69,5 @@ const appRoutes: Routes = [
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
