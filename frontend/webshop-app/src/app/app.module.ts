@@ -4,13 +4,12 @@ import {NgModule} from '@angular/core';
 
 // for Two-Way-Binding (ngModel directive)
 import {FormsModule} from '@angular/forms';
-// for routing
-import {RouterModule, Routes} from '@angular/router';
-
 import {AppComponent} from './app.component';
 
 // for bootstrap
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+// import our own app-routing module (outsourced)
+import {AppRoutingModule} from './app-routing-module';
 
 // comps for header
 import {NavbarComponent} from './components/header/navbar/navbar.component';
@@ -31,24 +30,6 @@ import {UserPageComponent} from './components/user-page/user-page';
 
 import {PageNotFoundPageComponent} from './components/page-not-found/page-not-found-page';
 
-// set up the routes
-const appRoutes: Routes = [
-  {path: '', component: HomePageComponent},
-  {path: 'products', component: ProductPageComponent},
-  {path: 'cart', component: ShoppingCartPageComponent},
-  {path: 'account', component: UserPageComponent},
-  {
-    path: 'admin', component: AdminPageComponent, children: [
-      {path: 'products', component: ManageProductsPageComponent},
-      {path: 'coupons', component: ManageCouponsPageComponent},
-      {path: 'users', component: ManageUsersPageComponent},
-      {path: '', redirectTo: 'products', pathMatch: 'full'},
-    ]
-  },
-  {path: 'not-found', component: PageNotFoundPageComponent},
-  // has to be last entry!
-  {path: '**', redirectTo: '/not-found'}
-];
 
 
 @NgModule({
@@ -70,8 +51,7 @@ const appRoutes: Routes = [
     BrowserModule,
     NgbModule.forRoot(),
     FormsModule,
-    // register routes in app
-    RouterModule.forRoot(appRoutes)
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
