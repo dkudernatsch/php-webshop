@@ -1,0 +1,31 @@
+###
+POST https://api.webshop.at/order/
+Accept: application/json
+Cache-Control: no-cache
+Content-Type: application/json
+Authorization: Bearer {{user_token}}
+
+{
+    "user_id": 1,
+    "payment_id": 7,
+    "coupon_id": 16,
+    "products": [
+        {
+            "id": 10,
+            "count": 2
+        },{
+            "id": 11,
+            "count": 3
+        }
+    ]
+}
+
+###
+
+GET https://api.webshop.at/invoice/7
+Accept: application/json
+Cache-Control: no-cache
+Content-Type: application/json
+Authorization: Bearer {{user_token}}
+
+###

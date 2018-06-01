@@ -8,7 +8,6 @@ Authorization: Bearer {{user_token}}
 
 {
     "paymentMethod": {
-        "id": 1,
         "method": "VISA 123490439032"
     }
 }
