@@ -2,13 +2,9 @@ import {Component} from '@angular/core';
 
 @Component({
   selector: 'app-login',
-  templateUrl: './login-comp.html'
+  templateUrl: './login-comp.html',
+  styleUrls: ['login-component.css']
 })
 export class LoginComponent {
 
-  someNum: number = 3;
-
-  getServerStatus(): string {
-    return 'somestatus';
-  }
 }
