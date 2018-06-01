@@ -1,0 +1,22 @@
+
+
+POST https://api.webshop.at/category/
+Accept: application/json
+Cache-Control: no-cache
+Content-Type: application/json
+Authorization: Bearer {{admin_token}}
+
+{
+    "name": "Knusperlis",
+    "slug": "knusper"
+}
+
+###
+
+GET https://api.webshop.at/category/
+Accept: application/json
+Cache-Control: no-cache
+Content-Type: application/json
+Authorization: Bearer {{anonymous_token}}
+
+###

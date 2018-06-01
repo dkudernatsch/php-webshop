@@ -3,6 +3,11 @@ POST https://api.webshop.at/token
 Accept: application/json
 Cache-Control: no-cache
 
+> {%
+    client.assert(response.status === 201, "Token creation failed");
+    client.global.set('anonymous_token', response.body.token);
+%}
+
 ### get user token
 POST https://api.webshop.at/token
 Accept: application/json
@@ -14,6 +19,11 @@ Content-Type: application/json
     "password": "hellokitty"
 }
 
+> {%
+    client.assert(response.status === 201, "Token creation failed");
+    client.global.set('user_token', response.body.token);
+%}
+
 ### get user token
 POST https://api.webshop.at/token
 Accept: application/json
@@ -24,4 +34,8 @@ Content-Type: application/json
     "username": "admin",
     "password": "admin"
 }
-
+> {%
+    client.assert(response.status === 201, "Token creation failed");
+    client.global.set('admin_token', response.body.token);
+%}
+###

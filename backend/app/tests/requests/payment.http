@@ -4,7 +4,7 @@ POST https://api.webshop.at/user/1/paymentMethod
 Accept: application/json
 Cache-Control: no-cache
 Content-Type: application/json
-Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MjQwODU5ODcsImV4cCI6MTUyNDE3MjM4NywianRpIjoidU92TnFZd01SYUwrNkpsY0ZDUVlBUT09Iiwic3ViIjoxLCJzY29wZSI6WyJ1c2VyIl19.r8xr8xZtJXCxmmwYgLwzo5Ft9nSUY1t4eV7d86ZVvgE
+Authorization: Bearer {{user_token}}
 
 {
     "paymentMethod": {
@@ -19,14 +19,16 @@ GET https://api.webshop.at/user/1/paymentMethod
 Accept: application/json
 Cache-Control: no-cache
 Content-Type: application/json
-Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MjQwODU5ODcsImV4cCI6MTUyNDE3MjM4NywianRpIjoidU92TnFZd01SYUwrNkpsY0ZDUVlBUT09Iiwic3ViIjoxLCJzY29wZSI6WyJ1c2VyIl19.r8xr8xZtJXCxmmwYgLwzo5Ft9nSUY1t4eV7d86ZVvgE
+Authorization: Bearer {{user_token}}
+
+> {% client.global.set('last_paymentMethod', response.body.success.paymentMethods[0].id); %}
 
 ###
 
-DELETE https://api.webshop.at/user/1/paymentMethod/1
+DELETE https://api.webshop.at/user/1/paymentMethod/{{last_paymentMethod}}
 Accept: application/json
 Cache-Control: no-cache
 Content-Type: application/json
-Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MjQwODU5ODcsImV4cCI6MTUyNDE3MjM4NywianRpIjoidU92TnFZd01SYUwrNkpsY0ZDUVlBUT09Iiwic3ViIjoxLCJzY29wZSI6WyJ1c2VyIl19.r8xr8xZtJXCxmmwYgLwzo5Ft9nSUY1t4eV7d86ZVvgE
+Authorization: Bearer {{user_token}}
 
 ###

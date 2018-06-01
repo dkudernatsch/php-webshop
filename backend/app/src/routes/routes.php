@@ -2,9 +2,12 @@
 /**
  * Created by PhpStorm.
  * User: daniel
- * Date: 20.05.18
- * Time: 18:27
+ * Date: 21.04.18
+ * Time: 19:39
  */
 
-require_once "token.php";
-require_once "user.php";
+include "user.php";
+include "token.php";
+include "coupon.php";
+include "category.php";
+include "product.php";
