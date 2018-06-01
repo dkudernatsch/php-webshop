@@ -28,7 +28,10 @@ import {ShoppingCartPageComponent} from './components/shoppingCart-page/shopping
 
 import {UserPageComponent} from './components/user-page/user-page';
 
+import {FooterComponent} from './components/footer/footer.component';
+
 import {PageNotFoundPageComponent} from './components/page-not-found/page-not-found-page';
+
 
 
 
@@ -45,7 +48,8 @@ import {PageNotFoundPageComponent} from './components/page-not-found/page-not-fo
     ShoppingCartPageComponent,
     PageNotFoundPageComponent,
     UserPageComponent,
-    LoginComponent
+    LoginComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
