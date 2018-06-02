@@ -1,0 +1,11 @@
+<!--https://ng-bootstrap.github.io/#/components/typeahead/examples-->
+<input
+        id="typeahead-focus"
+        type="text"
+        class="form-control"
+        placeholder="Enter product name"
+        [(ngModel)]="model"
+        [ngbTypeahead]="search"
+        (focus)="focus$.next($event.target.value)"
+        (click)="click$.next($event.target.value)"
+        #instance="ngbTypeahead"/>

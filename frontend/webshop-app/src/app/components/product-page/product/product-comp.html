@@ -1,0 +1,14 @@
+<div class="card">
+    <img class="card-img-top" src="{{testProduct.imagePath}}" alt="productimage">
+    <div class="card-body">
+        <h5 class="card-title">{{testProduct.name}}</h5>
+        <p>Price: {{testProduct.price}} €</p>
+        <button class="btn btn-outline-dark" (click)="onAddToCart()">
+            Add to Cart
+        </button>
+        <hr>
+        <span>Rating: </span>
+        <ngb-rating [(rate)]="testProduct.rating"></ngb-rating>
+    </div>
+
+</div>

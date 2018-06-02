@@ -1,9 +1,9 @@
 import {Component} from '@angular/core';
 
 @Component({
-  selector: 'app-product-page',
-  templateUrl: './product-page-comp.html'
+    selector: 'app-product-page',
+    templateUrl: './product-page-comp.html'
 })
 export class ProductPageComponent {
-
 }
+

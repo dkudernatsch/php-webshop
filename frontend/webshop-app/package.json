@@ -21,9 +21,13 @@
     "@angular/platform-browser-dynamic": "^6.0.3",
     "@angular/router": "^6.0.3",
     "@ng-bootstrap/ng-bootstrap": "^2.0.0",
+    "angular-icons": "^1.0.11",
     "bootstrap": "^4.1.1",
     "bootstrap4": "0.0.1-security",
     "core-js": "^2.5.7",
+    "ionicons": "^4.1.2",
+    "material-design-icons": "^3.0.1",
+    "open-iconic": "^1.1.1",
     "rxjs": "^6.2.0",
     "zone.js": "^0.8.26"
   },
