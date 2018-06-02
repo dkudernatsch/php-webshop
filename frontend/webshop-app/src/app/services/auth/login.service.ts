@@ -8,14 +8,12 @@ import {Observable} from 'rxjs/internal/Observable';
 })
 export class LoginService {
 
-    constructor(private http: HttpClient) {
-    }
+    constructor(private http: HttpClient) {}
 
     public login(auth: UserAuth): Observable<Token> {
         console.log('sending user token request');
         console.log(auth);
         return this.http.post<Token>('https://api.webshop.at/token', auth);
-
     }
 
 }
