@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {AuthService} from './auth.service';
 import {Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
-import {User} from '../../types/user';
+// import {User} from '../../types/user';
 import {Token} from './userAuth';
 
 @Injectable({
@@ -33,7 +33,7 @@ export class UserAuthService {
     }
 
     // requires api to work
-    public readonly user$: Observable<User>;
+    // public readonly user$: Observable<User>;
 
     public readonly isLoggedIn$: Observable<Boolean>;
 

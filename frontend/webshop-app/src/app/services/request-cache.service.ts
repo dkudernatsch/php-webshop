@@ -22,7 +22,7 @@ export class RequestCacheService {
                 map((entry: CacheEntry<T>) => {
                     if (entry) {
                         console.log(entry);
-                        if (new Date(entry.expires) > Date.now()) {
+                        if (new Date(entry.expires) > new Date()) {
                             console.log('found non expired entry');
                             return entry;
                         } else {
