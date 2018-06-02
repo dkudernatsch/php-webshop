@@ -21,7 +21,7 @@ export class TestloginComponent {
 
 
     loginUser() {
-        this.authService.updateAuth({username: 'if17b094', password: 'hellokitty'});
+        this.authService.updateAuth({username: 'if17b094', password: 'Hellokitty1'});
     }
 
     loginAdmin() {

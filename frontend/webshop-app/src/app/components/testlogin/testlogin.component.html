@@ -6,10 +6,10 @@
   logged in as user
 </div>
 
-<div *ngIf="!(isAdmin$ | async)">
-  not logged in as admin
+<div *ngIf="(isAdmin$ | async)">
+  logged in as admin
 </div>
 
-<div *ngIf="true">
-  anon
+<div *ngIf="isAnonymous$ | async">
+  logged in anonymous
 </div>

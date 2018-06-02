@@ -3,6 +3,7 @@ import {ModalDismissReasons, NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {NgForm} from '@angular/forms';
 import {UserAuthService} from '../../../services/auth/user-auth.service';
 import {AuthService} from '../../../services/auth/auth.service';
+import {UserAuth} from "../../../services/auth/userAuth";
 
 @Component({
   selector: 'app-login',
@@ -46,7 +47,7 @@ export class LoginComponent {
     console.log(this.loginForm.value);
     console.log(this.loginForm.value.username);
     console.log(this.loginForm.value.password);
-    this.login(this.loginForm.value.username, this.loginForm.value.password);
+    this.login({username: this.loginForm.value.username, password: this.loginForm.value.password});
   }
 
   onSubmitRegister(form: NgForm) {
@@ -54,8 +55,8 @@ export class LoginComponent {
     console.log(this.loginForm.value);
   }
 
-  login(username: string, password : string) {
-    this.authService.updateAuth({username, password});
+  login(userAuth: UserAuth) {
+    this.authService.updateAuth(userAuth);
   }
 
   logout() {
