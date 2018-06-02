@@ -17,6 +17,4 @@ export class NavbarComponent {
     this.isUser$ = userAuthService.hasScope('user');
     this.isAnonymous$ = userAuthService.hasScope('anonymous');
   }
-
-
 }

@@ -21,7 +21,7 @@ Authorization: Bearer {{anonymous_token}}
     "user": {
         "appellation": "Herr",
         "username": "if17b094",
-        "password": "hellokitty",
+        "password": "Hellokitty1",
         "mail": "abc@gmail.com",
         "first_name": "Daniel",
         "last_name": "Kudernastch",
@@ -42,7 +42,7 @@ Authorization: Bearer {{anonymous_token}}
     "user": {
         "appellation": "",
         "username": "admin",
-        "password": "admin",
+        "password": "Admin1",
         "mail": "admin@webshop.at",
         "first_name": "Admin",
         "last_name": "Admin",

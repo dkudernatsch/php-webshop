@@ -8,16 +8,16 @@
       <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
         <a class="nav-link custom-link" routerLink="/">Home</a>
       </li>
-      <li *ngIf="!this.isAdmin$" class="nav-item" routerLinkActive="active">
+      <li *ngIf="!(this.isAdmin$ | async)" class="nav-item" routerLinkActive="active">
         <a class="nav-link custom-link" routerLink="/products">Products</a>
       </li>
-      <li *ngIf="!this.isAdmin$" class="nav-item" routerLinkActive="active">
+      <li *ngIf="!(this.isAdmin$ | async)" class="nav-item" routerLinkActive="active">
         <a class="nav-link custom-link" routerLink="/cart">Cart</a>
       </li>
-      <li *ngIf="this.isUser$" class="nav-item" routerLinkActive="active">
+      <li *ngIf="this.isUser$ | async as user" class="nav-item" routerLinkActive="active">
         <a class="nav-link custom-link" routerLink="/account">Account</a>
       </li>
-      <li *ngIf="this.isAdmin$" class="nav-item" routerLinkActive="active">
+      <li *ngIf="this.isAdmin$ | async as admin" class="nav-item" routerLinkActive="active">
         <a class="nav-link custom-link" routerLink="/admin">Admin</a>
       </li>
     </ul>

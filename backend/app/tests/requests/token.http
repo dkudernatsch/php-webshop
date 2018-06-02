@@ -16,7 +16,7 @@ Content-Type: application/json
 
 {
     "username": "if17b094",
-    "password": "hellokitty"
+    "password": "Hellokitty1"
 }
 
 > {%
@@ -32,7 +32,7 @@ Content-Type: application/json
 
 {
     "username": "admin",
-    "password": "admin"
+    "password": "Admin1"
 }
 > {%
     client.assert(response.status === 201, "Token creation failed");

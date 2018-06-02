@@ -1,8 +1,7 @@
-use webshop;
-
+-- use webshop;
 
 CREATE TABLE IF NOT EXISTS USERS (
-  u_id         INT  AUTO_INCREMENT PRIMARY KEY,
+  u_id INT  AUTO_INCREMENT PRIMARY KEY,
 
   u_appellation VARCHAR(10)  NOT NULL,
   u_firstname  VARCHAR(25)  NOT NULL,
