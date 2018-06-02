@@ -31,7 +31,13 @@ import {UserPageComponent} from './components/user-page/user-page';
 import {FooterComponent} from './components/footer/footer.component';
 
 import {PageNotFoundPageComponent} from './components/page-not-found/page-not-found-page';
-
+import {AuthService} from './services/auth/auth.service';
+import {UserAuthService} from './services/auth/user-auth.service';
+import {LocalStorageService} from './services/localstorage.service';
+import {RequestCacheService} from './services/request-cache.service';
+import {LoginService} from './services/auth/login.service';
+import {HttpClientModule} from '@angular/common/http';
+import { TestloginComponent } from './components/testlogin/testlogin.component';
 
 
 
@@ -49,15 +55,23 @@ import {PageNotFoundPageComponent} from './components/page-not-found/page-not-fo
     PageNotFoundPageComponent,
     UserPageComponent,
     LoginComponent,
-    FooterComponent
+    FooterComponent,
+    TestloginComponent
   ],
   imports: [
     BrowserModule,
     NgbModule.forRoot(),
     FormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [
+      AuthService,
+      UserAuthService,
+      LocalStorageService,
+      RequestCacheService,
+      LoginService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {
