@@ -34,8 +34,9 @@ import {UserAuthService} from './services/auth/user-auth.service';
 import {LocalStorageService} from './services/localstorage.service';
 import {RequestCacheService} from './services/request-cache.service';
 import {LoginService} from './services/auth/login.service';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { TestloginComponent } from './components/testlogin/testlogin.component';
+import {AuthIntercepterService} from './services/auth/auth-intercepter.service';
 
 
 
@@ -67,7 +68,8 @@ import { TestloginComponent } from './components/testlogin/testlogin.component';
       UserAuthService,
       LocalStorageService,
       RequestCacheService,
-      LoginService
+      LoginService,
+      {provide: HTTP_INTERCEPTORS, useClass: AuthIntercepterService, multi: true}
   ],
   bootstrap: [AppComponent]
 })

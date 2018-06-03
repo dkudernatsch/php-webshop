@@ -37,4 +37,4 @@ $app->post("/category/", function (Request $request, Response $response, array $
     } else {
         throw new \errors\HttpServerException(400, "Malformed request: Required fields [name, slug]");
     }
-});
+})->add(new ScopedJWTAuth(["admin"]));
