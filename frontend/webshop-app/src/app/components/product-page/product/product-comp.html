@@ -1,14 +1,14 @@
 <div class="card">
-    <img class="card-img-top" src="{{testProduct.imagePath}}" alt="productimage">
+    <img class="card-img-top img-fluid" src="{{product.imagePath}}" alt="productimage">
     <div class="card-body">
-        <h5 class="card-title">{{testProduct.name}}</h5>
-        <p>Price: {{testProduct.price}} €</p>
+        <h5 class="card-title">{{product.name}}</h5>
+        <p>Price: {{product.price}} €</p>
         <button class="btn btn-outline-dark" (click)="onAddToCart()">
             Add to Cart
         </button>
         <hr>
         <span>Rating: </span>
-        <ngb-rating [(rate)]="testProduct.rating"></ngb-rating>
+        <ngb-rating [(rate)]="product.rating"></ngb-rating>
     </div>
 
 </div>

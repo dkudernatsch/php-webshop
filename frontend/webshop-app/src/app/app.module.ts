@@ -43,6 +43,7 @@ import {HttpClientModule} from '@angular/common/http';
 import {TestloginComponent} from './components/testlogin/testlogin.component';
 import {ProductService} from './services/products/product.service';
 import {ShoppingCartService} from './services/products/shoppingCart.service';
+import {ProductListComponent} from './components/product-page/productList/product-list.component';
 
 
 @NgModule({
@@ -58,6 +59,7 @@ import {ShoppingCartService} from './services/products/shoppingCart.service';
         SearchProductComponent,
         CategoryPickerComponent,
         ProductComponent,
+        ProductListComponent,
         ShoppingCartPageComponent,
         PageNotFoundPageComponent,
         UserPageComponent,
