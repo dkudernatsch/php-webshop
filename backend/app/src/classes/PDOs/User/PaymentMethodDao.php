@@ -18,6 +18,18 @@ class PaymentMethodDao extends Dao
     const delete_stub = "DELETE FROM PAYMENT_METHOD WHERE py_id = ? AND fk_py_u_user = ?";
 
     /**
+     * @param int $id
+     * @return PaymentMethod
+     * @throws \errors\DatabaseException
+     */
+    public function byId(int $id){
+        return $this->db->prepare_and_run(
+            $this::select_stub." WHERE py_id = ?", [
+            ["i" => $id]
+        ], PaymentMethod::class);
+    }
+
+    /**
      * @param int $user_id
      * @param PaymentMethod $method
      * @return int
@@ -40,7 +52,7 @@ class PaymentMethodDao extends Dao
         return $this->db->prepare_and_run(
             $this::select_stub." WHERE fk_py_u_user = ?", [
                 ["i" => $user_id]
-            ], "PDOs\User\PaymentMethod", true);
+            ], PaymentMethod::class, true);
     }
 
     /**

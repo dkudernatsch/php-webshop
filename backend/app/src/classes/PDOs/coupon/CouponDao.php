@@ -93,6 +93,15 @@ class CouponDao extends Dao
         return $this->db->get_last_auto_inc();
     }
 
+    public function update(Coupon $coupon){
+        return $this->db->prepare_and_run($this::update_stub, [
+            ['s' => $coupon->code],
+            ['d' => $coupon->value],
+            ['i' => $coupon->user_id],
+            ['i' => $coupon->id],
+        ]);
+    }
+
     /**
      * @return string
      */
