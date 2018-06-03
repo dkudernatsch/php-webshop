@@ -37,6 +37,7 @@ import {LoginService} from './services/auth/login.service';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { TestloginComponent } from './components/testlogin/testlogin.component';
 import {AuthIntercepterService} from './services/auth/auth-intercepter.service';
+import {CreateProductModalComponent} from './components/admin-page/manage-products-page/create-product-modal';
 
 
 
@@ -50,11 +51,15 @@ import {AuthIntercepterService} from './services/auth/auth-intercepter.service';
     ManageProductsPageComponent,
     ManageUsersPageComponent,
     ProductPageComponent,
+      CreateProductModalComponent,
     ShoppingCartPageComponent,
     PageNotFoundPageComponent,
     UserPageComponent,
     LoginComponent,
     TestloginComponent
+  ],
+  entryComponents: [
+      CreateProductModalComponent
   ],
   imports: [
     BrowserModule,

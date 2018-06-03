@@ -41,7 +41,8 @@ export class ProductEndpointService extends ApiResourceEndPoint<Product, NewProd
             {
                 resource: 'product/category/' + cat_id,
                 scope: ['anonymous'],
-                method: 'GET'
+                method: 'GET',
+                body: {}
             }
         );
     }
