@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, Input, ViewChild} from '@angular/core';
 import {Product} from '../../../types/product';
 import {ShoppingCartService} from '../../../services/products/shoppingCart.service';
 
@@ -10,7 +10,7 @@ import {ShoppingCartService} from '../../../services/products/shoppingCart.servi
 export class CartItemComponent {
     @Input() product: Product;
     @Input() amount: number;
-    private dropDownValues: number[] = [1, 2, 3, 4, 5, 6, 7, 8];
+    private dropDownValues = [1, 2, 3, 4, 5, 6, 7, 8];
 
     constructor(private shoppingCartService: ShoppingCartService) {}
 
@@ -18,10 +18,8 @@ export class CartItemComponent {
         this.shoppingCartService.removeProduct(this.product);
     }
 
-    onChangeAmount(event) {
-        console.log(event);
-        console.log(event.target.value);
-        const newAmount = event.target.value;
+    onChangeAmount(newAmount: number) {
+        console.log('newAmount: ' + newAmount);
         this.shoppingCartService.setAmountFor(this.product, newAmount);
     }
 
