@@ -23,12 +23,18 @@ export class ShoppingCartService {
         console.log('total price is now: ' + this.getTotalPrice());
     }
 
+    // removes product completely
     removeProduct(product: Product): void {
         const index: number = this.products.indexOf(product, 0);
         if (index > -1) {
             this.products.splice(index, 1);
-            this.amounts[product.id]--;
+            this.amounts[product.id] = 0;
         }
+    }
+
+    setAmountFor(product: Product, newAmount: number): void {
+        this.amounts[product.id] = newAmount;
+        console.log('amount now is: ' + this.amounts[product.id]);
     }
 
     getTotalPrice(): number {

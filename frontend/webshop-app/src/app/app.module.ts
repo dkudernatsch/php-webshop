@@ -28,6 +28,8 @@ import {ManageProductsPageComponent} from './components/admin-page/manage-produc
 import {ManageUsersPageComponent} from './components/admin-page/manage-users-page/manage-users-page';
 
 import {ShoppingCartPageComponent} from './components/shoppingCart-page/shoppingCart-page';
+import {CartItemComponent} from './components/shoppingCart-page/cart-item/cart-item.component';
+import {CartItemListComponent} from './components/shoppingCart-page/cart-item-list/cart-item-list.component';
 
 import {UserPageComponent} from './components/user-page/user-page';
 
@@ -61,6 +63,8 @@ import {ProductListComponent} from './components/product-page/productList/produc
         ProductComponent,
         ProductListComponent,
         ShoppingCartPageComponent,
+        CartItemComponent,
+        CartItemListComponent,
         PageNotFoundPageComponent,
         UserPageComponent,
         LoginComponent,
