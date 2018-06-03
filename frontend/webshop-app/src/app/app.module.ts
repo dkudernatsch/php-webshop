@@ -46,6 +46,9 @@ import {TestloginComponent} from './components/testlogin/testlogin.component';
 import {ProductService} from './services/products/product.service';
 import {ShoppingCartService} from './services/products/shoppingCart.service';
 import {ProductListComponent} from './components/product-page/productList/product-list.component';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
+import {TestloginComponent} from './components/testlogin/testlogin.component';
+import {AuthIntercepterService} from './services/auth/auth-intercepter.service';
 
 
 @NgModule({
@@ -85,7 +88,8 @@ import {ProductListComponent} from './components/product-page/productList/produc
         RequestCacheService,
         LoginService,
         ProductService,
-        ShoppingCartService
+        ShoppingCartService,
+        {provide: HTTP_INTERCEPTORS, useClass: AuthIntercepterService, multi: true}
     ],
     bootstrap: [AppComponent]
 })

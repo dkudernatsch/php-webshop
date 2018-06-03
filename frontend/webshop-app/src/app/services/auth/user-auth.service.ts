@@ -1,16 +1,19 @@
 import {Injectable} from '@angular/core';
 import {AuthService} from './auth.service';
 import {Observable} from 'rxjs';
-import {map} from 'rxjs/operators';
+import {flatMap, map} from 'rxjs/operators';
 // import {User} from '../../types/user';
 import {Token} from './userAuth';
+import {isScope, Scope, User} from '../../types/api/user';
+import {UserEndpointService} from '../api/user-endpoint-service';
+import {of} from 'rxjs/internal/observable/of';
 
 @Injectable({
     providedIn: 'root'
 })
 export class UserAuthService {
 
-    constructor(private authService: AuthService) {
+    constructor(private authService: AuthService, private userApiService: UserEndpointService) {
         const decoded = authService.token().pipe(
             map((token: Token) => token.token.split('.')[1]
             ),
@@ -30,10 +33,21 @@ export class UserAuthService {
         this.isLoggedIn$ = this.userScope$.pipe(
             map((scopes: Scope[]) => scopes.includes('user') || scopes.includes('admin'))
         );
+
+        this.user$ = decoded.pipe(
+            flatMap((token: any) => {
+                if (token.sub) {
+                    console.log('logged as user: ' + token.sub);
+                    return this.userApiService.byId(token.sub);
+                } else {
+                    return of(null);
+                }
+            })
+        );
     }
 
     // requires api to work
-    // public readonly user$: Observable<User>;
+    public readonly user$: Observable<User | null>;
 
     public readonly isLoggedIn$: Observable<Boolean>;
 
@@ -47,14 +61,3 @@ export class UserAuthService {
 
 }
 
-
-type Scope
-    = 'user'
-    | 'admin'
-    | 'anonymous';
-
-function isScope(val: any): val is Scope {
-    return val === 'user'
-        || val === 'admin'
-        || val === 'anonymous';
-}

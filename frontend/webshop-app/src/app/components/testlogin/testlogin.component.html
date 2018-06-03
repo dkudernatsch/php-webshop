@@ -1,15 +1,30 @@
 <button class="btn" (click)="this.loginUser()">Login User</button>
 <button class="btn" (click)="this.loginAdmin()">Login Admin</button>
 <button class="btn" (click)="this.logout()">Logout</button>
-[user]=""
+
+
 <div *ngIf="this.isUser$ | async as user">
-  logged in as user
+    logged in as user
 </div>
 
-<div *ngIf="(isAdmin$ | async)">
-  logged in as admin
+<div *ngIf="this.isAdmin$ | async as admin">
+    logged in as admin
 </div>
 
-<div *ngIf="isAnonymous$ | async">
-  logged in anonymous
+<div *ngIf="this.isAnonymous$ | async as anon">
+    logged in as anon
+</div>
+
+<hr>
+
+<button class="btn" (click)="this.makeCategory()">make cate</button>
+
+<hr>
+
+<button class="btn" (click)="this.toggle()">toggle</button>
+<div *ngIf="this.bool">hello</div>
+
+<div *ngIf="this.user$ | async as user">
+    <div>{{ user | json }}
+    </div>
 </div>

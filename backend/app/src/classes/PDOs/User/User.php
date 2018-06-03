@@ -26,7 +26,7 @@ class User
 
     function get_scopes(){
         return $this->is_admin
-            ? ["user", "admin"]
-            : ["user"];
+            ? ["user", "admin", "anonymous"]
+            : ["user", "anonymous"];
     }
 }
