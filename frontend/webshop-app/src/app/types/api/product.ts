@@ -7,6 +7,14 @@ export interface Product {
     categories: number[];
 }
 
+export interface NewProduct {
+    name: string;
+    price: number;
+    imageData: string;
+    rating: number;
+    categories: number[];
+}
+
 export interface Category {
     id: number;
     name: string;

@@ -36,8 +36,4 @@ export class UserEndpointService extends ApiResourceEndPoint<User, NewUser> {
         return this.endpoints;
     }
 
-    sayhello() {
-        return 'hello';
-    }
-
 }
