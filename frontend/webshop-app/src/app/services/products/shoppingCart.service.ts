@@ -1,46 +1,42 @@
-import {Product} from '../../types/api/product';
+import {CartEntry, Product} from '../../types/api/product';
 
 export class ShoppingCartService {
 
     // workaround for a map id => amount
-    private amounts: { [id: number]: number; } = {};
-    private products: Product[] = [];
+    private cart: { [id: number]: CartEntry } = {};
     private totalItems = 0;
 
     addProduct(product: Product): void {
-        const id = product.id;
-        const index: number = this.products.indexOf(product, 0);
-        if (index > -1) {
-            this.amounts[id]++;
+        if (this.cart[product.id]) {
             console.log('cart already contains that item. increasing amount');
-            console.log(this.getAmountFor(id));
+            this.cart[product.id].amount++;
         } else {
-            this.products.push(product);
-            this.amounts[id] = 1;
+            this.cart[product.id] = {product: product, amount: 1}
         }
         this.totalItems++;
-        console.log('total amount of items is: ' + this.totalItems);
-        console.log('total price is now: ' + this.getTotalPrice());
     }
 
     // removes product completely
     removeProduct(product: Product): void {
-        const index: number = this.products.indexOf(product, 0);
-        if (index > -1) {
-            this.products.splice(index, 1);
-            this.amounts[product.id] = 0;
+        if(this.cart[product.id]) {
+            delete this.cart[product.id];
         }
     }
 
     setAmountFor(product: Product, newAmount: number): void {
-        this.amounts[product.id] = newAmount;
-        console.log('amount now is: ' + this.amounts[product.id]);
+        console.log("setting amount");
+        if(this.cart[product.id]) {
+            this.cart[product.id].amount = newAmount;
+            console.log("set amount");
+        }
     }
 
     getTotalPrice(): number {
-        return this.products.reduce((a, b) => {
-            return a + this.getSumFor(b);
-        }, 0);
+        let sum = 0;
+        for(let key in this.cart) {
+            sum += this.cart[key].amount * this.cart[key].product.price;
+        }
+        return sum;
     }
 
     getSumFor(product: Product): number {
@@ -48,16 +44,20 @@ export class ShoppingCartService {
         return amount * product.price;
     }
 
-    getAllItems(): Product[] {
-        return this.products;
-    }
-
-    getAmounts(): { [id: number]: number; } {
-        return this.amounts;
+    getCart(): { [id: number]: CartEntry } {
+        return this.cart;
     }
 
     getAmountFor(id: number) {
-        return typeof(this.amounts[id]) === 'undefined' ? 0 : this.amounts[id];
+        return this.cart[id] ? this.cart[id] : 0;
+    }
+
+    getAllCartItems(): CartEntry[] {
+        let entries: CartEntry[] = [];
+        for(let key in this.cart) {
+            entries.push(this.cart[key]);
+        }
+        return entries;
     }
 
 }

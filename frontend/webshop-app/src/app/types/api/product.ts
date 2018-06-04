@@ -15,6 +15,11 @@ export interface NewProduct {
     categories: number[];
 }
 
+export interface CartEntry {
+    product: Product,
+    amount: number
+}
+
 export interface Category {
     id: number;
     name: string;

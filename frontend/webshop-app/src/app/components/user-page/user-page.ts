@@ -12,11 +12,11 @@ import {NgForm} from "@angular/forms";
 export class UserPageComponent {
 
     @ViewChild('updateUserForm') updateForm: NgForm;
-    private user$: Observable<User>;
+    private user$: User;
 
     constructor(private userAuthService: UserAuthService) {
-        this.user$ = this.userAuthService.user$;
-        this.userAuthService.user$.subscribe((user: User) => console.log(user));
+        // this.user$ = this.userAuthService.user$;
+        this.userAuthService.user$.subscribe((user: User) => this.user$ = user);
     }
 
     onSubmitUpdateUser() {

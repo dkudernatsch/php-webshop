@@ -63,7 +63,7 @@ export class LoginComponent {
         console.log(form.value.street);
         console.log(form.value.city);
         console.log(form.value.plz);
-        newU: newUser = {
+        let newU: NewUser = {
             username: form.value.username,
             password: form.value.password,
             mail: form.value.email,
@@ -75,8 +75,6 @@ export class LoginComponent {
             city: form.value.city
         };
         this.userEndpointService.create(newU);
-
-
     }
 
     login(userAuth: UserAuth) {

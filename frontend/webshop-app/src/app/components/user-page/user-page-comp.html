@@ -9,7 +9,7 @@
                         <label for="username">Username</label>
                     </div>
                     <div class="col-8">
-                        <input [ngModel]="user$.username | async"
+                        <input ngModel
                                type="text"
                                class="form-control"
                                name="username"
@@ -20,7 +20,6 @@
                                maxlength="20"
                                #registerUsername="ngModel">
                         <span *ngIf="!registerUsername.valid && registerUsername.touched" class="form-text text-muted">Between 2-20 characters</span>
-
                     </div>
                 </div>
             </div>
@@ -166,11 +165,4 @@
             </button>
         </div>
     </form>
-
-    <div *ngIf="user$ | async as user">
-        <span>resolved</span>
-        <span>
-        {{ user$.username }}
-      </span>
-    </div>
 </div>

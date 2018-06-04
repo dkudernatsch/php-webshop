@@ -1,6 +1,6 @@
-import {Component} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ShoppingCartService} from '../../../services/products/shoppingCart.service';
-import {Product} from '../../../types/api/product';
+import {CartEntry, Product} from '../../../types/api/product';
 
 
 @Component({
@@ -10,14 +10,10 @@ import {Product} from '../../../types/api/product';
 
 export class CartItemListComponent {
 
-    private currentCartItems: Product[] = [];
+    private cartEntries: CartEntry[];
 
     constructor(private shoppingCartService: ShoppingCartService) {
-        this.currentCartItems = this.shoppingCartService.getAllItems();
-    }
-
-    getAmountFor(product: Product): number {
-        return this.shoppingCartService.getAmountFor(product.id);
+        this.cartEntries = this.shoppingCartService.getAllCartItems();
     }
 
 }
