@@ -1,6 +1,9 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ShoppingCartService} from '../../../services/products/shoppingCart.service';
 import {CartEntry, Product} from '../../../types/api/product';
+import {Observable} from "rxjs/internal/Observable";
+import {map} from "rxjs/operators";
+import {flatMap} from "rxjs/internal/operators";
 
 
 @Component({
@@ -10,10 +13,14 @@ import {CartEntry, Product} from '../../../types/api/product';
 
 export class CartItemListComponent {
 
-    private cartEntries: CartEntry[];
+    private cart: Observable<CartEntry[]>;
 
     constructor(private shoppingCartService: ShoppingCartService) {
-        this.cartEntries = this.shoppingCartService.getAllCartItems();
+        this.cart = this.shoppingCartService.cart<Map<number, CartEntry>().pipe(
+            map((data) => {
+                return Object.keys(data).map(key => data[key]);
+            })
+        )
     }
 
 }

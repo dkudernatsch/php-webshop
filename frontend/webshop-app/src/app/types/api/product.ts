@@ -20,6 +20,11 @@ export interface CartEntry {
     amount: number
 }
 
+type Cart = {
+    [id: number]: CartEntry
+}
+
+
 export interface Category {
     id: number;
     name: string;

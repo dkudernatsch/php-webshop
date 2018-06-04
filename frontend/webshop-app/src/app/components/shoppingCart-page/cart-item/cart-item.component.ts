@@ -14,7 +14,6 @@ export class CartItemComponent {
     constructor(private shoppingCartService: ShoppingCartService) {}
 
     onRemoveFromCart() {
-        console.log("removing item");
         this.shoppingCartService.removeProduct(this.cartentry.product);
     }
 
