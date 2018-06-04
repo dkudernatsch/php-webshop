@@ -3,7 +3,7 @@ import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 
 // for Two-Way-Binding (ngModel directive)
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {AppComponent} from './app.component';
 
 // for bootstrap
@@ -41,13 +41,11 @@ import {UserAuthService} from './services/auth/user-auth.service';
 import {LocalStorageService} from './services/localstorage.service';
 import {RequestCacheService} from './services/request-cache.service';
 import {LoginService} from './services/auth/login.service';
-import {HttpClientModule} from '@angular/common/http';
 import {TestloginComponent} from './components/testlogin/testlogin.component';
 import {ProductService} from './services/products/product.service';
 import {ShoppingCartService} from './services/products/shoppingCart.service';
 import {ProductListComponent} from './components/product-page/productList/product-list.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
-import {TestloginComponent} from './components/testlogin/testlogin.component';
 import {AuthIntercepterService} from './services/auth/auth-intercepter.service';
 
 
@@ -79,7 +77,8 @@ import {AuthIntercepterService} from './services/auth/auth-intercepter.service';
         NgbModule.forRoot(),
         FormsModule,
         AppRoutingModule,
-        HttpClientModule
+        HttpClientModule,
+        ReactiveFormsModule
     ],
     providers: [
         AuthService,
@@ -87,7 +86,6 @@ import {AuthIntercepterService} from './services/auth/auth-intercepter.service';
         LocalStorageService,
         RequestCacheService,
         LoginService,
-        ProductService,
         ShoppingCartService,
         {provide: HTTP_INTERCEPTORS, useClass: AuthIntercepterService, multi: true}
     ],

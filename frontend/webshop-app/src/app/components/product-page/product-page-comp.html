@@ -7,7 +7,7 @@
             <app-category-picker></app-category-picker>
         </div>
         <div class="col-11 m-0 p-0">
-            <app-search-product></app-search-product>
+            <app-search-product [activeCategory$] = "activeCategory$" ></app-search-product>
         </div>
     </div>
     <app-product-list></app-product-list>

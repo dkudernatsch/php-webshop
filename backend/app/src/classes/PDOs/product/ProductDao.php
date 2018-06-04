@@ -85,14 +85,28 @@ class ProductDao extends Dao
     }
 
     /**
-     * @param $cat_id
+     * @param int $cat_id
+     * @param string $search
      * @return array
      * @throws \errors\DatabaseException
      */
-    public function getByCategory(int $cat_id): array {
-        $products =  $this->db->prepare_and_run(
-            $this::select_stub." INNER JOIN PRODUCT_TO_CATEGORY ON PRODUCTS.p_id = PRODUCT_TO_CATEGORY.p_id WHERE c_id = ?",
-            [["i" => intval($cat_id)]], Product::class, true);
+    public function getByCategory(int $cat_id, string $search = null): array {
+
+        $without_search = $this::select_stub." INNER JOIN PRODUCT_TO_CATEGORY ON PRODUCTS.p_id = PRODUCT_TO_CATEGORY.p_id WHERE c_id = ?";
+        $with_search = $this::select_stub." INNER JOIN PRODUCT_TO_CATEGORY ON PRODUCTS.p_id = PRODUCT_TO_CATEGORY.p_id WHERE c_id = ? && (LOWER(p_name) LIKE '%'|| ? ||'%')";
+
+        $products = [];
+        if($search){
+            $products = $products = $this->db->prepare_and_run($with_search, [
+                    ["i" => intval($cat_id)],
+                    ["s" => $search]
+                ], Product::class, true);
+        }else{
+            $products = $this->db->prepare_and_run($without_search,
+                [["i" => intval($cat_id)]],
+                Product::class, true);
+        }
+
         foreach ($products as $product){
             $product->categories = $this->getCategoryArray($product->id);
         }

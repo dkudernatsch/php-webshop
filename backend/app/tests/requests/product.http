@@ -57,7 +57,7 @@ Authorization: Bearer {{admin_token}}
 
 ###
 
-GET https://api.webshop.at/product/category/1
+GET https://api.webshop.at/product/category/1?search=mü
 Accept: application/json
 Cache-Control: no-cache
 Content-Type: application/json

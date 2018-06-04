@@ -1,3 +1,3 @@
-<select class="form-control">
-    <option [ngValue]="category.id" *ngFor="let category of categories">{{category.name}}</option>
+<select *ngIf="categories$ | async as categories" class="form-control" [formControl] = "categoryField">
+    <option [ngValue]="category" *ngFor="let category of categories">{{category.name}}</option>
 </select>

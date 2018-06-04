@@ -3,7 +3,7 @@ import {ModalDismissReasons, NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {NgForm} from '@angular/forms';
 import {UserAuthService} from '../../../services/auth/user-auth.service';
 import {AuthService} from '../../../services/auth/auth.service';
-import {UserAuth} from "../../../services/auth/userAuth";
+import {UserAuth} from '../../../services/auth/userAuth';
 
 @Component({
   selector: 'app-login',
@@ -15,13 +15,13 @@ export class LoginComponent {
   // local references to forms
   @ViewChild('registerForm') registerForm: NgForm;
   @ViewChild('loginForm') loginForm: NgForm;
-  private isAnonymous$;
+  private isUser$;
   closeResult: string;
 
   constructor(private modalService: NgbModal,
               private userAuthService: UserAuthService,
               private authService: AuthService) {
-    this.isAnonymous$ = userAuthService.hasScope('anonymous');
+    this.isUser$ = userAuthService.hasScope('user');
   }
 
   open(content) {

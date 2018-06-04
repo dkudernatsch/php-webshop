@@ -41,7 +41,7 @@ Authorization: Bearer {{anonymous_token}}
 {
     "user": {
         "appellation": "",
-        "username": "admin",
+        "username": "a",
         "password": "Admin1",
         "mail": "admin@webshop.at",
         "first_name": "Admin",

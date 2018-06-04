@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {Product} from '../../../types/product';
+import {Product} from '../../../types/api/product';
 import {NgbRatingConfig} from '@ng-bootstrap/ng-bootstrap';
 import {ShoppingCartService} from '../../../services/products/shoppingCart.service';
 

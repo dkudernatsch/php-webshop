@@ -1,19 +1,23 @@
-import {Component} from '@angular/core';
-import {Category} from '../../../types/product';
+import {Component, EventEmitter, Output} from '@angular/core';
+import {CategoryEndpointService} from '../../../services/api/category-endpoint-service';
+import {Observable} from 'rxjs';
+import {FormControl} from '@angular/forms';
+import {Category} from '../../../types/api/product';
 
 @Component({
     selector: 'app-category-picker',
     templateUrl: './category-picker-comp.html'
 })
 export class CategoryPickerComponent {
-    actualCategory: Category;
-    categories: Category[] = [
-        {id: 1, name: 'healthy', slug: 'h'},
-        {id: 2, name: 'tasty', slug: 't'}
-    ];
+    categories$: Observable<Category[]>;
 
-    constructor() {
-        this.actualCategory = this.categories[1];
+    categoryField: FormControl = new FormControl();
+
+    public activeCategory$: Observable<Category>;
+
+    constructor(private categoryService: CategoryEndpointService) {
+        this.categories$ = this.categoryService.all();
+        this.activeCategory$ = this.categoryField.valueChanges;
     }
 
 }

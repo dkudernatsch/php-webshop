@@ -175,7 +175,17 @@
 </ng-template>
 
 
-<div *ngIf="this.isAnonymous$ | async; else loggedIn">
+<div *ngIf="this.isUser$ | async; else loggedIn">
+    <form class="form-inline mr-4">
+        <span></span>
+        <button type="button"
+                class="btn btn-outline-dark" (click)="logout()">
+            Logout
+        </button>
+    </form>
+</div>
+
+<ng-template #loggedIn>
     <form class="form-inline" (ngSubmit)="onSubmitLogin()" #loginForm="ngForm">
         <!--for presentation: additional validation with minLength directive-->
         <div class="form-group">
@@ -208,15 +218,6 @@
         </button>
     </form>
     <span class="register-text">Not a member yet? </span><a class="register-text" (click)="open(content)" href="#">Register</a>
-</div>
 
-<ng-template #loggedIn>
-    <form class="form-inline mr-4">
-        <span></span>
-        <button type="button"
-                class="btn btn-outline-dark" (click)="logout()">
-            Logout
-        </button>
-    </form>
 </ng-template>
 

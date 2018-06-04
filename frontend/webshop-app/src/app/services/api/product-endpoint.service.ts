@@ -36,14 +36,26 @@ export class ProductEndpointService extends ApiResourceEndPoint<Product, NewProd
         return this.endpoints;
     }
 
-    byCategory(cat_id: number): Observable<Product[]> {
-        return this.requestor.request<Product[]>(
-            {
-                resource: 'product/category/' + cat_id,
-                scope: ['anonymous'],
-                method: 'GET'
-            }
-        );
+    byCategorySearch(cat_id: number, search: string): Observable<Product[]> {
+        if (search === '') {
+            return this.requestor.request<Product[]>(
+                {
+                    resource: 'product/category/' + cat_id,
+                    scope: ['anonymous'],
+                    method: 'GET',
+                    body: {}
+                }
+            );
+        } else {
+            return this.requestor.request<Product[]>(
+                {
+                    resource: `product/category/${cat_id}?search=${search}`,
+                    scope: ['anonymous'],
+                    method: 'GET',
+                    body: {}
+                }
+            );
+        }
     }
 
 }

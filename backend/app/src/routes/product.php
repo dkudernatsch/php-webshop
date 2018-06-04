@@ -82,7 +82,7 @@ $app->get("/product/category/{id}",  function (Request $request, Response $respo
 
     $dao = new ProductDao($this->db);
 
-    if($product = $dao->getByCategory(intval($args['id']))) {
+    if($product = $dao->getByCategory(intval($args['id']), $_GET['search'])) {
 
         return $response
             ->withStatus(200)
