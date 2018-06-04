@@ -1,0 +1,7 @@
+.register-text {
+  font-size: 0.9em;
+}
+
+input.ng-invalid.ng-touched {
+  border: 1px solid red;
+}

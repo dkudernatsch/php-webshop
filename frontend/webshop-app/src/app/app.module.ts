@@ -42,7 +42,6 @@ import {LocalStorageService} from './services/localstorage.service';
 import {RequestCacheService} from './services/request-cache.service';
 import {LoginService} from './services/auth/login.service';
 import {TestloginComponent} from './components/testlogin/testlogin.component';
-import {ProductService} from './services/products/product.service';
 import {ShoppingCartService} from './services/products/shoppingCart.service';
 import {ProductListComponent} from './components/product-page/productList/product-list.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';

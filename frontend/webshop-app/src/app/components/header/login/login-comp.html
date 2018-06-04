@@ -6,7 +6,7 @@
             <span aria-hidden="true">&times;</span>
         </button>
     </div>
-    <form (ngSubmit)="onSubmitRegister()" #registerForm="ngForm">
+    <form (ngSubmit)="onSubmitRegister(registerForm)" #registerForm="ngForm">
         <div class="modal-body">
             <div class="container-fluid">
                 <div class="form-group">
@@ -152,6 +152,22 @@
                 <div class="form-group">
                     <div class="row my-1 py-1 d-flex align-items-center">
                         <div class="col-4">
+                            <label for="street">PLZ</label>
+                        </div>
+                        <div class="col-8">
+                            <input ngModel
+                                   type="text"
+                                   class="form-control"
+                                   name="plz"
+                                   id="plz"
+                                   placeholder="Enter a plz"
+                                   required>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row my-1 py-1 d-flex align-items-center">
+                        <div class="col-4">
                             <label for="city">City</label>
                         </div>
                         <div class="col-8">
@@ -168,7 +184,11 @@
             </div>
         </div>
         <div class="modal-footer">
-            <button type="submit" class="btn btn-outline-dark">Register</button>
+            <button type="submit"
+                    class="btn btn-outline-dark"
+                    [disabled]="!registerForm.valid">
+                    Register
+            </button>
             <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Close</button>
         </div>
     </form>
@@ -217,7 +237,7 @@
             Login
         </button>
     </form>
-    <span class="register-text">Not a member yet? </span><a class="register-text" (click)="open(content)" href="#">Register</a>
+    <span class="register-text">Not a member yet? </span><a class="register-text" (click)="open(content)" onclick="return false" href="#">Register</a>
 
 </ng-template>
 
