@@ -63,7 +63,7 @@ export class LoginComponent {
         console.log(form.value.street);
         console.log(form.value.city);
         console.log(form.value.plz);
-        let newU: NewUser = {
+        const newU: NewUser = {
             username: form.value.username,
             password: form.value.password,
             mail: form.value.email,

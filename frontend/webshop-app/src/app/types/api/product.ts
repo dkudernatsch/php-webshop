@@ -16,14 +16,9 @@ export interface NewProduct {
 }
 
 export interface CartEntry {
-    product: Product,
-    amount: number
+    product: Product;
+    amount: number;
 }
-
-type Cart = {
-    [id: number]: CartEntry
-}
-
 
 export interface Category {
     id: number;
