@@ -1,8 +1,7 @@
 import {Injectable} from '@angular/core';
-import {Category, NewCategory} from '../../types/api/product';
 import {ApiResourceEndPoint} from './api-resource-end-point';
 import {HttpRequestorService} from './http-requestor.service';
-import {Scope, User, NewUser} from '../../types/api/user';
+import {User, NewUser} from '../../types/api/user';
 import {CommonEndPoints} from '../../types/api-request';
 
 @Injectable(

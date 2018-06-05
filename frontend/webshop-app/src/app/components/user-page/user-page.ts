@@ -25,7 +25,7 @@ export class UserPageComponent {
             })
         );
         // TODO: think about how to get userId best
-        this.userAuthService.user$.subscribe((user: User) => this.userId = user.user.id);
+        this.user$.subscribe((user: User) => this.userId = user.id);
         // console.log(this.userAuthService.user$.subscribe((user: User) => console.log(user)));
     }
 

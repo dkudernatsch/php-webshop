@@ -13,7 +13,7 @@ export class ShoppingCartService {
     private sumSubject = new BehaviorSubject<number>(this.totalPrice);
 
     // function to be able to subscribe to the Cart
-    cart(): Observable<Map<number, CartEntry>> {
+    subscribeCart(): Observable<Map<number, CartEntry>> {
         return this.cartSubject.asObservable();
     }
 
@@ -62,11 +62,11 @@ export class ShoppingCartService {
         this.sumSubject.next(this.totalPrice);
     }
 
-    getCart(): { [id: number]: CartEntry } {
+    getCart(): Map<number, CartEntry> {
         return this.cart;
     }
 
-    private calcTotalPrice(): number {
+    private calcTotalPrice(): void {
         let sum = 0;
         for (const key in this.cart) {
             sum += this.cart[key].amount * this.cart[key].product.price;

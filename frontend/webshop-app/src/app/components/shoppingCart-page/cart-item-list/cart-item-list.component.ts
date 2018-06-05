@@ -15,7 +15,7 @@ export class CartItemListComponent {
     private cart: Observable<CartEntry[]>;
 
     constructor(private shoppingCartService: ShoppingCartService) {
-        this.cart = this.shoppingCartService.cart().pipe(
+        this.cart = this.shoppingCartService.subscribeCart().pipe(
             map((data) => {
                 return Object.keys(data).map(key => data[key]);
             })
