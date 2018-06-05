@@ -7,8 +7,8 @@ Content-Type: application/json
 Authorization: Bearer {{admin_token}}
 
 {
-    "name": "Knusperlis",
-    "slug": "knusper"
+    "name": "Müsli",
+    "slug": "musli"
 }
 
 ###

@@ -18,7 +18,7 @@ export class AuthService {
     constructor(private cacheService: RequestCacheService, private loginService: LoginService) {
         this.updateAuth({}, false);
     }
-s
+
     token(): Observable<Token> {
         return this.token$.asObservable();
     }
