@@ -9,7 +9,7 @@
                         <label for="username">Username</label>
                     </div>
                     <div class="col-8">
-                        <input ngModel
+                        <input [ngModel]="(user$ | async)?.username"
                                type="text"
                                class="form-control"
                                name="username"
@@ -51,7 +51,7 @@
                         <label for="appellation">Appellation</label>
                     </div>
                     <div class="col-8">
-                        <input ngModel
+                        <input [ngModel]="(user$ | async)?.appellation"
                                minlength="2"
                                type="text"
                                class="form-control"
@@ -71,7 +71,7 @@
                         <label for="firstname">First name</label>
                     </div>
                     <div class="col-8">
-                        <input ngModel
+                        <input [ngModel]="(user$ | async)?.first_name"
                                minlength="2"
                                maxlength="20"
                                type="text"
@@ -93,7 +93,7 @@
                     </div>
                     <div class="col-8">
                         <!--for presentation: additional validation with minLength directive-->
-                        <input ngModel
+                        <input [ngModel]="(user$ | async)?.last_name"
                                minlength="2"
                                maxlength="20"
                                type="text"
@@ -114,7 +114,7 @@
                     </div>
                     <div class="col-8">
                         <!--for presentation: additional validation with email directive-->
-                        <input ngModel
+                        <input [ngModel]="(user$ | async)?.mail"
                                type="email"
                                email
                                class="form-control"
@@ -131,7 +131,7 @@
                         <label for="street">Street</label>
                     </div>
                     <div class="col-8">
-                        <input ngModel
+                        <input [ngModel]="(user$ | async)?.address"
                                type="text"
                                class="form-control"
                                name="street"
@@ -144,10 +144,26 @@
             <div class="form-group">
                 <div class="row my-1 py-1 d-flex align-items-center">
                     <div class="col-4">
+                        <label for="plz">PLZ</label>
+                    </div>
+                    <div class="col-8">
+                        <input [ngModel]="(user$ | async)?.post_code"
+                               type="text"
+                               class="form-control"
+                               name="plz"
+                               id="plz"
+                               placeholder="Enter a plz"
+                               required>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="row my-1 py-1 d-flex align-items-center">
+                    <div class="col-4">
                         <label for="city">City</label>
                     </div>
                     <div class="col-8">
-                        <input ngModel
+                        <input [ngModel]="(user$ | async)?.city"
                                type="text"
                                class="form-control"
                                name="city"

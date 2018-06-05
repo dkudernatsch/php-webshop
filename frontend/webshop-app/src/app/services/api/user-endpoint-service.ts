@@ -36,4 +36,14 @@ export class UserEndpointService extends ApiResourceEndPoint<User, NewUser> {
         return this.endpoints;
     }
 
+    // TODO check that
+    updateUser(user: User) {
+        return this.requestor.request({
+            resource: `user/${user.id}`,
+            scope: ['user'],
+            method: 'PUT',
+            body: {user}
+        });
+    }
+
 }

@@ -8,4 +8,10 @@
             <span class="font-weight-bold">Total Price: {{total | async}} €</span>
         </div>
     </div>
+    <div class="row">
+        <div class="col-10"></div>
+        <div class="col-2">
+            <button [disabled]="!(this.isUser$ | async) || !((total | async) > 0)" class="btn btn-outline-dark">Buy</button>
+        </div>
+    </div>
 </div>
