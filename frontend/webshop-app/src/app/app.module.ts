@@ -46,8 +46,10 @@ import {ShoppingCartService} from './services/products/shoppingCart.service';
 import {ProductListComponent} from './components/product-page/productList/product-list.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {AuthIntercepterService} from './services/auth/auth-intercepter.service';
-import {CreateProductModalComponent} from './components/admin-page/manage-products-page/create-product-modal';
-
+import {CreateProductModalComponent} from './components/admin-page/manage-products-page/create-product/create-product-modal';
+import {AdminProductListComponent} from './components/admin-page/manage-products-page/product-list/admin-product-list.component';
+import {AdminProductListItemComponent} from './components/admin-page/manage-products-page/product-list/admin-product-list-item.component';
+import {AdminEditProductModalComponent} from './components/admin-page/manage-products-page/edit-product/admin-edit-product.component';
 
 @NgModule({
     declarations: [
@@ -71,7 +73,9 @@ import {CreateProductModalComponent} from './components/admin-page/manage-produc
         UserPageComponent,
         LoginComponent,
         FooterComponent,
-        TestloginComponent
+        TestloginComponent,
+        AdminProductListComponent,
+        AdminEditProductModalComponent
     ],
     imports: [
         BrowserModule,
@@ -89,6 +93,10 @@ import {CreateProductModalComponent} from './components/admin-page/manage-produc
         LoginService,
         ShoppingCartService,
         {provide: HTTP_INTERCEPTORS, useClass: AuthIntercepterService, multi: true}
+    ],
+    entryComponents: [
+        CreateProductModalComponent,
+        AdminEditProductModalComponent
     ],
     bootstrap: [AppComponent]
 })

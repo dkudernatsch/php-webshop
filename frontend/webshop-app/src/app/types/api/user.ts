@@ -13,15 +13,17 @@ export interface User {
 }
 
 export interface NewUser {
-    username: string;
-    password: string;
-    mail: string;
-    appellation: string;
-    first_name: string;
-    last_name: string;
-    address: string;
-    post_code: string;
-    city: string;
+    user: {
+        username: string;
+        password: string;
+        mail: string;
+        appellation: string;
+        first_name: string;
+        last_name: string;
+        address: string;
+        post_code: string;
+        city: string;
+    };
 }
 
 export type Scope

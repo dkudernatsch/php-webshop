@@ -5,6 +5,7 @@ import {ApiRequest, ApiResponse, FailedResponse, SuccessfulResponse, isFailedRes
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {AuthService} from '../auth/auth.service';
 import {Token} from '../auth/userAuth';
+import {of} from 'rxjs';
 
 @Injectable({
     providedIn: 'root'
@@ -13,14 +14,16 @@ export class HttpRequestorService {
 
     private readonly apiUrl = 'https://api.webshop.at';
 
-
-
     constructor(private http: HttpClient) {
     }
 
     public request<T>(request: ApiRequest<T>): Observable<T> {
         return this.sendRequest(request).pipe(
             map((response: ApiResponse<T>) => {
+                if (response === null
+                    || response === undefined) {
+                    return of(null);
+                }
                 if (isFailedResponse(response)) {
                     throw new Error('Request failed please try again');
                 }

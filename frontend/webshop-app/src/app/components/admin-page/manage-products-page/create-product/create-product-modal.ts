@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { NewProduct, Category } from '../../../types/api/product';
-import { ProductEndpointService } from '../../../services/api/product-endpoint.service';
-import { CategoryEndpointService } from '../../../services/api/category-endpoint-service';
 import { Observable } from 'rxjs';
+import {Category, NewProduct} from '../../../../types/api/product';
+import {ProductEndpointService} from '../../../../services/api/product-endpoint.service';
+import {CategoryEndpointService} from '../../../../services/api/category-endpoint-service';
 
 @Component({
     selector: 'app-create-products-modal',

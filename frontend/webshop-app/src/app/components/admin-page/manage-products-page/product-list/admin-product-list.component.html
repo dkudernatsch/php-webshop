@@ -1,0 +1,30 @@
+<table *ngIf="products$ | async as products" class="table">
+    <thead class="thead-dark">
+    <tr>
+        <th scope="col">ID</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col">Price</th>
+        <th scope="col">Rating</th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+    </tr>
+    </thead>
+    <tbody *ngFor="let product of products">
+    <tr>
+        <th scope="row">{{product.id}}</th>
+        <td><img src="{{product.imagePath}}" height="100px" width="100px"></td>
+        <td>{{product.name}}</td>
+        <td>{{product.price}} €</td>
+        <td>
+            <ngb-rating [max]="5" readonly="true" [rate]="product.rating"></ngb-rating>
+        </td>
+        <td>
+            <div class="btn-group" role="group">
+                <button type="button" class="btn btn-secondary" (click)="openProductEditModal(product)"> Edit</button>
+                <button type="button" class="btn btn-danger"> Remove</button>
+            </div>
+        </td>
+    </tr>
+    </tbody>
+</table>

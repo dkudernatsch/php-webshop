@@ -6,8 +6,8 @@ import {AuthService} from '../../../services/auth/auth.service';
 import {UserAuth} from '../../../services/auth/userAuth';
 import {UserEndpointService} from '../../../services/api/user-endpoint-service';
 import {NewUser, User} from '../../../types/api/user';
-import {Observable} from "rxjs/internal/Observable";
-import {map} from "rxjs/operators";
+import {Observable} from 'rxjs';
+import {map} from 'rxjs/operators';
 
 @Component({
     selector: 'app-login',
@@ -24,8 +24,8 @@ export class LoginComponent {
 
     private newUser: User = {
         username: '',
-        password: '',
         mail: '',
+        password: '',
         appellation: '',
         first_name: '',
         last_name: '',
@@ -45,7 +45,7 @@ export class LoginComponent {
             map((user: any | null) => {
                 return user === null ? null : user.user;
             })
-        )
+        );
     }
 
     open(content) {

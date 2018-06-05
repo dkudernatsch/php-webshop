@@ -58,4 +58,12 @@ export class ProductEndpointService extends ApiResourceEndPoint<Product, NewProd
         }
     }
 
+    update(product_id: number, product: NewProduct): Observable<null> {
+        return this.requestor.request<null>({
+            method: 'PUT',
+            resource: 'product/' + product_id,
+            scope: ['admin'],
+            body: product
+        });
+    }
 }

@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
-import {CreateProductModalComponent} from './create-product-modal';
+import {CreateProductModalComponent} from './create-product/create-product-modal';
 
 @Component({
     selector: 'app-manage-products-page',
