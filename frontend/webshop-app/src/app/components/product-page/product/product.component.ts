@@ -22,7 +22,7 @@ export class ProductComponent {
     onAddToCart() {
         this.shoppingCartService.addProduct(this.product);
         console.log('added to cart');
-        console.log(this.shoppingCartService.getAllItems());
+        console.log(this.shoppingCartService.getCart());
     }
 
 }

@@ -1,6 +1,6 @@
 
 
-POST https://api.webshop.at/user/1/paymentMethod
+POST https://api.webshop.at/user/1/paymentMethod/
 Accept: application/json
 Cache-Control: no-cache
 Content-Type: application/json
@@ -14,7 +14,7 @@ Authorization: Bearer {{user_token}}
 
 ###
 
-GET https://api.webshop.at/user/1/paymentMethod
+GET https://api.webshop.at/user/1/paymentMethod/
 Accept: application/json
 Cache-Control: no-cache
 Content-Type: application/json

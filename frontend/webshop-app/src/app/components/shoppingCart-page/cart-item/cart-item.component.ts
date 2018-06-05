@@ -1,6 +1,6 @@
-import {Component, Input, ViewChild} from '@angular/core';
+import {Component, Input, OnChanges, SimpleChanges, ViewChild} from '@angular/core';
 import {ShoppingCartService} from '../../../services/products/shoppingCart.service';
-import {Product} from '../../../types/api/product';
+import {CartEntry, Product} from '../../../types/api/product';
 
 
 @Component({
@@ -8,19 +8,18 @@ import {Product} from '../../../types/api/product';
     templateUrl: './cart-item-comp.html',
 })
 export class CartItemComponent {
-    @Input() product: Product;
-    @Input() amount: number;
+    @Input() cartentry: CartEntry;
     private dropDownValues = [1, 2, 3, 4, 5, 6, 7, 8];
 
     constructor(private shoppingCartService: ShoppingCartService) {}
 
     onRemoveFromCart() {
-        this.shoppingCartService.removeProduct(this.product);
+        this.shoppingCartService.removeProduct(this.cartentry.product);
     }
 
     onChangeAmount(newAmount: number) {
-        console.log('newAmount: ' + newAmount);
-        this.shoppingCartService.setAmountFor(this.product, newAmount);
+        this.shoppingCartService.setAmountFor(this.cartentry.product, newAmount);
     }
+
 
 }

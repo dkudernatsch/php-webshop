@@ -1,10 +1,7 @@
-<div class="row">
-    <div *ngFor="let cartitem of currentCartItems"
+<div class="row" *ngIf="cart | async as cartEntries">
+    <div *ngFor="let cartEntry of cartEntries"
          class="col-12">
-            <app-cart-item
-                    [product]="cartitem"
-                    [amount]="getAmountFor(cartitem)">
-            </app-cart-item>
+            <app-cart-item [cartentry]="cartEntry"></app-cart-item>
         <hr>
     </div>
 </div>

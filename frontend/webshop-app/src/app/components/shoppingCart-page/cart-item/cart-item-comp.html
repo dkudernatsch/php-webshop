@@ -1,19 +1,19 @@
 <div class="row">
     <div class="col-3">
-        <img class="img-fluid" src="{{product.imagePath}}" alt="productimage">
+        <img class="img-fluid" src="{{cartentry.product.imagePath}}" alt="productimage">
     </div>
     <div class="col-5">
-        <h5 class="card-title">{{product.name}}</h5>
+        <h5 class="card-title">{{cartentry.product.name}}</h5>
         <button class="btn btn-danger" (click)="onRemoveFromCart()">
             Remove from Cart
         </button>
     </div>
     <div class="col-2">
-        <span class="danger">Price: {{product.price}} €</span>
+        <span class="danger">Price: {{cartentry.product.price}} €</span>
     </div>
     <div class="col-2">
         <span>Amount: </span>
-        <select #amountSelector class="form-control" [ngModel]="amount" (change)="onChangeAmount(amountSelector.value)">
+        <select #amountSelector class="form-control" [ngModel]="cartentry.amount" (change)="onChangeAmount(amountSelector.value)">
             <option [value]="value" *ngFor="let value of dropDownValues">{{value}}</option>
         </select>
     </div>

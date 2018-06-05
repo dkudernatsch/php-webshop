@@ -1,63 +1,79 @@
-import {Product} from '../../types/api/product';
+import {CartEntry, Product} from '../../types/api/product';
+import {BehaviorSubject} from 'rxjs/internal/BehaviorSubject';
+import {Observable} from 'rxjs/internal/Observable';
 
 export class ShoppingCartService {
 
     // workaround for a map id => amount
-    private amounts: { [id: number]: number; } = {};
-    private products: Product[] = [];
+    private cart: Map<number, CartEntry> = new Map();
     private totalItems = 0;
+    private totalPrice = 0;
+    // make subject private so not everyone that uses service can call next on it!
+    private cartSubject = new BehaviorSubject<Map<number, CartEntry>>(this.cart);
+    private sumSubject = new BehaviorSubject<number>(this.totalPrice);
 
+    // function to be able to subscribe to the Cart
+    subscribeCart(): Observable<Map<number, CartEntry>> {
+        return this.cartSubject.asObservable();
+    }
+
+    // function to be able to subscribe to the Cart
+    getTotalPrice(): Observable<number> {
+        return this.sumSubject.asObservable();
+    }
+
+    // can be called from outside and emits .next fo all Subscribers (who took the cart with cart())
     addProduct(product: Product): void {
-        const id = product.id;
-        const index: number = this.products.indexOf(product, 0);
-        if (index > -1) {
-            this.amounts[id]++;
-            console.log('cart already contains that item. increasing amount');
-            console.log(this.getAmountFor(id));
+        if (this.cart[product.id]) {
+            // console.log('cart already contains that item. increasing amount');
+            this.cart[product.id].amount++;
         } else {
-            this.products.push(product);
-            this.amounts[id] = 1;
+            this.cart[product.id] = {product: product, amount: 1};
         }
         this.totalItems++;
-        console.log('total amount of items is: ' + this.totalItems);
-        console.log('total price is now: ' + this.getTotalPrice());
+        this.calcTotalPrice();
+        // need to recalculate sum
+        this.sumSubject.next(this.totalPrice);
+        this.cartSubject.next(this.cart);
     }
 
+    // can be called from outside and emits .next fo all Subscribers (who took the cart with cart())
     // removes product completely
     removeProduct(product: Product): void {
-        const index: number = this.products.indexOf(product, 0);
-        if (index > -1) {
-            this.products.splice(index, 1);
-            this.amounts[product.id] = 0;
+        if (this.cart[product.id]) {
+            delete this.cart[product.id];
         }
+        this.cartSubject.next(this.cart);
+        // need to recalculate sum
+        this.calcTotalPrice();
+        this.sumSubject.next(this.totalPrice);
     }
 
+    // can be called from outside and emits .next fo all Subscribers (who took the cart with cart())
     setAmountFor(product: Product, newAmount: number): void {
-        this.amounts[product.id] = newAmount;
-        console.log('amount now is: ' + this.amounts[product.id]);
+        // console.log("setting amount");
+        if (this.cart[product.id]) {
+            this.cart[product.id].amount = newAmount;
+            // console.log("set amount");
+        }
+        this.cartSubject.next(this.cart);
+        // need to recalculate sum
+        this.calcTotalPrice();
+        this.sumSubject.next(this.totalPrice);
     }
 
-    getTotalPrice(): number {
-        return this.products.reduce((a, b) => {
-            return a + this.getSumFor(b);
-        }, 0);
+    getCart(): Map<number, CartEntry> {
+        return this.cart;
     }
 
-    getSumFor(product: Product): number {
-        const amount = this.getAmountFor(product.id);
-        return amount * product.price;
+    private calcTotalPrice(): void {
+        let sum = 0;
+        for (const key in this.cart) {
+            sum += this.cart[key].amount * this.cart[key].product.price;
+        }
+        console.log(sum);
+        this.totalPrice = sum;
     }
 
-    getAllItems(): Product[] {
-        return this.products;
-    }
-
-    getAmounts(): { [id: number]: number; } {
-        return this.amounts;
-    }
-
-    getAmountFor(id: number) {
-        return typeof(this.amounts[id]) === 'undefined' ? 0 : this.amounts[id];
-    }
 
 }

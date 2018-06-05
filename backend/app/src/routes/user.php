@@ -34,7 +34,7 @@ $app->get('/user/{id}', function (Request $request, Response $response, array $a
     }
 })->add(new ScopedJWTAuth(["user"]));
 
-$app->post("/user", function (Request $request, Response $response, array $args) {
+$app->post("/user/", function (Request $request, Response $response, array $args) {
     $this->logger->info("POST: creating new user...");
     $body = $request->getParsedBody();
 
@@ -72,7 +72,7 @@ $app->put("/user/{id}", function (Request $request, Response $response, array $a
 })->add(new ScopedJWTAuth(["user"]));
 
 
-$app->get("/user/{id}/paymentMethod", function(Request $request, Response $response, array $args){
+$app->get("/user/{id}/paymentMethod/", function(Request $request, Response $response, array $args){
     $token = $request->getAttribute("token");
     if($token->decoded['sub'] != $args['id'] && !$token->has_scope(["admin"])){
         throw new \errors\HttpServerException(403, "Token does not have rights for this resource instance");
@@ -87,7 +87,7 @@ $app->get("/user/{id}/paymentMethod", function(Request $request, Response $respo
 })->add(new ScopedJWTAuth(["user"]));
 
 
-$app->post("/user/{id}/paymentMethod", function(Request $request, Response $response, array $args){
+$app->post("/user/{id}/paymentMethod/", function(Request $request, Response $response, array $args){
     $token = $request->getAttribute("token");
     if($token->decoded['sub'] != $args['id'] && !$token->has_scope(["admin"])){
         throw new \errors\HttpServerException(403, "Token does not have rights for this resource instance");

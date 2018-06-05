@@ -39,7 +39,7 @@ export class TestloginComponent {
     }
 
     loginAdmin() {
-        this.authService.updateAuth({username: 'admin', password: 'admin'});
+        this.authService.updateAuth({username: 'admin', password: 'Admin1'});
     }
 
     logout() {
