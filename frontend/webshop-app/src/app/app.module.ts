@@ -46,6 +46,7 @@ import {ShoppingCartService} from './services/products/shoppingCart.service';
 import {ProductListComponent} from './components/product-page/productList/product-list.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {AuthIntercepterService} from './services/auth/auth-intercepter.service';
+import {CreateProductModalComponent} from './components/admin-page/manage-products-page/create-product-modal';
 
 
 @NgModule({
@@ -63,6 +64,7 @@ import {AuthIntercepterService} from './services/auth/auth-intercepter.service';
         ProductComponent,
         ProductListComponent,
         ShoppingCartPageComponent,
+        CreateProductModalComponent,
         CartItemComponent,
         CartItemListComponent,
         PageNotFoundPageComponent,
