@@ -16,7 +16,7 @@ export class CartItemListComponent {
 
     constructor(private shoppingCartService: ShoppingCartService) {
         this.cart = this.shoppingCartService.subscribeCart().pipe(
-            map((data) => {
+            map((data: Map<number, CartEntry>) => {
                 return Object.keys(data).map(key => data[key]);
             })
         );

@@ -5,7 +5,7 @@ import {Observable} from 'rxjs/internal/Observable';
 export class ShoppingCartService {
 
     // workaround for a map id => amount
-    private cart: Map<number, CartEntry>;
+    private cart: Map<number, CartEntry> = new Map();
     private totalItems = 0;
     private totalPrice = 0;
     // make subject private so not everyone that uses service can call next on it!

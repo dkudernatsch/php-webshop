@@ -41,21 +41,21 @@ export class UserPageComponent {
         console.log(this.updateForm.value.plz);
         console.log(this.userId);
 
-        // let user: User = {
-        //     id:
-        //     username: this.updateForm.value.username;
-        //     mail: this.updateForm.value.email;
-        //     appellation: this.updateForm.value.appellation;
-        //     first_name: this.updateForm.value.firstname;
-        //     last_name: this.updateForm.value.lastname;
-        //     address: this.updateForm.value.street;
-        //     post_code: this.updateForm.value.plz;
-        //     city: this.updateForm.value.city;
-        //     is_admin: false
-        // }
+        let user: User = {
+            id: this.userId,
+            username: this.updateForm.value.username,
+            mail: this.updateForm.value.email,
+            appellation: this.updateForm.value.appellation,
+            first_name: this.updateForm.value.firstname,
+            last_name: this.updateForm.value.lastname,
+            address: this.updateForm.value.street,
+            post_code: this.updateForm.value.plz,
+            city: this.updateForm.value.city,
+            is_admin: false,
+        };
 
         // update user in backend with the form data!
-        // this.userEndpointService.updateUser(user);
+        this.userEndpointService.updateUser(user).subscribe();
     }
 
 

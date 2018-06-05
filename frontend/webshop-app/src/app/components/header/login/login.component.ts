@@ -74,7 +74,7 @@ export class LoginComponent {
             post_code: form.value.plz,
             city: form.value.city
         };
-        this.userEndpointService.create(newU);
+        this.userEndpointService.create(newU).subscribe();
     }
 
     login(userAuth: UserAuth) {
