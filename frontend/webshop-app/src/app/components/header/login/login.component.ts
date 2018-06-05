@@ -5,7 +5,9 @@ import {UserAuthService} from '../../../services/auth/user-auth.service';
 import {AuthService} from '../../../services/auth/auth.service';
 import {UserAuth} from '../../../services/auth/userAuth';
 import {UserEndpointService} from '../../../services/api/user-endpoint-service';
-import {NewUser} from '../../../types/api/user';
+import {NewUser, User} from '../../../types/api/user';
+import {Observable} from "rxjs/internal/Observable";
+import {map} from "rxjs/operators";
 
 @Component({
     selector: 'app-login',
@@ -17,13 +19,33 @@ export class LoginComponent {
     // local references to loginForm -- not possible for registerForm because it is a modal
     @ViewChild('loginForm') loginForm: NgForm;
     private isUser$;
+    private user$: Observable<User | null>;
     closeResult: string;
+
+    private newUser: User = {
+        username: '',
+        password: '',
+        mail: '',
+        appellation: '',
+        first_name: '',
+        last_name: '',
+        address: '',
+        post_code: '',
+        city: ''
+    };
 
     constructor(private modalService: NgbModal,
                 private userAuthService: UserAuthService,
                 private authService: AuthService,
                 private userEndpointService: UserEndpointService) {
         this.isUser$ = userAuthService.hasScope('user');
+
+        // Observable<User> to show Login info
+        this.user$ = this.userAuthService.user$.pipe(
+            map((user: any | null) => {
+                return user === null ? null : user.user;
+            })
+        )
     }
 
     open(content) {
@@ -52,29 +74,11 @@ export class LoginComponent {
         this.login({username: this.loginForm.value.username, password: this.loginForm.value.password});
     }
 
-    onSubmitRegister(form: NgForm) {
-        console.log(form);
-        console.log(form.value.username);
-        console.log(form.value.password);
-        console.log(form.value.appellation);
-        console.log(form.value.firstname);
-        console.log(form.value.lastname);
-        console.log(form.value.email);
-        console.log(form.value.street);
-        console.log(form.value.city);
-        console.log(form.value.plz);
-        const newU: NewUser = {
-            username: form.value.username,
-            password: form.value.password,
-            mail: form.value.email,
-            appellation: form.value.appellation,
-            first_name: form.value.firstname,
-            last_name: form.value.lastname,
-            address: form.value.address,
-            post_code: form.value.plz,
-            city: form.value.city
-        };
-        this.userEndpointService.create(newU).subscribe();
+    onSubmitRegister() {
+        console.log(this.newUser);
+        this.userEndpointService.create({user: this.newUser}).subscribe((response) => {
+            console.log(response);
+        });
     }
 
     login(userAuth: UserAuth) {

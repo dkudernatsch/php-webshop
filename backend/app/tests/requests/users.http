@@ -11,7 +11,7 @@ Cache-Control: no-cache
 Authorization: Bearer {{admin_token}}
 
 ### eg new user
-POST https://api.webshop.at/user
+POST https://api.webshop.at/user/
 Accept: application/json
 Cache-Control: no-cache
 Content-Type: application/json
@@ -32,7 +32,7 @@ Authorization: Bearer {{anonymous_token}}
 }
 
 ###
-POST https://api.webshop.at/user
+POST https://api.webshop.at/user/
 Accept: application/json
 Cache-Control: no-cache
 Content-Type: application/json

@@ -1,4 +1,4 @@
-import {Component, ViewChild} from '@angular/core';
+import {Component, OnDestroy, ViewChild} from '@angular/core';
 import {UserAuthService} from '../../services/auth/user-auth.service';
 import {Observable} from 'rxjs/internal/Observable';
 import {User} from '../../types/api/user';
@@ -13,49 +13,36 @@ import {UserEndpointService} from '../../services/api/user-endpoint-service';
 })
 export class UserPageComponent {
 
-    @ViewChild('updateUserForm') updateForm: NgForm;
-    private user$: Observable<User>;
-    private userId: number;
+    private user: User | null = {
+        id: undefined,
+        username: '',
+        mail: '',
+        appellation: '',
+        first_name: '',
+        last_name: '',
+        address: '',
+        post_code: '',
+        city: '',
+        is_admin: false
+    };
 
     constructor(private userAuthService: UserAuthService,
                 private userEndpointService: UserEndpointService) {
-        this.user$ = this.userAuthService.user$.pipe(
-            map((user) => {
-                return user.user;
+        this.user = this.userAuthService.user$.pipe(
+            map((user: any | null) => {
+                return user === null ? null : user.user;
             })
-        );
-        // TODO: think about how to get userId best
-        this.user$.subscribe((user: User) => this.userId = user.id);
-        // console.log(this.userAuthService.user$.subscribe((user: User) => console.log(user)));
+        ).subscribe((user: User | null) => {
+            this.user = user;
+        });
     }
 
     onSubmitUpdateUser() {
-        console.log(this.updateForm.value.username);
-        console.log(this.updateForm.value.email);
-        console.log(this.updateForm.value.password);
-        console.log(this.updateForm.value.appellation);
-        console.log(this.updateForm.value.firstname);
-        console.log(this.updateForm.value.lastname);
-        console.log(this.updateForm.value.street);
-        console.log(this.updateForm.value.city);
-        console.log(this.updateForm.value.plz);
-        console.log(this.userId);
-
-        let user: User = {
-            id: this.userId,
-            username: this.updateForm.value.username,
-            mail: this.updateForm.value.email,
-            appellation: this.updateForm.value.appellation,
-            first_name: this.updateForm.value.firstname,
-            last_name: this.updateForm.value.lastname,
-            address: this.updateForm.value.street,
-            post_code: this.updateForm.value.plz,
-            city: this.updateForm.value.city,
-            is_admin: false,
-        };
-
+        console.log(this.user);
         // update user in backend with the form data!
-        this.userEndpointService.updateUser(user).subscribe();
+        this.userEndpointService.updateUser(this.user).subscribe((code) => {
+            console.log(code);
+        });
     }
 
 
