@@ -1,10 +1,8 @@
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
-import {flatMap, map} from 'rxjs/operators';
-import {ApiRequest, ApiResponse, FailedResponse, SuccessfulResponse, isFailedResponse, isSuccessResponse} from '../../types/api-request';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {AuthService} from '../auth/auth.service';
-import {Token} from '../auth/userAuth';
+import {map} from 'rxjs/operators';
+import {ApiRequest, ApiResponse, isFailedResponse, isSuccessResponse} from '../../types/api-request';
+import {HttpClient} from '@angular/common/http';
 
 @Injectable({
     providedIn: 'root'

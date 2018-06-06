@@ -8,6 +8,7 @@ import {UserEndpointService} from '../../../services/api/user-endpoint-service';
 import {NewUser, RegisterNew, User} from '../../../types/api/user';
 import {Observable} from 'rxjs/internal/Observable';
 import {map} from 'rxjs/operators';
+import {Router} from '@angular/router';
 
 @Component({
     selector: 'app-login',
@@ -37,7 +38,8 @@ export class LoginComponent {
     constructor(private modalService: NgbModal,
                 private userAuthService: UserAuthService,
                 private authService: AuthService,
-                private userEndpointService: UserEndpointService) {
+                private userEndpointService: UserEndpointService,
+                private router: Router) {
         this.isUser$ = userAuthService.hasScope('user');
 
         // Observable<User> to show Login info
@@ -90,6 +92,7 @@ export class LoginComponent {
 
     logout() {
         this.authService.updateAuth({});
+        this.router.navigate(['']);
     }
 
 }
