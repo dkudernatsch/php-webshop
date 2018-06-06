@@ -80,8 +80,8 @@ $app->get("/user/{id}/paymentMethod/", function(Request $request, Response $resp
     $payment_methods = $dao->getForUser($args['id']);
 
     return $response->withStatus(200)
-        ->withJson(["success" =>
-            ["paymentMethods" => $payment_methods]]);
+        ->withJson(["success" => $payment_methods
+        ]);
 
 })->add(new ScopedJWTAuth(["user"]));
 

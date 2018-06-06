@@ -1,60 +1,73 @@
 <div class="modal-header">
     <div class="modal-title">
-        <h4>New Product</h4>
+        <h4>Choose Payment Method</h4>
     </div>
     <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
         <span aria-hidden="true">&times;</span>
     </button>
 </div>
 <div class="modal-body">
-    <p>Testbody</p>
     <form>
-    <!--<div class="form-group">-->
-    <!--<label for="product-name">Name</label>-->
-    <!--<input-->
-    <!--name="name"-->
-    <!--[(ngModel)]="formModel.name"-->
-    <!--id="product-name"-->
-    <!--type="text"-->
-    <!--class="form-control">-->
-    <!--</div>-->
-    <!--<div class="form-group">-->
-    <!--<label for="product-price">Price</label>-->
-    <!--<input-->
-    <!--name="price"-->
-    <!--[(ngModel)]="formModel.price"-->
-    <!--id="product-price"-->
-    <!--type="number"-->
-    <!--class="form-control"-->
-    <!--step=0.01-->
-    <!--&gt;-->
-    <!--</div>-->
-    <!--<div class="form-group">-->
-    <!--<label for="product-image">Image</label>-->
-    <!--<input name="image"-->
-    <!--#image-->
-    <!--(change)="encodeImage(image)"-->
-    <!--id="product-image"-->
-    <!--type="file"-->
-    <!--class="form-control">-->
-    <!--</div>-->
-    <!--<div class="form-group">-->
-    <!--<label for="product-rating">Rating</label>-->
-    <!--<select name="rating" [(ngModel)]="formModel.rating" id="product-rating" class="form-control">-->
-    <!--<option>1</option>-->
-    <!--<option>2</option>-->
-    <!--<option>3</option>-->
-    <!--<option>4</option>-->
-    <!--<option>5</option>-->
-    <!--</select>-->
-    <!--</div>-->
+        <div class="form-group">
+            <div *ngIf="paymentMethods$ | async as paymentMethods" class="form-group">
+                <label for="paymentMethods">PaymentMethods</label>
+                <select name="paymentMethods"
+                        id="paymentMethods"
+                        class="form-control"
+                        ngModel>
+                    <option *ngFor="let paymentMethod of paymentMethods"
+                            [ngValue]="paymentMethod">
+                        {{paymentMethod.method}}
+                    </option>
+                </select>
+            </div>
+        </div>
+        <!--<div class="form-group">-->
+        <!--<label for="product-name">Name</label>-->
+        <!--<input-->
+        <!--name="name"-->
+        <!--[(ngModel)]="formModel.name"-->
+        <!--id="product-name"-->
+        <!--type="text"-->
+        <!--class="form-control">-->
+        <!--</div>-->
+        <!--<div class="form-group">-->
+        <!--<label for="product-price">Price</label>-->
+        <!--<input-->
+        <!--name="price"-->
+        <!--[(ngModel)]="formModel.price"-->
+        <!--id="product-price"-->
+        <!--type="number"-->
+        <!--class="form-control"-->
+        <!--step=0.01-->
+        <!--&gt;-->
+        <!--</div>-->
+        <!--<div class="form-group">-->
+        <!--<label for="product-image">Image</label>-->
+        <!--<input name="image"-->
+        <!--#image-->
+        <!--(change)="encodeImage(image)"-->
+        <!--id="product-image"-->
+        <!--type="file"-->
+        <!--class="form-control">-->
+        <!--</div>-->
+        <!--<div class="form-group">-->
+        <!--<label for="product-rating">Rating</label>-->
+        <!--<select name="rating" [(ngModel)]="formModel.rating" id="product-rating" class="form-control">-->
+        <!--<option>1</option>-->
+        <!--<option>2</option>-->
+        <!--<option>3</option>-->
+        <!--<option>4</option>-->
+        <!--<option>5</option>-->
+        <!--</select>-->
+        <!--</div>-->
 
-    <!--<div *ngIf="categories$ | async as categories" class="form-group">-->
-    <!--<label for="categories">Categories</label>-->
-    <!--<select name="categories" id="categories"  class="form-control" multiple [(ngModel)] = "formModel.categories">-->
-    <!--<option *ngFor="let category of categories" value="{{category.id}}">{{category.name}}</option>-->
-    <!--</select>-->
-    <!--</div>-->
+        <!--<div *ngIf="categories$ | async as categories" class="form-group">-->
+        <!--<label for="categories">Categories</label>-->
+        <!--<select name="categories" id="categories"  class="form-control" multiple [(ngModel)] = "formModel.categories">-->
+        <!--<option *ngFor="let category of categories" value="{{category.id}}">{{category.name}}</option>-->
+        <!--</select>-->
+        <!--</div>-->
     </form>
 
 </div>

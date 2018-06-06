@@ -1,8 +1,9 @@
 import {Injectable} from '@angular/core';
 import {ApiResourceEndPoint} from './api-resource-end-point';
 import {HttpRequestorService} from './http-requestor.service';
-import {User, RegisterNew, NewUser} from '../../types/api/user';
+import {User, RegisterNew, NewUser, PaymentMethod, NewPaymentMethod} from '../../types/api/user';
 import {CommonEndPoints} from '../../types/api-request';
+import {Observable} from "rxjs/internal/Observable";
 
 @Injectable(
     {providedIn: 'root'}
@@ -43,5 +44,5 @@ export class UserEndpointService extends ApiResourceEndPoint<User, RegisterNew> 
             body: {user}
         });
     }
-
+    
 }

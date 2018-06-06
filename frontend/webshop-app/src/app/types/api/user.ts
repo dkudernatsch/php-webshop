@@ -44,3 +44,9 @@ export interface PaymentMethod {
     id: number;
     method: string;
 }
+
+export interface NewPaymentMethod {
+    paymentMethod: {
+        method: string;
+    }
+}

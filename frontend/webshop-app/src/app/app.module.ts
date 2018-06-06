@@ -47,6 +47,7 @@ import {ProductListComponent} from './components/product-page/productList/produc
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {AuthIntercepterService} from './services/auth/auth-intercepter.service';
 import {PayingModalComponent} from "./components/shoppingCart-page/payingModal/paying-modal.component";
+import {PaymentEndpointService} from "./services/api/payment-endpoint.service";
 
 
 @NgModule({
@@ -88,6 +89,7 @@ import {PayingModalComponent} from "./components/shoppingCart-page/payingModal/p
         RequestCacheService,
         LoginService,
         ShoppingCartService,
+        PaymentEndpointService,
         {provide: HTTP_INTERCEPTORS, useClass: AuthIntercepterService, multi: true}
     ],
     entryComponents: [
