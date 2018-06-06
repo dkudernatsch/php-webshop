@@ -24,6 +24,11 @@ export interface NewUser {
     city: string;
 }
 
+export interface RegisterNew {
+    user: NewUser;
+}
+
+
 export type Scope
     = 'user'
     | 'admin'

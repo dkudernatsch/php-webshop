@@ -1,13 +1,13 @@
 import {Injectable} from '@angular/core';
 import {ApiResourceEndPoint} from './api-resource-end-point';
 import {HttpRequestorService} from './http-requestor.service';
-import {User, NewUser} from '../../types/api/user';
+import {User, RegisterNew, NewUser} from '../../types/api/user';
 import {CommonEndPoints} from '../../types/api-request';
 
 @Injectable(
     {providedIn: 'root'}
 )
-export class UserEndpointService extends ApiResourceEndPoint<User, NewUser> {
+export class UserEndpointService extends ApiResourceEndPoint<User, RegisterNew> {
 
     private endpoints: CommonEndPoints = {
         all: {

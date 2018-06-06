@@ -5,9 +5,9 @@ import {UserAuthService} from '../../../services/auth/user-auth.service';
 import {AuthService} from '../../../services/auth/auth.service';
 import {UserAuth} from '../../../services/auth/userAuth';
 import {UserEndpointService} from '../../../services/api/user-endpoint-service';
-import {NewUser, User} from '../../../types/api/user';
-import {Observable} from "rxjs/internal/Observable";
-import {map} from "rxjs/operators";
+import {NewUser, RegisterNew, User} from '../../../types/api/user';
+import {Observable} from 'rxjs/internal/Observable';
+import {map} from 'rxjs/operators';
 
 @Component({
     selector: 'app-login',
@@ -22,7 +22,7 @@ export class LoginComponent {
     private user$: Observable<User | null>;
     closeResult: string;
 
-    private newUser: User = {
+    private newUser: NewUser = {
         username: '',
         password: '',
         mail: '',
@@ -45,7 +45,7 @@ export class LoginComponent {
             map((user: any | null) => {
                 return user === null ? null : user.user;
             })
-        )
+        );
     }
 
     open(content) {
@@ -75,8 +75,11 @@ export class LoginComponent {
     }
 
     onSubmitRegister() {
+        const newRegister: RegisterNew = {
+            user: this.newUser
+        };
         console.log(this.newUser);
-        this.userEndpointService.create({user: this.newUser}).subscribe((response) => {
+        this.userEndpointService.create(newRegister).subscribe((response) => {
             console.log(response);
         });
     }

@@ -75,11 +75,11 @@ import {PayingModalComponent} from "./components/shoppingCart-page/payingModal/p
     ],
     imports: [
         BrowserModule,
-        NgbModule.forRoot(),
         FormsModule,
         AppRoutingModule,
         HttpClientModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        NgbModule.forRoot(),
     ],
     providers: [
         AuthService,

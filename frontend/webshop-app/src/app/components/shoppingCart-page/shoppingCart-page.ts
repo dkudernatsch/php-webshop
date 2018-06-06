@@ -2,8 +2,8 @@ import {Component} from '@angular/core';
 import {ShoppingCartService} from '../../services/products/shoppingCart.service';
 import {Observable} from 'rxjs/internal/Observable';
 import {UserAuthService} from '../../services/auth/user-auth.service';
-import {PayingModalComponent} from "./payingModal/paying-modal.component";
-import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
+import {PayingModalComponent} from './payingModal/paying-modal.component';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
     selector: 'app-shoppingCart-page',
@@ -16,16 +16,17 @@ export class ShoppingCartPageComponent {
 
     constructor(private shoppingCartService: ShoppingCartService,
                 private userAuthService: UserAuthService,
-                private ngModalService: NgbModal) {
+                private modalService: NgbModal) {
         this.total = this.shoppingCartService.getTotalPrice();
         this.isUser$ = userAuthService.hasScope('user');
     }
 
     onBuyProducts() {
-        console.log("opening buying modal");
-        const modalRef = this.ngModalService.open(PayingModalComponent);
+        console.log('opening buying modal');
+        const modalRef = this.modalService.open(PayingModalComponent);
+        modalRef.componentInstance.name = 'test';
     }
 
-    //TODO: implement routing when logging in or out -> stay on cart when logging in!!
+    // TODO: implement routing when logging in or out -> stay on cart when logging in!!
 
 }
