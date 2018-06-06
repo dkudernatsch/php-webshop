@@ -1,5 +1,5 @@
 ### user action
-GET https://api.webshop.at/user/1
+GET https://api.webshop.at/user/2
 Accept: application/json
 Cache-Control: no-cache
 Authorization: Bearer {{user_token}}
@@ -41,7 +41,7 @@ Authorization: Bearer {{anonymous_token}}
 {
     "user": {
         "appellation": "",
-        "username": "a",
+        "username": "admin",
         "password": "Admin1",
         "mail": "admin@webshop.at",
         "first_name": "Admin",
@@ -54,7 +54,7 @@ Authorization: Bearer {{anonymous_token}}
 
 ###
 
-PUT https://api.webshop.at/user/1
+PUT https://api.webshop.at/user/2
 Accept: application/json
 Cache-Control: no-cache
 Content-Type: application/json
@@ -62,7 +62,7 @@ Authorization: Bearer {{user_token}}
 
 {
     "user": {
-        "appellation": "Herr",
+        "appellation": "Hans",
         "username": "if17b094",
         "mail": "abc@gmail.com",
         "first_name": "Daniel",

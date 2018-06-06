@@ -1,5 +1,6 @@
 <?php
 
+use PDOs\User\NewUser;
 use PDOs\User\UserDAO;
 use Slim\Http\Request;
 use Slim\Http\Response;
@@ -41,7 +42,7 @@ $app->post("/user/", function (Request $request, Response $response, array $args
         throw new \errors\HttpServerException(400, "Malformed request: Missing field user");
     }
 
-    $newUser = \PDOs\JsonMapper::map("\PDOs\User\NewUser", $body['user']);
+    $newUser = \PDOs\JsonMapper::map(NewUser::class, $body['user']);
     $repo = new \PDOs\User\UserDAO($this->db);
     $userId = $repo->insertNew($newUser);
 

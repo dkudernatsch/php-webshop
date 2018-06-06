@@ -6,7 +6,7 @@
         placeholder="Enter product name"
         [(ngModel)]="model"
         [ngbTypeahead]="search"
-        [resultFormatter]="formatter"
-        (focus)="focus$.next($event.target.value)"
-        (click)="click$.next($event.target.value)"
+        [resultFormatter]="this.formatter"
+        [inputFormatter]="this.formatter"
+        (selectItem) = "onSelectItem($event)"
         #instance="ngbTypeahead"/>

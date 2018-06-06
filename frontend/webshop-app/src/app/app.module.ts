@@ -48,6 +48,8 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {AuthIntercepterService} from './services/auth/auth-intercepter.service';
 import {PayingModalComponent} from './components/shoppingCart-page/payingModal/paying-modal.component';
 import {PaymentEndpointService} from './services/api/payment-endpoint.service';
+import {CreateProductModalComponent} from './components/admin-page/manage-products-page/create-product-modal';
+
 
 @NgModule({
     declarations: [
@@ -64,6 +66,7 @@ import {PaymentEndpointService} from './services/api/payment-endpoint.service';
         ProductComponent,
         ProductListComponent,
         ShoppingCartPageComponent,
+        CreateProductModalComponent,
         CartItemComponent,
         CartItemListComponent,
         PayingModalComponent,
@@ -71,15 +74,15 @@ import {PaymentEndpointService} from './services/api/payment-endpoint.service';
         UserPageComponent,
         LoginComponent,
         FooterComponent,
-        TestloginComponent,
+        TestloginComponent
     ],
     imports: [
         BrowserModule,
+        NgbModule.forRoot(),
         FormsModule,
         AppRoutingModule,
         HttpClientModule,
-        ReactiveFormsModule,
-        NgbModule.forRoot(),
+        ReactiveFormsModule
     ],
     providers: [
         AuthService,
