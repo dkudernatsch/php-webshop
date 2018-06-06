@@ -13,7 +13,7 @@ import {UserEndpointService} from '../../services/api/user-endpoint-service';
 })
 export class UserPageComponent {
 
-    private user: User | null = {
+     private user: User | null = {
         id: undefined,
         username: '',
         mail: '',
@@ -28,7 +28,7 @@ export class UserPageComponent {
 
     constructor(private userAuthService: UserAuthService,
                 private userEndpointService: UserEndpointService) {
-        this.user = this.userAuthService.user$.pipe(
+        this.userAuthService.user$.pipe(
             map((user: any | null) => {
                 return user === null ? null : user.user;
             })

@@ -47,7 +47,6 @@ export class UserAuthService {
     }
 
     // requires api to work
-    // TODO: needed to change that - does not return User
     public readonly user$: Observable<any | null>;
 
     public readonly isLoggedIn$: Observable<Boolean>;
