@@ -1,13 +1,12 @@
 import {CartEntry, Product} from '../../types/api/product';
 import {BehaviorSubject} from 'rxjs/internal/BehaviorSubject';
 import {Observable} from 'rxjs/internal/Observable';
-import {map} from 'rxjs/operators';
+import {map, tap} from 'rxjs/operators';
 
 export class ShoppingCartService {
 
     // workaround for a map id => amount
     private cart: Map<number, CartEntry> = new Map();
-    private totalItems = 0;
     // make subject private so not everyone that uses service can call next on it!
     private cartSubject = new BehaviorSubject<Map<number, CartEntry>>(this.cart);
 
@@ -23,7 +22,8 @@ export class ShoppingCartService {
                 Object.keys(cart).reduce((sum: number, key: string) =>
                     sum + (cart[key].product.price * cart[key].amount), 0
                 )
-            )
+            ),
+            tap((a) => console.log(a))
         );
     }
 
@@ -34,7 +34,8 @@ export class ShoppingCartService {
                 Object.keys(cart).reduce((sum: number, key: string) =>
                     sum + cart[key].amount, 0
                 )
-            )
+            ),
+            tap((a) => console.log(a))
         );
     }
 
@@ -46,7 +47,6 @@ export class ShoppingCartService {
         } else {
             this.cart[product.id] = {product: product, amount: 1};
         }
-        this.totalItems++;
         this.cartSubject.next(this.cart);
     }
 

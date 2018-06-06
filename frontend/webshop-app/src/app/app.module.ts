@@ -46,9 +46,8 @@ import {ShoppingCartService} from './services/products/shoppingCart.service';
 import {ProductListComponent} from './components/product-page/productList/product-list.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {AuthIntercepterService} from './services/auth/auth-intercepter.service';
-import {PayingModalComponent} from "./components/shoppingCart-page/payingModal/paying-modal.component";
-import {PaymentEndpointService} from "./services/api/payment-endpoint.service";
-
+import {PayingModalComponent} from './components/shoppingCart-page/payingModal/paying-modal.component';
+import {PaymentEndpointService} from './services/api/payment-endpoint.service';
 
 @NgModule({
     declarations: [
@@ -72,7 +71,7 @@ import {PaymentEndpointService} from "./services/api/payment-endpoint.service";
         UserPageComponent,
         LoginComponent,
         FooterComponent,
-        TestloginComponent
+        TestloginComponent,
     ],
     imports: [
         BrowserModule,
