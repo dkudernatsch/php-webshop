@@ -10,4 +10,8 @@ export class PayingModalComponent {
 
     constructor(public activeModal: NgbActiveModal) {}
 
+    onSubmit() {
+        this.activeModal.close('Close click');
+    }
+
 }

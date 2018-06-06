@@ -24,7 +24,6 @@ export class ShoppingCartPageComponent {
     onBuyProducts() {
         console.log('opening buying modal');
         const modalRef = this.modalService.open(PayingModalComponent);
-        modalRef.componentInstance.name = 'test';
     }
 
     // TODO: implement routing when logging in or out -> stay on cart when logging in!!

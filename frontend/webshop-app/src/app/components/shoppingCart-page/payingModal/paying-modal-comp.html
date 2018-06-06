@@ -1,20 +1,64 @@
-<ng-template #content let-c="close" let-d="dismiss">
-    <div class="modal-header">
-        <h4 class="modal-title">Modal title</h4>
-        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
-            <span aria-hidden="true">&times;</span>
-        </button>
+<div class="modal-header">
+    <div class="modal-title">
+        <h4>New Product</h4>
     </div>
-    <div class="modal-body">
-        <p>One fine body&hellip;</p>
-    </div>
-    <div class="modal-footer">
-        <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Close</button>
-    </div>
-</ng-template>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <p>Testbody</p>
+    <form>
+    <!--<div class="form-group">-->
+    <!--<label for="product-name">Name</label>-->
+    <!--<input-->
+    <!--name="name"-->
+    <!--[(ngModel)]="formModel.name"-->
+    <!--id="product-name"-->
+    <!--type="text"-->
+    <!--class="form-control">-->
+    <!--</div>-->
+    <!--<div class="form-group">-->
+    <!--<label for="product-price">Price</label>-->
+    <!--<input-->
+    <!--name="price"-->
+    <!--[(ngModel)]="formModel.price"-->
+    <!--id="product-price"-->
+    <!--type="number"-->
+    <!--class="form-control"-->
+    <!--step=0.01-->
+    <!--&gt;-->
+    <!--</div>-->
+    <!--<div class="form-group">-->
+    <!--<label for="product-image">Image</label>-->
+    <!--<input name="image"-->
+    <!--#image-->
+    <!--(change)="encodeImage(image)"-->
+    <!--id="product-image"-->
+    <!--type="file"-->
+    <!--class="form-control">-->
+    <!--</div>-->
+    <!--<div class="form-group">-->
+    <!--<label for="product-rating">Rating</label>-->
+    <!--<select name="rating" [(ngModel)]="formModel.rating" id="product-rating" class="form-control">-->
+    <!--<option>1</option>-->
+    <!--<option>2</option>-->
+    <!--<option>3</option>-->
+    <!--<option>4</option>-->
+    <!--<option>5</option>-->
+    <!--</select>-->
+    <!--</div>-->
 
-<button class="btn btn-lg btn-outline-primary" (click)="open(content)">Launch demo modal</button>
+    <!--<div *ngIf="categories$ | async as categories" class="form-group">-->
+    <!--<label for="categories">Categories</label>-->
+    <!--<select name="categories" id="categories"  class="form-control" multiple [(ngModel)] = "formModel.categories">-->
+    <!--<option *ngFor="let category of categories" value="{{category.id}}">{{category.name}}</option>-->
+    <!--</select>-->
+    <!--</div>-->
+    </form>
 
-<hr>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="onSubmit()">Create</button>
+</div>
 
-<pre>{{closeResult}}</pre>
