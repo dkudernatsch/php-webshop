@@ -47,6 +47,7 @@ import {ProductListComponent} from './components/product-page/productList/produc
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {AuthIntercepterService} from './services/auth/auth-intercepter.service';
 import {CreateProductModalComponent} from './components/admin-page/manage-products-page/create-product-modal';
+import { CreateCouponComponent } from './components/admin-page/manage-coupons-page/create-coupon/create-coupon.component';
 
 
 @NgModule({
@@ -71,7 +72,8 @@ import {CreateProductModalComponent} from './components/admin-page/manage-produc
         UserPageComponent,
         LoginComponent,
         FooterComponent,
-        TestloginComponent
+        TestloginComponent,
+        CreateCouponComponent
     ],
     imports: [
         BrowserModule,

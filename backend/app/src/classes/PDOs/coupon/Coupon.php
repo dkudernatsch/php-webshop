@@ -31,4 +31,9 @@ class Coupon
      */
     public $user_id;
 
+    /**
+     * @var string
+     */
+    public $expiration_date;
+
 }

@@ -22,7 +22,7 @@ export class LoginComponent {
     private user$: Observable<User | null>;
     closeResult: string;
 
-    private newUser: User = {
+    private newUser: NewUser = {
         username: '',
         password: '',
         mail: '',

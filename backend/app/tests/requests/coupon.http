@@ -7,7 +7,8 @@ Content-Type: application/json
 Authorization: Bearer {{admin_token}}
 
 {
-    "value": "100.00"
+    "value": "100.00",
+    "expiration_date": "2018-06-10 23:59:59"
 }
 
 > {%

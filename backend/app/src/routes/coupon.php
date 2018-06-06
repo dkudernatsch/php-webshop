@@ -47,9 +47,11 @@ $app->post("/coupon/", function (Request $request, Response $response, array $ar
     $this->logger->info("POST: generate new coupon");
     $body = $request->getParsedBody();
     $val = $body['value'];
+    $expr = $body['expiration_date'];
+
     if($val && $val = floatval($val)){
         $dao = new CouponDao($this->db);
-        $id = $dao->generateNew($val);
+        $id = $dao->generateNew($val, $expr);
         return $response
             ->withStatus(201)
             ->withJson(["success" => ["id" => $id]]);
