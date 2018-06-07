@@ -56,6 +56,9 @@ import {AdminCouponListComponent} from './components/admin-page/manage-coupons-p
 import {AdminAuthGuard} from './admin-auth-guard.service';
 import {UserAuthGuard} from './user-auth-guard.service';
 import {NotAdminAuthGuard} from './not-admin-auth-guard';
+import {UpdateFormComponent} from './components/user-page/update-form/update-form.component';
+import {PaymentMethodComponent} from './components/user-page/payment-method/payment-method.component';
+import {PaymentMethodListComponent} from './components/user-page/payment-method-list/payment-method-list.component';
 
 
 @NgModule({
@@ -87,6 +90,9 @@ import {NotAdminAuthGuard} from './not-admin-auth-guard';
         TestloginComponent,
         AdminProductListComponent,
         AdminEditProductModalComponent,
+        UpdateFormComponent,
+        PaymentMethodComponent,
+        PaymentMethodListComponent
     ],
     imports: [
         BrowserModule,

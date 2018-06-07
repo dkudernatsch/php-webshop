@@ -1,0 +1,39 @@
+<div class="container">
+    <form #paymentForm="ngForm">
+        <div class="form-group">
+            <div class="row">
+                <div class="col-10">
+                    <input #newPayment="ngModel"
+                           minlength="5"
+                           maxlength="20"
+                           class="form-control"
+                           [(ngModel)]="newPaymentMethod.method"
+                           type="text"
+                           name="newPaymentMethod"
+                           id="newPaymentMethod"
+                           placeholder="Enter new payment method"
+                           required>
+                    <span *ngIf="!newPayment.valid && newPayment.touched"
+                          class="form-text text-muted">
+                        Between 5-20 characters required
+                    </span>
+                </div>
+                <div class="col-2">
+                    <button type="sumbit"
+                            class="btn btn-outline-success mr-2"
+                            (click)="onAddPaymentMethod()"
+                            [disabled]="!paymentForm.valid">
+                        Add
+                    </button>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <div class="row" *ngIf="paymentMethods$ | async as paymentMethods">
+        <div class="col-12" *ngFor="let paymentMethod of paymentMethods">
+            <hr/>
+            <app-payment-method [pMethod]="paymentMethod"></app-payment-method>
+        </div>
+    </div>
+</div>

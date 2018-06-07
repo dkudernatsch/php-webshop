@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {ApiResourceEndPoint} from './api-resource-end-point';
 import {HttpRequestorService} from './http-requestor.service';
-import {User, RegisterNew, NewUser, PaymentMethod, NewPaymentMethod} from '../../types/api/user';
+import {User, RegisterNew} from '../../types/api/user';
 import {CommonEndPoints} from '../../types/api-request';
 import {Observable} from 'rxjs';
 
