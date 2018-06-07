@@ -13,7 +13,7 @@ import {UserEndpointService} from '../../services/api/user-endpoint-service';
 })
 export class UserPageComponent {
 
-    private user:  User = {
+     private user:  User = {
         id: null,
         username: '',
         mail: '',

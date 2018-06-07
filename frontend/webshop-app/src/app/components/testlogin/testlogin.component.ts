@@ -30,7 +30,6 @@ export class TestloginComponent {
         this.isUser$ = userAuthService.hasScope('user');
         this.isAnonymous$ = userAuthService.hasScope('anonymous');
         this.user$ = userAuthService.user$;
-        this.userAuthService.user$.subscribe((user) => console.log(user));
     }
 
 

@@ -1,13 +1,14 @@
 import {Injectable} from '@angular/core';
 import {ApiResourceEndPoint} from './api-resource-end-point';
 import {HttpRequestorService} from './http-requestor.service';
-import {User, NewUser} from '../../types/api/user';
+import {User, RegisterNew, NewUser, PaymentMethod, NewPaymentMethod} from '../../types/api/user';
 import {CommonEndPoints} from '../../types/api-request';
+import {Observable} from "rxjs/internal/Observable";
 
 @Injectable(
     {providedIn: 'root'}
 )
-export class UserEndpointService extends ApiResourceEndPoint<User, NewUser> {
+export class UserEndpointService extends ApiResourceEndPoint<User, RegisterNew> {
 
     private endpoints: CommonEndPoints = {
         all: {
@@ -35,7 +36,6 @@ export class UserEndpointService extends ApiResourceEndPoint<User, NewUser> {
         return this.endpoints;
     }
 
-    // TODO check that
     updateUser(user: User) {
         return this.requestor.request({
             resource: `user/${user.id}`,
@@ -44,5 +44,5 @@ export class UserEndpointService extends ApiResourceEndPoint<User, NewUser> {
             body: {user}
         });
     }
-
+    
 }

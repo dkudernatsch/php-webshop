@@ -26,6 +26,11 @@ export interface NewUser {
     };
 }
 
+export interface RegisterNew {
+    user: NewUser;
+}
+
+
 export type Scope
     = 'user'
     | 'admin'
@@ -40,4 +45,10 @@ export function isScope(val: any): val is Scope {
 export interface PaymentMethod {
     id: number;
     method: string;
+}
+
+export interface NewPaymentMethod {
+    paymentMethod: {
+        method: string;
+    }
 }

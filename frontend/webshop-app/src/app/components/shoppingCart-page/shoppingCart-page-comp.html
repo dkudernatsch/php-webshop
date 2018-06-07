@@ -11,7 +11,11 @@
     <div class="row">
         <div class="col-10"></div>
         <div class="col-2">
-            <button [disabled]="!(this.isUser$ | async) || !((total | async) > 0)" class="btn btn-outline-dark">Buy</button>
+            <button [disabled]="!(this.isUser$ | async) || !((total | async) > 0)"
+                    class="btn btn-outline-dark"
+                    (click)="onBuyProducts()">
+                Buy Products
+            </button>
         </div>
     </div>
 </div>

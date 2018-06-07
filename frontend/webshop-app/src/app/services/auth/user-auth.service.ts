@@ -20,6 +20,7 @@ export class UserAuthService {
             map((tokendata: string) => JSON.parse(atob(tokendata))
             )
         );
+
         this.userScope$ = decoded.pipe(
             map((token: any) => token.scope.map((val) => {
                 if (isScope(val)) {
@@ -44,11 +45,21 @@ export class UserAuthService {
                 }
             })
         );
+
+        this.userID$ = decoded.pipe(
+            map((token: any) => {
+                if(token.sub) {
+                    return token.sub;
+                } else {
+                    return null;
+                }
+        }));
     }
 
     // requires api to work
-    // TODO: needed to change that - does not return User
     public readonly user$: Observable<any | null>;
+
+    public readonly userID$: Observable<number | null>;
 
     public readonly isLoggedIn$: Observable<Boolean>;
 

@@ -5,9 +5,10 @@ import {UserAuthService} from '../../../services/auth/user-auth.service';
 import {AuthService} from '../../../services/auth/auth.service';
 import {UserAuth} from '../../../services/auth/userAuth';
 import {UserEndpointService} from '../../../services/api/user-endpoint-service';
-import {NewUser, User} from '../../../types/api/user';
-import {Observable} from 'rxjs';
+import {NewUser, RegisterNew, User} from '../../../types/api/user';
+import {Observable} from 'rxjs/internal/Observable';
 import {map} from 'rxjs/operators';
+import {Router} from '@angular/router';
 
 @Component({
     selector: 'app-login',
@@ -22,10 +23,10 @@ export class LoginComponent {
     private user$: Observable<User | null>;
     closeResult: string;
 
-    private newUser: User = {
+    private newUser: NewUser = {
         username: '',
-        mail: '',
         password: '',
+        mail: '',
         appellation: '',
         first_name: '',
         last_name: '',
@@ -37,7 +38,8 @@ export class LoginComponent {
     constructor(private modalService: NgbModal,
                 private userAuthService: UserAuthService,
                 private authService: AuthService,
-                private userEndpointService: UserEndpointService) {
+                private userEndpointService: UserEndpointService,
+                private router: Router) {
         this.isUser$ = userAuthService.hasScope('user');
 
         // Observable<User> to show Login info
@@ -75,6 +77,9 @@ export class LoginComponent {
     }
 
     onSubmitRegister() {
+        const newRegister: RegisterNew = {
+            user: this.newUser
+        };
         console.log(this.newUser);
         this.userEndpointService.create({user: this.newUser}).subscribe((response) => {
             console.log(response);
@@ -87,6 +92,7 @@ export class LoginComponent {
 
     logout() {
         this.authService.updateAuth({});
+        this.router.navigate(['']);
     }
 
 }

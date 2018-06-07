@@ -12,7 +12,11 @@
         <a class="nav-link custom-link" routerLink="/products">Products</a>
       </li>
       <li *ngIf="!(this.isAdmin$ | async)" class="nav-item" routerLinkActive="active">
-        <a class="nav-link custom-link" routerLink="/cart">Cart</a>
+        <a class="nav-link custom-link" routerLink="/cart">
+          Cart
+          <span class="badge badge-primary">{{itemNumber$ | async}}</span>
+        </a>
+
       </li>
       <li *ngIf="(this.isUser$ | async) && !(this.isAdmin$ | async)" class="nav-item" routerLinkActive="active">
         <a class="nav-link custom-link" routerLink="/account">Account</a>

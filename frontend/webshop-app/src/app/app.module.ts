@@ -46,6 +46,8 @@ import {ShoppingCartService} from './services/products/shoppingCart.service';
 import {ProductListComponent} from './components/product-page/productList/product-list.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {AuthIntercepterService} from './services/auth/auth-intercepter.service';
+import {PayingModalComponent} from './components/shoppingCart-page/payingModal/paying-modal.component';
+import {PaymentEndpointService} from './services/api/payment-endpoint.service';
 import {CreateProductModalComponent} from './components/admin-page/manage-products-page/create-product/create-product-modal';
 import {AdminProductListComponent} from './components/admin-page/manage-products-page/product-list/admin-product-list.component';
 import {AdminProductListItemComponent} from './components/admin-page/manage-products-page/product-list/admin-product-list-item.component';
@@ -69,6 +71,7 @@ import {AdminEditProductModalComponent} from './components/admin-page/manage-pro
         CreateProductModalComponent,
         CartItemComponent,
         CartItemListComponent,
+        PayingModalComponent,
         PageNotFoundPageComponent,
         UserPageComponent,
         LoginComponent,
@@ -92,11 +95,13 @@ import {AdminEditProductModalComponent} from './components/admin-page/manage-pro
         RequestCacheService,
         LoginService,
         ShoppingCartService,
+        PaymentEndpointService,
         {provide: HTTP_INTERCEPTORS, useClass: AuthIntercepterService, multi: true}
     ],
     entryComponents: [
         CreateProductModalComponent,
-        AdminEditProductModalComponent
+        AdminEditProductModalComponent,
+        PayingModalComponent
     ],
     bootstrap: [AppComponent]
 })

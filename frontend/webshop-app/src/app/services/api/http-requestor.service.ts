@@ -6,6 +6,9 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {AuthService} from '../auth/auth.service';
 import {Token} from '../auth/userAuth';
 import {of} from 'rxjs';
+import {map} from 'rxjs/operators';
+import {ApiRequest, ApiResponse, isFailedResponse, isSuccessResponse} from '../../types/api-request';
+import {HttpClient} from '@angular/common/http';
 
 @Injectable({
     providedIn: 'root'
