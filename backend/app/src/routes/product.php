@@ -73,6 +73,22 @@ $app->get("/product/{id}",  function (Request $request, Response $response, arra
         throw new \errors\HttpServerException(404, "Product not found");
     }
 })->add(new ScopedJWTAuth(["anonymous"]));
+/**
+ *
+ */
+
+$app->get("/product/",  function (Request $request, Response $response, array $args) {
+
+    $dao = new ProductDao($this->db);
+
+    if($products = $dao->getAll()) {
+        return $response
+            ->withStatus(200)
+            ->withJson(["success" => $products]);
+    }else{
+        throw new \errors\HttpServerException(404, "Product not found");
+    }
+})->add(new ScopedJWTAuth(["anonymous"]));
 
 /**
  *

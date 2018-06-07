@@ -1,5 +1,6 @@
 <?php
 
+use PDOs\coupon\CouponDao;
 use PDOs\User\NewUser;
 use PDOs\User\UserDAO;
 use Slim\Http\Request;
@@ -50,7 +51,9 @@ $app->post("/user/", function (Request $request, Response $response, array $args
         ->withStatus(200)
         ->withJson(["success" => ["id" => $userId]]);
 })->add(new ScopedJWTAuth(["anonymous"]));
-
+/**
+ *
+ */
 $app->put("/user/{id}", function (Request $request, Response $response, array $args){
     $token = $request->getAttribute("token");
     $body = $request->getParsedBody();
@@ -71,7 +74,9 @@ $app->put("/user/{id}", function (Request $request, Response $response, array $a
         ->withJson(["success" => ["id" => $updateUser->id]]);
 })->add(new ScopedJWTAuth(["user"]));
 
-
+/**
+ *
+ */
 $app->get("/user/{id}/paymentMethod/", function(Request $request, Response $response, array $args){
     $token = $request->getAttribute("token");
     if($token->decoded['sub'] != $args['id'] && !$token->has_scope(["admin"])){
@@ -81,11 +86,13 @@ $app->get("/user/{id}/paymentMethod/", function(Request $request, Response $resp
     $payment_methods = $dao->getForUser($args['id']);
 
     return $response->withStatus(200)
-        ->withJson(["success" => $payment_methods
-        ]);
+        ->withJson(["success" => $payment_methods]);
 
 })->add(new ScopedJWTAuth(["user"]));
 
+/**
+ *
+ */
 
 $app->post("/user/{id}/paymentMethod/", function(Request $request, Response $response, array $args){
     $token = $request->getAttribute("token");
@@ -102,7 +109,9 @@ $app->post("/user/{id}/paymentMethod/", function(Request $request, Response $res
         ->withStatus(200)
         ->withJson(["success" => ["id" => $id]]);
 });
-
+/**
+ *
+ */
 $app->delete("/user/{uid}/paymentMethod/{id}", function(Request $request, Response $response, array $args){
     $token = $request->getAttribute("token");
     if($token->decoded['sub'] != $args['uid'] && !$token->has_scope(["admin"])){
@@ -115,3 +124,18 @@ $app->delete("/user/{uid}/paymentMethod/{id}", function(Request $request, Respon
         ->withStatus(200)
         ->withJson(["success" => []]);
 });
+/**
+ *
+ */
+$app->get("/user/{id}/coupon/", function(Request $request, Response $response, array $args){
+    $token = $request->getAttribute("token");
+    if($token->decoded['sub'] != $args['id'] && !$token->has_scope(["admin"])){
+        throw new \errors\HttpServerException(403, "Token does not have rights for this resource instance");
+    }
+    $dao = new CouponDao($this->db);
+    $coupons = $dao->getAllForUser($args['id']);
+
+    return $response->withStatus(200)
+        ->withJson(["success" => $coupons]);
+
+})->add(new ScopedJWTAuth(["user"]));

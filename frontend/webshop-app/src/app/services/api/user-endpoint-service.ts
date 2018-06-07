@@ -3,7 +3,7 @@ import {ApiResourceEndPoint} from './api-resource-end-point';
 import {HttpRequestorService} from './http-requestor.service';
 import {User, RegisterNew, NewUser, PaymentMethod, NewPaymentMethod} from '../../types/api/user';
 import {CommonEndPoints} from '../../types/api-request';
-import {Observable} from "rxjs/internal/Observable";
+import {Observable} from 'rxjs';
 
 @Injectable(
     {providedIn: 'root'}
@@ -36,13 +36,13 @@ export class UserEndpointService extends ApiResourceEndPoint<User, RegisterNew> 
         return this.endpoints;
     }
 
-    updateUser(user: User) {
-        return this.requestor.request({
+    updateUser(user: User): Observable<null> {
+        return this.requestor.request<null>({
             resource: `user/${user.id}`,
             scope: ['user'],
             method: 'PUT',
             body: {user}
         });
     }
-    
+
 }

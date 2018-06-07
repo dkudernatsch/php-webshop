@@ -15,9 +15,18 @@ use PDOs\User\UserDAO;
 class CouponDao extends Dao
 {
 
-    const select_stub = "SELECT c_id as id, c_code as `code`, c_value as `value`, fk_c_u_user as user_id FROM COUPON";
-    const insert_stub = "INSERT INTO COUPON(c_code, c_value, fk_c_u_user) VALUES (?, ?, ?)";
+    const select_stub = "SELECT c_id as id, c_code as `code`, c_value as `value`, c_expiration_date as expiration_date, fk_c_u_user as user_id FROM COUPON";
+    const insert_stub = "INSERT INTO COUPON(c_code, c_value, c_expiration_date,fk_c_u_user) VALUES (?, ?, ?, ?)";
     const update_stub = "UPDATE COUPON SET c_code = ?, c_value = ?, fk_c_u_user = ? WHERE c_id = (?)";
+
+    /**
+     * @param $user_id
+     * @return array
+     * @throws \errors\DatabaseException
+     */
+    public function getAllForUser($user_id): array {
+        return $this->db->prepare_and_run($this::select_stub. " WHERE fk_c_u_user = ? && c_expiration_date > NOW()", [["i" => $user_id]], Coupon::class, true);
+    }
 
     /**
      * @param int $id
@@ -35,23 +44,24 @@ class CouponDao extends Dao
      */
     public function getAll(): array
     {
-        return $this->db->prepare_and_run($this::select_stub, null, "\PDOs\coupon\Coupon", true);
+        return $this->db->prepare_and_run($this::select_stub, [], Coupon::class, true);
     }
 
     /**
-     * @param int $coupon_id
+     * @param string $coupon_id
      * @param int $user_id
-     * @return bool
+     * @return int|null
+     * @throws \errors\DatabaseException
      * @throws \errors\HttpServerException
      */
-    public function addUser(int $coupon_id, int $user_id): bool
+    public function addUser(string $coupon_id, int $user_id): ?int
     {
-        $coupon = $this->byId($coupon_id);
+        $coupon = $this->getByCode($coupon_id);
         $user_dao = new UserDAO($this->db);
         $user = $user_dao->byId($user_id);
 
-        if ($user === null) return false;
-        if ($coupon->user_id !== null) return false;
+        if ($user === null) return null;
+        if ($coupon->user_id !== null) return null;
 
         $this->db->prepare_and_run($this::update_stub, [
             ["s" => $coupon->code],
@@ -59,7 +69,7 @@ class CouponDao extends Dao
             ["i" => $user_id],
             ["i" => $coupon->id]
         ]);
-        return true;
+        return $coupon->id;
     }
 
     /**
@@ -76,10 +86,11 @@ class CouponDao extends Dao
 
     /**
      * @param float $value
+     * @param string $expiration_date
      * @return int
      * @throws \errors\DatabaseException
      */
-    public function generateNew(float $value): int
+    public function generateNew(float $value, string $expiration_date): int
     {
         do {
             $code = $this->generateCode();
@@ -88,6 +99,7 @@ class CouponDao extends Dao
         $this->db->prepare_and_run($this::insert_stub, [
             ["s" => $code],
             ["d" => $value],
+            ['s' => $expiration_date],
             ["i"=> null]
         ]);
         return $this->db->get_last_auto_inc();

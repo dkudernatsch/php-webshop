@@ -3,7 +3,16 @@ export interface Coupon {
     id: number;
     code: string;
     value: number;
-    user_id: number;
+    expiration_date: string;
+    user_id: number | null;
+}
+export interface NewCoupon {
+    value: number;
+    expiration_date: string;
+}
+
+export interface Id {
+    id: number;
 }
 
 export interface NewCoupon {

@@ -28,7 +28,6 @@ export interface RegisterNew {
     user: NewUser;
 }
 
-
 export type Scope
     = 'user'
     | 'admin'

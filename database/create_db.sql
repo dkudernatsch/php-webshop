@@ -33,6 +33,7 @@ CREATE TABLE IF NOT EXISTS COUPON (
   c_id        INT PRIMARY KEY AUTO_INCREMENT,
   c_code      char(5) NOT NULL,
   c_value     DECIMAL(8, 2)   DEFAULT 0,
+  c_expiration_date timestamp DEFAULT NOW(),
   fk_c_u_user INT             DEFAULT NULL,
   CONSTRAINT FOREIGN KEY fk_c_u_hasCoupon(fk_c_u_user) REFERENCES USERS (u_id)
 );

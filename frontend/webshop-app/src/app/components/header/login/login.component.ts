@@ -80,7 +80,7 @@ export class LoginComponent {
             user: this.newUser
         };
         console.log(this.newUser);
-        this.userEndpointService.create(newRegister).subscribe((response) => {
+        this.userEndpointService.create({user: this.newUser}).subscribe((response) => {
             console.log(response);
         });
     }

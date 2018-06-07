@@ -1,8 +1,8 @@
 import {Component} from '@angular/core';
 import {AuthService} from '../../../services/auth/auth.service';
 import {UserAuthService} from '../../../services/auth/user-auth.service';
+import {Observable} from 'rxjs';
 import {ShoppingCartService} from '../../../services/products/shoppingCart.service';
-import {Observable} from 'rxjs/internal/Observable';
 
 @Component({
     selector: 'app-navbar',

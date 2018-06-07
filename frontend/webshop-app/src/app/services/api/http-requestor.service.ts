@@ -3,6 +3,8 @@ import {Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
 import {ApiRequest, ApiResponse, isFailedResponse, isSuccessResponse} from '../../types/api-request';
 import {HttpClient} from '@angular/common/http';
+import {of} from 'rxjs';
+import {Error} from 'tslint/lib/error';
 
 @Injectable({
     providedIn: 'root'
@@ -11,18 +13,21 @@ export class HttpRequestorService {
 
     private readonly apiUrl = 'https://api.webshop.at';
 
-
-
     constructor(private http: HttpClient) {
     }
 
     public request<T>(request: ApiRequest<T>): Observable<T> {
         return this.sendRequest(request).pipe(
-            map((response: ApiResponse<T>) => {
+            map(
+                (response: ApiResponse<T>) => {
+                if (response === null
+                || response === undefined) {
+                    return null;
+                }
                 if (isFailedResponse(response)) {
                     throw new Error('Request failed please try again');
                 }
-                if (isSuccessResponse(response)) {
+                if (isSuccessResponse<T>(response)) {
                     return response.success;
                 }
             })
