@@ -29,19 +29,33 @@ export class PaymentMethodListComponent {
         );
     }
 
+    refreshList() {
+        this.paymentMethods$ = this.userAuthService.userID$.pipe(
+            flatMap((userID: number | null) =>
+                this.paymentEndPointService.getPaymentMethods(userID))
+        );
+    }
+
     onAddPaymentMethod() {
         this.userAuthService.userID$.pipe(
             flatMap((userID: number | null) =>
                 this.paymentEndPointService.addPaymentMethod(this.newPaymentMethod, userID))
         ).subscribe(
-            (response: any) => console.log(response)
+            (response: any) => {
+                this.refreshList();
+            }
         );
+    }
 
-        // reset the field
-        // this.newPaymentMethod = {
-        //     paymentMethod: {
-        //         method: ''
-        //     }
-        // };
+    // gets called from list elements as event $event is the id of the paymentMethod
+    onDeletePaymentMethod($event: number) {
+        this.userAuthService.userID$.pipe(
+            flatMap((userID: number | null) =>
+                this.paymentEndPointService.deletePaymentMethod(userID, $event))
+        ).subscribe(
+            (response: any) => {
+                this.refreshList();
+            }
+        );
     }
 }
