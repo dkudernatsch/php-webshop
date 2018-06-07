@@ -37,7 +37,7 @@ export class ProductPageComponent implements OnInit{
     ngOnInit(): void {
         this.activeCategory$.subscribe( (cat) => {
                 this.productService.byCategorySearch(cat.id, '')
-                    .subscribe((ps) => this.productList$.next(ps))
+                    .subscribe((ps) => this.productList$.next(ps));
             }
         );
     }

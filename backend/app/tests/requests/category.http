@@ -13,6 +13,32 @@ Authorization: Bearer {{admin_token}}
 
 ###
 
+POST https://api.webshop.at/category/
+Accept: application/json
+Cache-Control: no-cache
+Content-Type: application/json
+Authorization: Bearer {{admin_token}}
+
+{
+    "name": "healthy",
+    "slug": "healthy"
+}
+
+###
+
+POST https://api.webshop.at/category/
+Accept: application/json
+Cache-Control: no-cache
+Content-Type: application/json
+Authorization: Bearer {{admin_token}}
+
+{
+    "name": "chocolatey",
+    "slug": "choco"
+}
+
+###
+
 GET https://api.webshop.at/category/
 Accept: application/json
 Cache-Control: no-cache

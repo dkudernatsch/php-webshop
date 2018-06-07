@@ -48,12 +48,14 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {AuthIntercepterService} from './services/auth/auth-intercepter.service';
 import {PayingModalComponent} from './components/shoppingCart-page/payingModal/paying-modal.component';
 import {PaymentEndpointService} from './services/api/payment-endpoint.service';
-import {AdminProductListComponent} from './components/admin-page/manage-products-page/product-list/admin-product-list.component';
-import {AdminProductListItemComponent} from './components/admin-page/manage-products-page/product-list/admin-product-list-item.component';
-import {AdminEditProductModalComponent} from './components/admin-page/manage-products-page/edit-product/admin-edit-product.component';
 import {CreateProductModalComponent} from './components/admin-page/manage-products-page/create-product/create-product-modal';
 import {CreateCouponComponent} from './components/admin-page/manage-coupons-page/create-coupon/create-coupon.component';
-import { AdminCouponListComponent } from './components/admin-page/manage-coupons-page/admin-coupon-list/admin-coupon-list.component';
+import {AdminEditProductModalComponent} from './components/admin-page/manage-products-page/edit-product/admin-edit-product.component';
+import {AdminProductListComponent} from './components/admin-page/manage-products-page/product-list/admin-product-list.component';
+import {AdminCouponListComponent} from './components/admin-page/manage-coupons-page/admin-coupon-list/admin-coupon-list.component';
+import {AdminAuthGuard} from './admin-auth-guard.service';
+import {UserAuthGuard} from './user-auth-guard.service';
+import {NotAdminAuthGuard} from './not-admin-auth-guard';
 
 
 @NgModule({
@@ -84,7 +86,7 @@ import { AdminCouponListComponent } from './components/admin-page/manage-coupons
         AdminCouponListComponent,
         TestloginComponent,
         AdminProductListComponent,
-        AdminEditProductModalComponent
+        AdminEditProductModalComponent,
     ],
     imports: [
         BrowserModule,
@@ -102,6 +104,9 @@ import { AdminCouponListComponent } from './components/admin-page/manage-coupons
         LoginService,
         ShoppingCartService,
         PaymentEndpointService,
+        AdminAuthGuard,
+        UserAuthGuard,
+        NotAdminAuthGuard,
         {provide: HTTP_INTERCEPTORS, useClass: AuthIntercepterService, multi: true}
     ],
     entryComponents: [

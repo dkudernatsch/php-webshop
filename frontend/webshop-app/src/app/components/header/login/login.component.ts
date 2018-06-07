@@ -38,8 +38,7 @@ export class LoginComponent {
     constructor(private modalService: NgbModal,
                 private userAuthService: UserAuthService,
                 private authService: AuthService,
-                private userEndpointService: UserEndpointService,
-                private router: Router) {
+                private userEndpointService: UserEndpointService) {
         this.isUser$ = userAuthService.hasScope('user');
 
         // Observable<User> to show Login info
@@ -92,7 +91,6 @@ export class LoginComponent {
 
     logout() {
         this.authService.updateAuth({});
-        this.router.navigate(['']);
     }
 
 }
