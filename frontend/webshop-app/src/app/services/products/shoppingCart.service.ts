@@ -32,7 +32,7 @@ export class ShoppingCartService {
         return this.cartSubject.asObservable().pipe(
             map((cart: Map<number, CartEntry>) =>
                 Object.keys(cart).reduce((sum: number, key: string) =>
-                    sum + cart[key].amount, 0
+                    sum + (cart[key].amount), 0
                 )
             ),
             tap((a) => console.log(a))

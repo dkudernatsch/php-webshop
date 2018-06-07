@@ -49,6 +49,8 @@ import {AuthIntercepterService} from './services/auth/auth-intercepter.service';
 import {PayingModalComponent} from './components/shoppingCart-page/payingModal/paying-modal.component';
 import {PaymentEndpointService} from './services/api/payment-endpoint.service';
 import {CreateProductModalComponent} from './components/admin-page/manage-products-page/create-product-modal';
+import {AdminAuthGuard} from './admin-auth-guard.service';
+import {UserAuthGuard} from './user-auth-guard.service';
 
 
 @NgModule({
@@ -92,6 +94,8 @@ import {CreateProductModalComponent} from './components/admin-page/manage-produc
         LoginService,
         ShoppingCartService,
         PaymentEndpointService,
+        AdminAuthGuard,
+        UserAuthGuard,
         {provide: HTTP_INTERCEPTORS, useClass: AuthIntercepterService, multi: true}
     ],
     entryComponents: [

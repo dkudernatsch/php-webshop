@@ -48,7 +48,7 @@ export class UserAuthService {
 
         this.userID$ = decoded.pipe(
             map((token: any) => {
-                if(token.sub) {
+                if (token.sub) {
                     return token.sub;
                 } else {
                     return null;

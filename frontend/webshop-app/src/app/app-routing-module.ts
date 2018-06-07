@@ -11,15 +11,17 @@ import {ManageUsersPageComponent} from './components/admin-page/manage-users-pag
 import {PageNotFoundPageComponent} from './components/page-not-found/page-not-found-page';
 import {ProductPageComponent} from './components/product-page/product-page';
 import {ManageProductsPageComponent} from './components/admin-page/manage-products-page/manage-products-page';
+import {AdminAuthGuard} from './admin-auth-guard.service';
+import {UserAuthGuard} from './user-auth-guard.service';
 
 // set up the routes
 const appRoutes: Routes = [
   {path: '', component: HomePageComponent},
   {path: 'products', component: ProductPageComponent},
   {path: 'cart', component: ShoppingCartPageComponent},
-  {path: 'account', component: UserPageComponent},
+  {path: 'account', canActivate: [UserAuthGuard], component: UserPageComponent},
   {
-    path: 'admin', component: AdminPageComponent, children: [
+    path: 'admin', canActivate: [AdminAuthGuard], canActivateChild: [AdminAuthGuard], component: AdminPageComponent, children: [
       {path: 'products', component: ManageProductsPageComponent},
       {path: 'coupons', component: ManageCouponsPageComponent},
       {path: 'users', component: ManageUsersPageComponent},
