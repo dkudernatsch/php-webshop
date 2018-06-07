@@ -13,23 +13,20 @@ export interface User {
 }
 
 export interface NewUser {
-    user: {
-        username: string;
-        password: string;
-        mail: string;
-        appellation: string;
-        first_name: string;
-        last_name: string;
-        address: string;
-        post_code: string;
-        city: string;
-    };
+    username: string;
+    password: string;
+    mail: string;
+    appellation: string;
+    first_name: string;
+    last_name: string;
+    address: string;
+    post_code: string;
+    city: string;
 }
 
 export interface RegisterNew {
     user: NewUser;
 }
-
 
 export type Scope
     = 'user'

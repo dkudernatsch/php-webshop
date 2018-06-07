@@ -74,3 +74,12 @@ Authorization: Bearer {{user_token}}
 }
 
 ###
+
+GET https://api.webshop.at/user/1/coupon/
+Accept: application/json
+Cache-Control: no-cache
+Content-Type: application/json
+Authorization: Bearer {{user_token}}
+
+###
+

@@ -1,47 +1,40 @@
-import {Observable} from 'rxjs/internal/Observable';
-import {HttpRequestorService} from './http-requestor.service';
+import {CommonEndPoints} from '../../types/api-request';
+import {Observable} from 'rxjs/index';
+import {NewProduct, Product} from '../../types/api/product';
 import {Injectable} from '@angular/core';
+import {ApiResourceEndPoint} from './api-resource-end-point';
 import {Coupon, NewCoupon} from '../../types/api/coupon';
+import {HttpRequestorService} from './http-requestor.service';
 
-@Injectable()
-export class CouponEndpointService {
+@Injectable(
+    {providedIn: 'root'}
+)
+export class CouponEndpointService extends ApiResourceEndPoint<Coupon, NewCoupon> {
 
-    constructor(private requestor: HttpRequestorService) {}
-
-    getCoupon(couponId: number): Observable<Coupon> {
-        return this.requestor.request({
-            resource: `coupon/${couponId}`,
-            scope: ['user'],
+    private endpoints: CommonEndPoints = {
+        all: {
+            resource: 'coupon/',
+            scope: ['admin'],
             method: 'GET',
-            body: {}
-        });
-    }
-
-    addCoupon(newCoupon: NewCoupon): Observable<null> {
-        return this.requestor.request({
-            resource: `coupon/`,
+        },
+        byId: {
+            resource: 'coupon/',
+            scope: ['admin'],
+            method: 'GET',
+        },
+        create: {
+            resource: 'coupon/',
             scope: ['admin'],
             method: 'POST',
-            body: {newCoupon}
-        });
+        }
+    };
+
+    constructor(protected requestor: HttpRequestorService) {
+        super(requestor);
     }
 
-    updateCoupon(coupon: Coupon): Observable<Coupon> {
-        return this.requestor.request({
-            resource: `coupon/`,
-            scope: ['user'],
-            method: 'PUT',
-            body: {coupon}
-        });
+    getEndPoints(): CommonEndPoints {
+        return this.endpoints;
     }
 
-    // TODO will be available?
-    deleteCoupon(couponID: number): Observable<null> {
-        return this.requestor.request({
-            resource: `coupon/${couponID}`,
-            scope: ['admin'],
-            method: 'DELETE',
-            body: {}
-        });
-    }
 }
