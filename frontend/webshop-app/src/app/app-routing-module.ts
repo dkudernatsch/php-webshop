@@ -13,12 +13,13 @@ import {ProductPageComponent} from './components/product-page/product-page';
 import {ManageProductsPageComponent} from './components/admin-page/manage-products-page/manage-products-page';
 import {AdminAuthGuard} from './admin-auth-guard.service';
 import {UserAuthGuard} from './user-auth-guard.service';
+import {NotAdminAuthGuard} from './not-admin-auth-guard';
 
 // set up the routes
 const appRoutes: Routes = [
   {path: '', component: HomePageComponent},
-  {path: 'products', component: ProductPageComponent},
-  {path: 'cart', component: ShoppingCartPageComponent},
+  {path: 'products', canActivate: [NotAdminAuthGuard], component: ProductPageComponent},
+  {path: 'cart', canActivate: [NotAdminAuthGuard], component: ShoppingCartPageComponent},
   {path: 'account', canActivate: [UserAuthGuard], component: UserPageComponent},
   {
     path: 'admin', canActivate: [AdminAuthGuard], canActivateChild: [AdminAuthGuard], component: AdminPageComponent, children: [

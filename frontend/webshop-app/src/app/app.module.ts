@@ -55,6 +55,7 @@ import {AdminProductListComponent} from './components/admin-page/manage-products
 import {AdminCouponListComponent} from './components/admin-page/manage-coupons-page/admin-coupon-list/admin-coupon-list.component';
 import {AdminAuthGuard} from './admin-auth-guard.service';
 import {UserAuthGuard} from './user-auth-guard.service';
+import {NotAdminAuthGuard} from './not-admin-auth-guard';
 
 
 @NgModule({
@@ -105,6 +106,7 @@ import {UserAuthGuard} from './user-auth-guard.service';
         PaymentEndpointService,
         AdminAuthGuard,
         UserAuthGuard,
+        NotAdminAuthGuard,
         {provide: HTTP_INTERCEPTORS, useClass: AuthIntercepterService, multi: true}
     ],
     entryComponents: [
