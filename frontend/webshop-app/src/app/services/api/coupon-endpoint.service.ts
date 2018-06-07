@@ -1,6 +1,4 @@
 import {CommonEndPoints} from '../../types/api-request';
-import {Observable} from 'rxjs/index';
-import {NewProduct, Product} from '../../types/api/product';
 import {Injectable} from '@angular/core';
 import {ApiResourceEndPoint} from './api-resource-end-point';
 import {Coupon, NewCoupon} from '../../types/api/coupon';

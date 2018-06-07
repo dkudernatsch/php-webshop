@@ -51,7 +51,7 @@ import {PaymentEndpointService} from './services/api/payment-endpoint.service';
 import {AdminProductListComponent} from './components/admin-page/manage-products-page/product-list/admin-product-list.component';
 import {AdminProductListItemComponent} from './components/admin-page/manage-products-page/product-list/admin-product-list-item.component';
 import {AdminEditProductModalComponent} from './components/admin-page/manage-products-page/edit-product/admin-edit-product.component';
-import {CreateProductModalComponent} from './components/admin-page/manage-products-page/create-product-modal';
+import {CreateProductModalComponent} from './components/admin-page/manage-products-page/create-product/create-product-modal';
 import {CreateCouponComponent} from './components/admin-page/manage-coupons-page/create-coupon/create-coupon.component';
 import { AdminCouponListComponent } from './components/admin-page/manage-coupons-page/admin-coupon-list/admin-coupon-list.component';
 

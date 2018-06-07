@@ -1,14 +1,10 @@
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
-import {flatMap, map} from 'rxjs/operators';
-import {ApiRequest, ApiResponse, FailedResponse, SuccessfulResponse, isFailedResponse, isSuccessResponse} from '../../types/api-request';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {AuthService} from '../auth/auth.service';
-import {Token} from '../auth/userAuth';
-import {of} from 'rxjs';
 import {map} from 'rxjs/operators';
 import {ApiRequest, ApiResponse, isFailedResponse, isSuccessResponse} from '../../types/api-request';
 import {HttpClient} from '@angular/common/http';
+import {of} from 'rxjs';
+import {Error} from 'tslint/lib/error';
 
 @Injectable({
     providedIn: 'root'
@@ -22,15 +18,16 @@ export class HttpRequestorService {
 
     public request<T>(request: ApiRequest<T>): Observable<T> {
         return this.sendRequest(request).pipe(
-            map((response: ApiResponse<T>) => {
+            map(
+                (response: ApiResponse<T>) => {
                 if (response === null
-                    || response === undefined) {
-                    return of(null);
+                || response === undefined) {
+                    return null;
                 }
                 if (isFailedResponse(response)) {
                     throw new Error('Request failed please try again');
                 }
-                if (isSuccessResponse(response)) {
+                if (isSuccessResponse<T>(response)) {
                     return response.success;
                 }
             })
