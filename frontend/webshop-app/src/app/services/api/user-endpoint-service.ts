@@ -4,6 +4,7 @@ import {HttpRequestorService} from './http-requestor.service';
 import {User, RegisterNew} from '../../types/api/user';
 import {CommonEndPoints} from '../../types/api-request';
 import {Observable} from 'rxjs';
+import {Coupon} from "../../types/api/coupon";
 
 @Injectable(
     {providedIn: 'root'}
@@ -42,6 +43,15 @@ export class UserEndpointService extends ApiResourceEndPoint<User, RegisterNew> 
             scope: ['user'],
             method: 'PUT',
             body: {user}
+        });
+    }
+
+    getCouponsOf(userID: number): Observable<[Date, Coupon]> {
+        return this.requestor.request<null>({
+            resource: `user/${userID}/coupon/`,
+            scope: ['user'],
+            method: 'GET',
+            body: {}
         });
     }
 

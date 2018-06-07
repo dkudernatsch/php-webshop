@@ -59,6 +59,8 @@ import {NotAdminAuthGuard} from './not-admin-auth-guard';
 import {UpdateFormComponent} from './components/user-page/update-form/update-form.component';
 import {PaymentMethodComponent} from './components/user-page/payment-method/payment-method.component';
 import {PaymentMethodListComponent} from './components/user-page/payment-method-list/payment-method-list.component';
+import {UserCouponListComponent} from "./components/user-page/user-coupon-list/user-coupon-list.component";
+import {RedeemCouponComponent} from "./components/user-page/redeem-coupon/redeem-coupon.component";
 
 
 @NgModule({
@@ -92,7 +94,9 @@ import {PaymentMethodListComponent} from './components/user-page/payment-method-
         AdminEditProductModalComponent,
         UpdateFormComponent,
         PaymentMethodComponent,
-        PaymentMethodListComponent
+        PaymentMethodListComponent,
+        UserCouponListComponent,
+        RedeemCouponComponent
     ],
     imports: [
         BrowserModule,

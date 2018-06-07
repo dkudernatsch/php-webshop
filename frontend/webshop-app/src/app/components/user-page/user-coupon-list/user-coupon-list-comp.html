@@ -1,0 +1,17 @@
+<table *ngIf="coupons$ | async as coupons" class="table" style="margin-bottom: 4em">
+    <thead class="thead-dark">
+    <tr>
+        <th scope="col">Code</th>
+        <th scope="col">Value</th>
+        <th scope="col"></th>
+    </tr>
+    </thead>
+    <tbody *ngFor="let coupon of coupons">
+    <tr [class.table-success]="coupon[1].user_id !== null"
+        [class.table-dark]="coupon[0] < NOW && coupon[1].user_id === null">
+        <th scope="row">{{coupon[1].id}}</th>
+        <td>{{coupon[1].code}}</td>
+        <td>{{coupon[1].value | currency: 'EUR'}}</td>
+    </tr>
+    </tbody>
+</table>

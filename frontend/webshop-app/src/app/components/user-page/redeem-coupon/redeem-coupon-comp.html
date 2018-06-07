@@ -1,0 +1,32 @@
+<div class="container">
+    <form #couponRedeemForm="ngForm">
+        <div class="form-group">
+            <div class="row">
+                <div class="col-10">
+                    <input #redeemCoupon="ngModel"
+                           minlength="5"
+                           maxlength="5"
+                           class="form-control"
+                           [(ngModel)]="couponCode"
+                           type="text"
+                           name="redeem"
+                           id="redeem"
+                           placeholder="Enter code to redeem"
+                           required>
+                    <span *ngIf="!redeemCoupon.valid && redeemCoupon.touched"
+                          class="form-text text-muted">
+                        Not valid coupon format
+                    </span>
+                </div>
+                <div class="col-2">
+                    <button type="sumbit"
+                            class="btn btn-outline-success mr-2"
+                            (click)="onRedeemCoupon()"
+                            [disabled]="!couponRedeemForm.valid">
+                        Redeem Coupon
+                    </button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
