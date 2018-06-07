@@ -25,7 +25,7 @@ export interface NewUser {
 }
 
 export interface RegisterNew {
-    user: NewUser
+    user: NewUser;
 }
 
 export type Scope
@@ -41,5 +41,9 @@ export function isScope(val: any): val is Scope {
 
 export interface PaymentMethod {
     id: number;
+    method: string;
+}
+
+export interface NewPaymentMethod {
     method: string;
 }

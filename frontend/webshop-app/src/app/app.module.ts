@@ -47,7 +47,9 @@ import {ProductListComponent} from './components/product-page/productList/produc
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {AuthIntercepterService} from './services/auth/auth-intercepter.service';
 import {CreateProductModalComponent} from './components/admin-page/manage-products-page/create-product-modal';
-import { CreateCouponComponent } from './components/admin-page/manage-coupons-page/create-coupon/create-coupon.component';
+import {CreateCouponComponent} from './components/admin-page/manage-coupons-page/create-coupon/create-coupon.component';
+import {PaymentEndpointService} from './services/api/payment-endpoint.service';
+import { AdminCouponListComponent } from './components/admin-page/manage-coupons-page/admin-coupon-list/admin-coupon-list.component';
 
 
 @NgModule({
@@ -73,7 +75,8 @@ import { CreateCouponComponent } from './components/admin-page/manage-coupons-pa
         LoginComponent,
         FooterComponent,
         TestloginComponent,
-        CreateCouponComponent
+        CreateCouponComponent,
+        AdminCouponListComponent
     ],
     imports: [
         BrowserModule,
@@ -90,6 +93,7 @@ import { CreateCouponComponent } from './components/admin-page/manage-coupons-pa
         RequestCacheService,
         LoginService,
         ShoppingCartService,
+        PaymentEndpointService,
         {provide: HTTP_INTERCEPTORS, useClass: AuthIntercepterService, multi: true}
     ],
     bootstrap: [AppComponent]

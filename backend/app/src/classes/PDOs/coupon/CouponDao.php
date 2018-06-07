@@ -20,6 +20,15 @@ class CouponDao extends Dao
     const update_stub = "UPDATE COUPON SET c_code = ?, c_value = ?, fk_c_u_user = ? WHERE c_id = (?)";
 
     /**
+     * @param $user_id
+     * @return array
+     * @throws \errors\DatabaseException
+     */
+    public function getAllForUser($user_id): array {
+        return $this->db->prepare_and_run($this::select_stub. " WHERE fk_c_u_user = ?", [["i" => $user_id]], Coupon::class, true);
+    }
+
+    /**
      * @param int $id
      * @return null|Coupon
      * @throws \errors\HttpServerException
@@ -35,23 +44,24 @@ class CouponDao extends Dao
      */
     public function getAll(): array
     {
-        return $this->db->prepare_and_run($this::select_stub, null, Coupon::class, true);
+        return $this->db->prepare_and_run($this::select_stub, [], Coupon::class, true);
     }
 
     /**
-     * @param int $coupon_id
+     * @param string $coupon_id
      * @param int $user_id
-     * @return bool
+     * @return int|null
+     * @throws \errors\DatabaseException
      * @throws \errors\HttpServerException
      */
-    public function addUser(int $coupon_id, int $user_id): bool
+    public function addUser(string $coupon_id, int $user_id): ?int
     {
-        $coupon = $this->byId($coupon_id);
+        $coupon = $this->getByCode($coupon_id);
         $user_dao = new UserDAO($this->db);
         $user = $user_dao->byId($user_id);
 
-        if ($user === null) return false;
-        if ($coupon->user_id !== null) return false;
+        if ($user === null) return null;
+        if ($coupon->user_id !== null) return null;
 
         $this->db->prepare_and_run($this::update_stub, [
             ["s" => $coupon->code],
@@ -59,7 +69,7 @@ class CouponDao extends Dao
             ["i" => $user_id],
             ["i" => $coupon->id]
         ]);
-        return true;
+        return $coupon->id;
     }
 
     /**

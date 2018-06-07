@@ -18,11 +18,12 @@ Authorization: Bearer {{admin_token}}
 
     //client.assert(false, JSON.stringify(response.body));
     client.global.set("last_coupon", response.body.success.id);
+    client.global.set("code", response.body.success.code);
 %}
 
 ###
 
-GET https://api.webshop.at/coupon/{{last_coupon}}
+GET https://api.webshop.at/coupon/17
 Accept: application/json
 Cache-Control: no-cache
 Content-Type: application/json
@@ -35,7 +36,7 @@ Authorization: Bearer {{admin_token}}
  %}
 ###
 
-PUT https://api.webshop.at/coupon/{{last_coupon}}/redeem/1
+PUT https://api.webshop.at/coupon/{{code}}/redeem/1
 Accept: application/json
 Cache-Control: no-cache
 Content-Type: application/json

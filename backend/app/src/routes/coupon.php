@@ -39,6 +39,23 @@ $app->get('/coupon/{id}', function (Request $request, Response $response, array 
 })->add(new ScopedJWTAuth(["user", "admin"]));
 
 /**
+ *
+ */
+
+$app->get('/coupon/', function (Request $request, Response $response, array $args) {
+
+    $this->logger->info("GET: all coupons");
+
+    $dao = new CouponDao($this->db);
+    $coupons = $dao->getAll();
+
+    return $response
+        ->withStatus(200)
+        ->withJson(["success" => $coupons]);
+
+})->add(new ScopedJWTAuth(["user", "admin"]));
+
+/**
  * Generate a new coupon with a value
  * only a admin has rights to this route
  */
@@ -48,7 +65,7 @@ $app->post("/coupon/", function (Request $request, Response $response, array $ar
     $body = $request->getParsedBody();
     $val = $body['value'];
     $expr = $body['expiration_date'];
-
+    $expr = substr($expr, 0, -1);
     if($val && $val = floatval($val)){
         $dao = new CouponDao($this->db);
         $id = $dao->generateNew($val, $expr);
@@ -65,7 +82,7 @@ $app->post("/coupon/", function (Request $request, Response $response, array $ar
  *
  */
 
-$app->put("/coupon/{cid}/redeem/{uid}", function (Request $request, Response $response, array $args){
+$app->put("/coupon/{code}/redeem/{uid}", function (Request $request, Response $response, array $args){
     $token = $request->getAttribute('token');
 
     if(!$token->has_scope(["admin"]) && intval($args['uid']) !== $token->decoded['sub']) {
@@ -73,8 +90,10 @@ $app->put("/coupon/{cid}/redeem/{uid}", function (Request $request, Response $re
     } else {
 
         $dao = new CouponDao($this->db);
-        if($dao->addUser($args['cid'], $args['uid'])){
-            return $response->withStatus(204);
+        if($id = $dao->addUser($args['code'], $args['uid'])){
+            return $response
+                ->withStatus(200)
+                ->withJson(["success" => ["id" => $id]]);
         }else{
             throw new \errors\HttpServerException(400, "Unable to redeem token");
         }

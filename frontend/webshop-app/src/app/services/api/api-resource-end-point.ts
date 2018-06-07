@@ -2,6 +2,7 @@ import {Observable} from 'rxjs/internal/Observable';
 import {ApiEndpoint, ApiRequest, CommonEndPoints} from '../../types/api-request';
 import {HttpRequestorService} from './http-requestor.service';
 import {map} from 'rxjs/operators';
+import {Id} from '../../types/api/coupon';
 
 export abstract class ApiResourceEndPoint<T, NewT> {
 
@@ -35,10 +36,10 @@ export abstract class ApiResourceEndPoint<T, NewT> {
         return this.requestor.request(request);
     }
 
-    create(t: NewT): Observable<void> {
+    create(t: NewT): Observable<Id> {
         const endpoint: ApiEndpoint = this.getEndPoints().create;
 
-        const request: ApiRequest<void> = {
+        const request: ApiRequest<Id> = {
             resource: `${endpoint.resource}`,
             method: endpoint.method,
             scope: endpoint.scope,

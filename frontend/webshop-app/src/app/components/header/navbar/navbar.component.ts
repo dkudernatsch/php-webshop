@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {AuthService} from '../../../services/auth/auth.service';
 import {UserAuthService} from '../../../services/auth/user-auth.service';
-import {Observable} from "rxjs/internal/Observable";
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-navbar',
@@ -9,9 +9,9 @@ import {Observable} from "rxjs/internal/Observable";
   styleUrls: ['navbar-comp.css']
 })
 export class NavbarComponent {
-  private isUser$: Observable<boolean>;
-  private isAdmin$: Observable<boolean>;
-  private isAnonymous$: Observable<boolean>;
+  private isUser$: Observable<Boolean>;
+  private isAdmin$: Observable<Boolean>;
+  private isAnonymous$: Observable<Boolean>;
 
   constructor(private userAuthService: UserAuthService, private authService: AuthService) {
     this.isAdmin$ = userAuthService.hasScope('admin');
