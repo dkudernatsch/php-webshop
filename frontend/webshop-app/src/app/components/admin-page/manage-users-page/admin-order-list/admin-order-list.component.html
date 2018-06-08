@@ -1,0 +1,36 @@
+<h4>User invoices:</h4>
+<ngb-accordion *ngIf="invoices$ | async as invoices">
+    <ngb-panel *ngFor="let invoice of invoices">
+        <ng-template ngbPanelTitle>
+            <span>Order {{invoice.invoiceNumber}} &nbsp;&nbsp; {{invoice.timeStamp | date}}</span>
+        </ng-template>
+        <ng-template ngbPanelContent>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Product Id</th>
+                    <th></th>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Count</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let orderPos of invoice.orderPositions">
+                        <td>{{orderPos.product.id}}</td>
+                        <td><img class="img-fluid" src="{{orderPos.product.imagePath}}" alt="productimage"></td>
+                        <td>{{orderPos.product.name}}</td>
+                        <td>{{orderPos.product.price}}</td>
+                        <td>{{orderPos.count}}</td>
+                        <td><button class="btn btn-danger" (click)="this.removeOrderPos(invoice.id, orderPos.id)">Remove</button></td>
+                    </tr>
+                </tbody>
+            </table>
+            <p>
+             <span><h5>Order value:</h5> {{invoice.sum}}</span>
+            </p>
+        </ng-template>
+    </ngb-panel>
+
+</ngb-accordion>

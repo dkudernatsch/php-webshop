@@ -23,14 +23,15 @@ export class UserPageComponent {
         address: '',
         post_code: '',
         city: '',
-        is_admin: false
+        is_admin: false,
+        is_active: true,
     };
 
     constructor(private userAuthService: UserAuthService,
                 private userEndpointService: UserEndpointService) {
         this.userAuthService.user$.pipe(
             map((user: any | null) => {
-                return user === null ? null : user.user;
+                return user === null ? null : user;
             })
         ).subscribe((user: User | null) => {
             this.user = user;

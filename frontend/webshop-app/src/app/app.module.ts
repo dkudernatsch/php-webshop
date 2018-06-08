@@ -56,6 +56,10 @@ import {AdminCouponListComponent} from './components/admin-page/manage-coupons-p
 import {AdminAuthGuard} from './admin-auth-guard.service';
 import {UserAuthGuard} from './user-auth-guard.service';
 import {NotAdminAuthGuard} from './not-admin-auth-guard';
+import { AdminUserListComponent } from './components/admin-page/manage-users-page/admin-user-list/admin-user-list.component';
+import { AdminUserDetailsComponent } from './components/admin-page/manage-users-page/admin-user-details/admin-user-details.component';
+import { AdminOrderListComponent } from './components/admin-page/manage-users-page/admin-order-list/admin-order-list.component';
+import {InvoiceEndpointService} from './services/api/InvoiceEndpointService';
 
 
 @NgModule({
@@ -87,6 +91,9 @@ import {NotAdminAuthGuard} from './not-admin-auth-guard';
         TestloginComponent,
         AdminProductListComponent,
         AdminEditProductModalComponent,
+        AdminUserListComponent,
+        AdminUserDetailsComponent,
+        AdminOrderListComponent,
     ],
     imports: [
         BrowserModule,
@@ -107,6 +114,7 @@ import {NotAdminAuthGuard} from './not-admin-auth-guard';
         AdminAuthGuard,
         UserAuthGuard,
         NotAdminAuthGuard,
+        InvoiceEndpointService,
         {provide: HTTP_INTERCEPTORS, useClass: AuthIntercepterService, multi: true}
     ],
     entryComponents: [

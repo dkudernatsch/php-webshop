@@ -23,8 +23,9 @@ class User
     public $city;
 
     public $is_admin;
+    public $is_active;
 
-    function get_scopes(){
+    function get_scopes() {
         return $this->is_admin
             ? ["user", "admin", "anonymous"]
             : ["user", "anonymous"];

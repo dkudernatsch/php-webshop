@@ -14,32 +14,39 @@ import {ManageProductsPageComponent} from './components/admin-page/manage-produc
 import {AdminAuthGuard} from './admin-auth-guard.service';
 import {UserAuthGuard} from './user-auth-guard.service';
 import {NotAdminAuthGuard} from './not-admin-auth-guard';
+import {AdminUserDetailsComponent} from './components/admin-page/manage-users-page/admin-user-details/admin-user-details.component';
+import {AdminUserListComponent} from './components/admin-page/manage-users-page/admin-user-list/admin-user-list.component';
 
 // set up the routes
 const appRoutes: Routes = [
-  {path: '', component: HomePageComponent},
-  {path: 'products', canActivate: [NotAdminAuthGuard], component: ProductPageComponent},
-  {path: 'cart', canActivate: [NotAdminAuthGuard], component: ShoppingCartPageComponent},
-  {path: 'account', canActivate: [UserAuthGuard], component: UserPageComponent},
-  {
-    path: 'admin', canActivate: [AdminAuthGuard], canActivateChild: [AdminAuthGuard], component: AdminPageComponent, children: [
-      {path: 'products', component: ManageProductsPageComponent},
-      {path: 'coupons', component: ManageCouponsPageComponent},
-      {path: 'users', component: ManageUsersPageComponent},
-      {path: '', redirectTo: 'products', pathMatch: 'full'},
-    ]
-  },
-  {path: 'not-found', component: PageNotFoundPageComponent},
-  // has to be last entry!
-  {path: '**', redirectTo: '/not-found'}
+    {path: '', component: HomePageComponent},
+    {path: 'products', canActivate: [NotAdminAuthGuard], component: ProductPageComponent},
+    {path: 'cart', canActivate: [NotAdminAuthGuard], component: ShoppingCartPageComponent},
+    {path: 'account', canActivate: [UserAuthGuard], component: UserPageComponent},
+    {
+        path: 'admin', canActivate: [AdminAuthGuard], canActivateChild: [AdminAuthGuard], component: AdminPageComponent, children: [
+            {path: 'products', component: ManageProductsPageComponent},
+            {path: 'coupons', component: ManageCouponsPageComponent},
+            {
+                path: 'users', component: ManageUsersPageComponent, children: [
+                    {path: '', component: AdminUserListComponent},
+                    {path: ':id', component: AdminUserDetailsComponent}
+                ]
+            },
+            {path: '', redirectTo: 'products', pathMatch: 'full'},
+        ]
+    },
+    {path: 'not-found', component: PageNotFoundPageComponent},
+    // has to be last entry!
+    {path: '**', redirectTo: '/not-found'}
 ];
 
 
 @NgModule({
-  imports: [
-    RouterModule.forRoot(appRoutes)
-  ],
-  exports: [RouterModule]
+    imports: [
+        RouterModule.forRoot(appRoutes)
+    ],
+    exports: [RouterModule]
 })
 export class AppRoutingModule {
 

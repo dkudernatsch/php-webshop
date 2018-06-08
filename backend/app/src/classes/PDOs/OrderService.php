@@ -53,7 +53,10 @@ class OrderService
     public function placeOrder(Order $order): int {
 
         $user = $this->userDao->byId($order->user_id);
-        $coupon = $this->couponDao->byId($order->coupon_id);
+        $coupon = null;
+        if($order->coupon_id) {
+            $coupon = $this->couponDao->byId($order->coupon_id);
+        }
         $payment_method = $this->paymentMethodDao->byId($order->payment_id);
 
         $products = [];
@@ -65,7 +68,9 @@ class OrderService
             return $acc + $product_entry['product']->price * $product_entry['count'];
         }, 0.0);
 
-        $coupon_val = floatval($coupon->value);
+        $coupon_val = $coupon
+            ? floatval($coupon->value)
+            : 0;
 
         if($coupon_val < $sum) {
             $sum -= $coupon_val;
@@ -81,15 +86,16 @@ class OrderService
         $invoice->user_id = $user->id;
 
         $invoice->order_positions = array_map(function($entry){
-            return new ProductOrder($entry['product']->id, $entry['count']);
+            return new ProductOrder(0, $entry['product']->id, $entry['count']);
         }, $products);
 
         $invoice->sum = $sum;
         $invoice->time_stamp = time();
 
-        $coupon->value = strval($coupon_val);
-        $this->couponDao->update($coupon);
-
+        if($coupon) {
+            $coupon->value = strval($coupon_val);
+            $this->couponDao->update($coupon);
+        }
 
         return $this->invoiceDao->insertInvoice($invoice);
     }

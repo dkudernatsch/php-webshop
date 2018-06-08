@@ -10,6 +10,7 @@ export interface User {
     post_code: string;
     city: string;
     is_admin: boolean;
+    is_active: boolean;
 }
 
 export interface NewUser {

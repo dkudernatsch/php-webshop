@@ -45,4 +45,21 @@ export class UserEndpointService extends ApiResourceEndPoint<User, RegisterNew> 
         });
     }
 
+    activateUser(id: number): Observable<null> {
+        return this.requestor.request<null>({
+            resource: `user/${id}/activate/`,
+            scope: ['admin'],
+            method: 'PUT',
+            body: {}
+        });
+    }
+
+    deactivateUser(id: number): Observable<null> {
+        return this.requestor.request<null>({
+            resource: `user/${id}/deactivate/`,
+            scope: ['admin'],
+            method: 'PUT',
+            body: {}
+        });
+    }
 }

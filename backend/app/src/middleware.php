@@ -23,7 +23,17 @@ $container["JwtAuthentication"] = function ($container) {
         },
         "before" => function ($request, $arguments) use ($container) {
             $container["token"]->populate($arguments["decoded"]);
-            return $request->withAttribute('token', $container['token']);
+
+            if($container['token']->has_scope(['anonymous']))
+                return $request->withAttribute('token', $container['token']);
+
+            $userDao = new \PDOs\User\UserDAO($container['db']);
+
+            if($userDao->byId(intval($container['token']->decoded['sub']))->is_active) {
+                return $request->withAttribute('token', $container['token']);
+            }else{
+                throw new \errors\HttpServerException(401, "This user is deactivated");
+            }
         }
     ]);
 };
