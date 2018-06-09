@@ -56,11 +56,14 @@ import {AdminCouponListComponent} from './components/admin-page/manage-coupons-p
 import {AdminAuthGuard} from './admin-auth-guard.service';
 import {UserAuthGuard} from './user-auth-guard.service';
 import {NotAdminAuthGuard} from './not-admin-auth-guard';
-import {UpdateFormComponent} from './components/user-page/update-form/update-form.component';
-import {PaymentMethodComponent} from './components/user-page/payment-method/payment-method.component';
-import {PaymentMethodListComponent} from './components/user-page/payment-method-list/payment-method-list.component';
-import {UserCouponListComponent} from "./components/user-page/user-coupon-list/user-coupon-list.component";
-import {RedeemCouponComponent} from "./components/user-page/redeem-coupon/redeem-coupon.component";
+import {UpdateFormComponent} from './components/user-page/manage-account-page/update-form/update-form.component';
+import {PaymentMethodComponent} from './components/user-page/manage-payment-page/payment-method/payment-method.component';
+import {PaymentMethodListComponent} from './components/user-page/manage-payment-page/payment-method-list/payment-method-list.component';
+import {UserCouponListComponent} from "./components/user-page/manage-coupon-page/user-coupon-list/user-coupon-list.component";
+import {RedeemCouponComponent} from "./components/user-page/manage-coupon-page/redeem-coupon/redeem-coupon.component";
+import {ManageAccountPageComponent} from "./components/user-page/manage-account-page/manage-account-page";
+import {ManageCouponPageComponent} from "./components/user-page/manage-coupon-page/manage-coupon-page";
+import {ManagePaymentPageComponent} from "./components/user-page/manage-payment-page/manage-payment-page";
 
 
 @NgModule({
@@ -96,7 +99,10 @@ import {RedeemCouponComponent} from "./components/user-page/redeem-coupon/redeem
         PaymentMethodComponent,
         PaymentMethodListComponent,
         UserCouponListComponent,
-        RedeemCouponComponent
+        RedeemCouponComponent,
+        ManageAccountPageComponent,
+        ManageCouponPageComponent,
+        ManagePaymentPageComponent
     ],
     imports: [
         BrowserModule,

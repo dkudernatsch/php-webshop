@@ -1,7 +1,7 @@
 import {Component, Input} from '@angular/core';
-import {NewPaymentMethod, PaymentMethod} from '../../../types/api/user';
-import {PaymentEndpointService} from '../../../services/api/payment-endpoint.service';
-import {UserAuthService} from '../../../services/auth/user-auth.service';
+import {NewPaymentMethod, PaymentMethod} from '../../../../types/api/user';
+import {PaymentEndpointService} from '../../../../services/api/payment-endpoint.service';
+import {UserAuthService} from '../../../../services/auth/user-auth.service';
 import {flatMap} from 'rxjs/operators';
 import {Observable} from 'rxjs/internal/Observable';
 
@@ -9,7 +9,7 @@ import {Observable} from 'rxjs/internal/Observable';
 @Component({
     selector: 'app-payment-method-list',
     templateUrl: './payment-method-list-comp.html',
-    styleUrls: ['../user-page.css']
+    styleUrls: ['../../user-page.css']
 })
 export class PaymentMethodListComponent {
 

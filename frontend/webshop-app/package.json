@@ -20,7 +20,7 @@
     "@angular/platform-browser": "^6.0.4",
     "@angular/platform-browser-dynamic": "^6.0.4",
     "@angular/router": "^6.0.4",
-    "@ng-bootstrap/ng-bootstrap": "^2.0.0",
+    "@ng-bootstrap/ng-bootstrap": "^2.1.0",
     "angular-icons": "^1.0.11",
     "bootstrap": "^4.1.1",
     "bootstrap4": "0.0.1-security",

@@ -1,20 +1,15 @@
-import {Component} from '@angular/core';
-
+import {Component, EventEmitter, Output} from '@angular/core';
 
 @Component({
     selector: 'app-redeem-coupon',
     templateUrl: './redeem-coupon-comp.html',
-    styleUrls: ['../user-page.css']
 })
 export class RedeemCouponComponent {
 
     couponCode = '';
-
-    constructor() {
-
-    }
+    @Output() myRedeem: EventEmitter<string> = new EventEmitter();
 
     onRedeemCoupon() {
-
+        this.myRedeem.emit(this.couponCode);
     }
 }

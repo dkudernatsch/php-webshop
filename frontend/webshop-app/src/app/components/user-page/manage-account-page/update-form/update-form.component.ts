@@ -1,14 +1,14 @@
 import {Component} from '@angular/core';
-import {User} from '../../../types/api/user';
-import {UserAuthService} from '../../../services/auth/user-auth.service';
-import {UserEndpointService} from '../../../services/api/user-endpoint-service';
+import {User} from '../../../../types/api/user';
+import {UserAuthService} from '../../../../services/auth/user-auth.service';
+import {UserEndpointService} from '../../../../services/api/user-endpoint-service';
 import {map} from 'rxjs/operators';
 
 
 @Component({
     selector: 'app-update-form',
     templateUrl: './update-form-comp.html',
-    styleUrls: ['../user-page.css']
+    styleUrls: ['../../user-page.css']
 })
 export class UpdateFormComponent {
 

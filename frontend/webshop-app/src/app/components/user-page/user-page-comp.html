@@ -1,11 +1,18 @@
 <h2 class="text-center">Your Account</h2>
 <div class="container-fluid">
-    <app-update-form></app-update-form>
-    <hr/>
-    <h3 class="text-center">Payment Methods</h3>
-    <app-payment-method-list></app-payment-method-list>
-    <hr/>
-    <h3 class="text-center">Your Coupons</h3>
-    <app-user-coupon-list></app-user-coupon-list>
-    <app-redeem-coupon></app-redeem-coupon>
+    <div class="row">
+        <!--sub navigation for admin area on the left side-->
+        <div class="col-2">
+            <div class="list-group">
+                <a routerLink="user-data" routerLinkActive="active" class="list-group-item list-group-item-action">Your data</a>
+                <a routerLink="payment" routerLinkActive="active"  class="list-group-item list-group-item-action">Payment Methods</a>
+                <a routerLink="coupon" routerLinkActive="active" class="list-group-item list-group-item-action">Coupons</a>
+            </div>
+        </div>
+        <div class="col-10">
+            <!--outlet for sub pages-->
+            <router-outlet></router-outlet>
+        </div>
+    </div>
 </div>
+
