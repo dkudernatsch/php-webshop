@@ -47,6 +47,6 @@ export class UserCouponListComponent {
             )
         ).subscribe((response: any) => console.log(response));
         // update the coupon list
-        this.refreshCoupons();
+        setTimeout(() => this.refreshCoupons(), 500);
     }
 }
