@@ -4,7 +4,10 @@ import {PaymentMethod} from '../../../types/api/user';
 import {Observable} from 'rxjs/internal/Observable';
 import {PaymentEndpointService} from '../../../services/api/payment-endpoint.service';
 import {UserAuthService} from '../../../services/auth/user-auth.service';
-import {flatMap} from 'rxjs/operators';
+import {flatMap, map} from 'rxjs/operators';
+import {Coupon} from "../../../types/api/coupon";
+import {CouponEndpointService} from "../../../services/api/coupon-endpoint.service";
+import {UserEndpointService} from "../../../services/api/user-endpoint-service";
 
 @Component({
     selector: 'app-paying-modal',
@@ -13,14 +16,22 @@ import {flatMap} from 'rxjs/operators';
 export class PayingModalComponent {
 
     paymentMethods$: Observable<PaymentMethod[]>;
+    private coupons$: Observable<[Coupon]>;
 
     constructor(public activeModal: NgbActiveModal,
                 private paymentEndPointService: PaymentEndpointService,
-                private userAuthService: UserAuthService) {
-
+                private userAuthService: UserAuthService,
+                private userEndPointService: UserEndpointService) {
         this.paymentMethods$ = this.userAuthService.userID$.pipe(
             flatMap((userID: number | null) =>
                 this.paymentEndPointService.getPaymentMethods(userID))
+        );
+        this.coupons$ = this.userAuthService.userID$.pipe(
+            flatMap((userID: number | null) =>
+                this.userEndPointService.getCouponsOf(userID).pipe(
+                    map((Coupon, Date) => Coupon)
+                )
+            )
         );
     }
 
