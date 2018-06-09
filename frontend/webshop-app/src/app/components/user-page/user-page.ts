@@ -1,10 +1,15 @@
-import {Component, OnDestroy, ViewChild} from '@angular/core';
+import {Component, Injector, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {UserAuthService} from '../../services/auth/user-auth.service';
 import {Observable} from 'rxjs/internal/Observable';
 import {User} from '../../types/api/user';
 import {NgForm} from '@angular/forms';
-import {map} from 'rxjs/operators';
+import {debounce, debounceTime, delay, map} from 'rxjs/operators';
 import {UserEndpointService} from '../../services/api/user-endpoint-service';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {PasswordVerificationModalComponent} from './password-verification-modal/password-verification-modal.component';
+import {StaticInjector} from '@angular/core/src/di/injector';
+import {BehaviorSubject} from 'rxjs/internal/BehaviorSubject';
+import {AuthService} from '../../services/auth/auth.service';
 
 @Component({
     selector: 'app-user-page',
@@ -28,23 +33,24 @@ export class UserPageComponent {
     };
 
     constructor(private userAuthService: UserAuthService,
-                private userEndpointService: UserEndpointService) {
-        this.userAuthService.user$.pipe(
-            map((user: any | null) => {
-                return user === null ? null : user;
-            })
-        ).subscribe((user: User | null) => {
+                private authService: AuthService,
+                private userEndpointService: UserEndpointService,
+                private modalService: NgbModal) {
+        this.userAuthService.user$
+            .subscribe((user: User | null) => {
             this.user = user;
         });
     }
 
-    onSubmitUpdateUser() {
-        console.log(this.user);
-        // update user in backend with the form data!
-        this.userEndpointService.updateUser(this.user).subscribe((code) => {
-            console.log(code);
-        });
-    }
 
+
+    onSubmitUpdateUser() {
+        const modalRef = this.modalService.open(PasswordVerificationModalComponent);
+        modalRef.componentInstance.userToUpdate = this.user;
+        modalRef.result
+            .then((result) => {
+                this.authService.refresh();
+            });
+    }
 
 }

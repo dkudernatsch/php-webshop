@@ -181,4 +181,9 @@
             </button>
         </div>
     </form>
+
+    <p>
+        <ngb-alert *ngIf="this.msg !== ''" (close)="showAlert('', 1)" type="success">{{this.msg}}</ngb-alert>
+    </p>
+
 </div>

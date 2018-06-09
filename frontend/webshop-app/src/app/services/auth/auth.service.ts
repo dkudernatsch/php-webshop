@@ -32,4 +32,10 @@ export class AuthService {
             .subscribe((token) => this.token$.next(token));
     }
 
+    refresh() {
+        this.token$.asObservable()
+            .toPromise()
+            .then((token) => this.token$.next(token));
+    }
+
 }
