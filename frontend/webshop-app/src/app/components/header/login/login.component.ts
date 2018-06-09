@@ -23,6 +23,8 @@ export class LoginComponent {
     private user$: Observable<User | null>;
     closeResult: string;
 
+    private password_repeat = '';
+
     private newUser: NewUser = {
         username: '',
         password: '',

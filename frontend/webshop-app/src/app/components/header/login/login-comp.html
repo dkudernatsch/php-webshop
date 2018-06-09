@@ -55,6 +55,28 @@
                 <div class="form-group">
                     <div class="row my-1 py-1 d-flex align-items-center">
                         <div class="col-4">
+                            <label for="password">Repeat password</label>
+                        </div>
+                        <div class="col-8">
+                            <!--for presentation: additional validation with pattern directive
+                                between 4-20 characters at least one number lowercase and uppercase letter
+                            -->
+                            <input [(ngModel)]="password_repeat"
+                                   pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{4,}$"
+                                   type="password"
+                                   class="form-control"
+                                   name="password-repeat"
+                                   id="password-repeat"
+                                   placeholder="Enter password"
+                                   required
+                                   #registerPassRepeat="ngModel">
+                            <span *ngIf="registerPass.touched && registerPassRepeat.touched && password_repeat !== newUser.password" class="form-text text-muted">Passwords have to match!</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row my-1 py-1 d-flex align-items-center">
+                        <div class="col-4">
                             <label for="appellation">Appellation</label>
                         </div>
                         <div class="col-8">
