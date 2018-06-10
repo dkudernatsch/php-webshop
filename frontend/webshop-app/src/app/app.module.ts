@@ -56,6 +56,15 @@ import {AdminCouponListComponent} from './components/admin-page/manage-coupons-p
 import {AdminAuthGuard} from './admin-auth-guard.service';
 import {UserAuthGuard} from './user-auth-guard.service';
 import {NotAdminAuthGuard} from './not-admin-auth-guard';
+import {UpdateFormComponent} from './components/user-page/manage-account-page/update-form/update-form.component';
+import {PaymentMethodComponent} from './components/user-page/manage-payment-page/payment-method/payment-method.component';
+import {PaymentMethodListComponent} from './components/user-page/manage-payment-page/payment-method-list/payment-method-list.component';
+import {UserCouponListComponent} from "./components/user-page/manage-coupon-page/user-coupon-list/user-coupon-list.component";
+import {RedeemCouponComponent} from "./components/user-page/manage-coupon-page/redeem-coupon/redeem-coupon.component";
+import {ManageAccountPageComponent} from "./components/user-page/manage-account-page/manage-account-page";
+import {ManageCouponPageComponent} from "./components/user-page/manage-coupon-page/manage-coupon-page";
+import {ManagePaymentPageComponent} from "./components/user-page/manage-payment-page/manage-payment-page";
+import {OrderEndpointService} from "./services/api/order-endpoint.service";
 import { AdminUserListComponent } from './components/admin-page/manage-users-page/admin-user-list/admin-user-list.component';
 import { AdminUserDetailsComponent } from './components/admin-page/manage-users-page/admin-user-details/admin-user-details.component';
 import { AdminOrderListComponent } from './components/admin-page/manage-users-page/admin-order-list/admin-order-list.component';
@@ -92,6 +101,14 @@ import { PasswordVerificationModalComponent } from './components/user-page/passw
         TestloginComponent,
         AdminProductListComponent,
         AdminEditProductModalComponent,
+        UpdateFormComponent,
+        PaymentMethodComponent,
+        PaymentMethodListComponent,
+        UserCouponListComponent,
+        RedeemCouponComponent,
+        ManageAccountPageComponent,
+        ManageCouponPageComponent,
+        ManagePaymentPageComponent,
         AdminUserListComponent,
         AdminUserDetailsComponent,
         AdminOrderListComponent,
@@ -117,6 +134,7 @@ import { PasswordVerificationModalComponent } from './components/user-page/passw
         UserAuthGuard,
         NotAdminAuthGuard,
         InvoiceEndpointService,
+        OrderEndpointService,
         {provide: HTTP_INTERCEPTORS, useClass: AuthIntercepterService, multi: true}
     ],
     entryComponents: [
