@@ -24,7 +24,6 @@ export class ShoppingCartService {
                     sum + (cart[key].product.price * cart[key].amount), 0
                 )
             ),
-            map((sum: number ) => sum > 1 ? sum.toPrecision(4) : sum.toPrecision(3)),
             tap((a) => console.log(a))
         );
     }
