@@ -1,7 +1,9 @@
 import {Component} from '@angular/core';
-import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
+import {NgbActiveModal, NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {UserEndpointService} from '../../../services/api/user-endpoint-service';
 import {NewUser, RegisterNew} from '../../../types/api/user';
+import {MessageModalService} from "../../../services/message-modal/message-modal.service";
+import {MessageModalComponent} from "../../message-modal/message-modal.component";
 
 @Component({
     selector: 'app-register-modal',
@@ -24,10 +26,18 @@ export class RegisterModalComponent {
     };
 
     constructor(private userEndpointService: UserEndpointService,
-                public activeModal: NgbActiveModal) {
+                public activeModal: NgbActiveModal,
+                private messageModalService: MessageModalService,
+                private modalService: NgbModal) {
+    }
+
+    setMessageModal() {
+        this.messageModalService.setTitle('Thanks for registering!');
+        this.messageModalService.setMessage('You can now login and buy products as well as look at your user page to redeem coupons and change your personal data.')
     }
 
     onSubmitRegister() {
+        this.setMessageModal();
         const newRegister: RegisterNew = {
             user: this.newUser
         };
@@ -36,6 +46,7 @@ export class RegisterModalComponent {
             console.log(response);
         });
         this.activeModal.close('Close click');
+        const modalRef = this.modalService.open(MessageModalComponent);
     }
 
 }

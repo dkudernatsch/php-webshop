@@ -71,6 +71,8 @@ import { AdminOrderListComponent } from './components/admin-page/manage-users-pa
 import {InvoiceEndpointService} from './services/api/InvoiceEndpointService';
 import { PasswordVerificationModalComponent } from './components/user-page/password-verification-modal/password-verification-modal.component';
 import {RegisterModalComponent} from "./components/header/register-modal/register-modal.component";
+import {MessageModalService} from "./services/message-modal/message-modal.service";
+import {MessageModalComponent} from "./components/message-modal/message-modal.component";
 
 
 @NgModule({
@@ -114,7 +116,8 @@ import {RegisterModalComponent} from "./components/header/register-modal/registe
         AdminUserDetailsComponent,
         AdminOrderListComponent,
         PasswordVerificationModalComponent,
-        RegisterModalComponent
+        RegisterModalComponent,
+        MessageModalComponent
     ],
     imports: [
         BrowserModule,
@@ -137,6 +140,7 @@ import {RegisterModalComponent} from "./components/header/register-modal/registe
         NotAdminAuthGuard,
         InvoiceEndpointService,
         OrderEndpointService,
+        MessageModalService,
         {provide: HTTP_INTERCEPTORS, useClass: AuthIntercepterService, multi: true}
     ],
     entryComponents: [
@@ -144,7 +148,8 @@ import {RegisterModalComponent} from "./components/header/register-modal/registe
         AdminEditProductModalComponent,
         PayingModalComponent,
         PasswordVerificationModalComponent,
-        RegisterModalComponent
+        RegisterModalComponent,
+        MessageModalComponent
     ],
     bootstrap: [AppComponent]
 })

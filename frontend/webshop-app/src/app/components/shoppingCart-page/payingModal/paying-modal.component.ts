@@ -1,5 +1,5 @@
 import {Component, ViewChild} from '@angular/core';
-import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
+import {NgbActiveModal, NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {PaymentMethod} from '../../../types/api/user';
 import {Observable} from 'rxjs/internal/Observable';
 import {PaymentEndpointService} from '../../../services/api/payment-endpoint.service';
@@ -10,6 +10,8 @@ import {UserEndpointService} from '../../../services/api/user-endpoint-service';
 import {OrderEndpointService} from '../../../services/api/order-endpoint.service';
 import {ShoppingCartService} from '../../../services/products/shoppingCart.service';
 import {NgForm} from '@angular/forms';
+import {MessageModalService} from "../../../services/message-modal/message-modal.service";
+import {MessageModalComponent} from "../../message-modal/message-modal.component";
 
 @Component({
     selector: 'app-paying-modal',
@@ -26,7 +28,9 @@ export class PayingModalComponent {
                 private userAuthService: UserAuthService,
                 private userEndPointService: UserEndpointService,
                 private orderEndPointService: OrderEndpointService,
-                private shoppingCartService: ShoppingCartService) {
+                private shoppingCartService: ShoppingCartService,
+                private messageModalService: MessageModalService,
+                private modalService: NgbModal) {
         this.paymentMethods$ = this.userAuthService.userID$.pipe(
             flatMap((userID: number | null) =>
                 this.paymentEndPointService.getPaymentMethods(userID))
@@ -38,11 +42,19 @@ export class PayingModalComponent {
         );
     }
 
+    setMessageModal() {
+        this.messageModalService.setTitle('Thank you');
+        this.messageModalService.setMessage('Thanks for buying at our shop, and have fun with our products!')
+    }
+
     onSubmit() {
+        this.setMessageModal();
+
         const paymentMethod = this.buyingForm.value.paymentMethod;
         const coupon = this.buyingForm.value.coupon;
         const couponID = coupon ? coupon.id : null;
         const orderItems = this.shoppingCartService.getAsOrderItems();
+
         this.userAuthService.userID$.pipe(
             flatMap((userID: number | null) =>
                 this.orderEndPointService.placeOrder({
@@ -55,5 +67,7 @@ export class PayingModalComponent {
         ).subscribe((response: any) => console.log(response));
         this.shoppingCartService.resetCart();
         this.activeModal.close('Close click');
+
+        const modalRef = this.modalService.open(MessageModalComponent);
     }
 }

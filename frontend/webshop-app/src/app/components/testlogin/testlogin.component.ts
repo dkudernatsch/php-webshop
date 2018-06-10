@@ -4,6 +4,9 @@ import {AuthService} from '../../services/auth/auth.service';
 import {CategoryEndpointService} from '../../services/api/category-endpoint-service';
 import {HttpModule} from '@angular/http';
 import {HttpClient} from '@angular/common/http';
+import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
+import {MessageModalService} from "../../services/message-modal/message-modal.service";
+import {MessageModalComponent} from "../message-modal/message-modal.component";
 
 @Component({
     selector: 'app-testlogin',
@@ -24,7 +27,9 @@ export class TestloginComponent {
         ( private userAuthService: UserAuthService
         , private authService: AuthService
         , private categories: CategoryEndpointService
-        , private http: HttpClient) {
+        , private http: HttpClient,
+          private modalService: NgbModal,
+          private messageModalService: MessageModalService) {
 
         this.isAdmin$ = userAuthService.hasScope('admin');
         this.isUser$ = userAuthService.hasScope('user');
@@ -54,5 +59,11 @@ export class TestloginComponent {
         this.categories.create({slug: 'test', name: 'TheName'}).subscribe();
         // this.http.get('https://api.webshop.at/category/').subscribe((e) => console.log(e));
         this.categories.all().subscribe((c) => console.log(c));
+    }
+
+    onShowMessageModal() {
+        this.messageModalService.setTitle('Custom Title');
+        this.messageModalService.setMessage('Here i can set any message in any component how i want.');
+        const modalRef = this.modalService.open(MessageModalComponent);
     }
 }
