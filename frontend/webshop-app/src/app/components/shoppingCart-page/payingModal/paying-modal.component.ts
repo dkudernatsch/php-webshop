@@ -4,12 +4,12 @@ import {PaymentMethod} from '../../../types/api/user';
 import {Observable} from 'rxjs/internal/Observable';
 import {PaymentEndpointService} from '../../../services/api/payment-endpoint.service';
 import {UserAuthService} from '../../../services/auth/user-auth.service';
-import {flatMap, } from 'rxjs/operators';
-import {Coupon} from "../../../types/api/coupon";
-import {UserEndpointService} from "../../../services/api/user-endpoint-service";
-import {OrderEndpointService} from "../../../services/api/order-endpoint.service";
-import {ShoppingCartService} from "../../../services/products/shoppingCart.service";
-import {NgForm} from "@angular/forms";
+import {flatMap} from 'rxjs/operators';
+import {Coupon} from '../../../types/api/coupon';
+import {UserEndpointService} from '../../../services/api/user-endpoint-service';
+import {OrderEndpointService} from '../../../services/api/order-endpoint.service';
+import {ShoppingCartService} from '../../../services/products/shoppingCart.service';
+import {NgForm} from '@angular/forms';
 
 @Component({
     selector: 'app-paying-modal',
