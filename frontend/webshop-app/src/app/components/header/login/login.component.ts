@@ -25,6 +25,8 @@ export class LoginComponent {
 
     private password_repeat = '';
 
+    private rememberMe = true;
+
     private newUser: NewUser = {
         username: '',
         password: '',
@@ -84,6 +86,11 @@ export class LoginComponent {
     }
 
     login(userAuth: UserAuth) {
+        if (this.rememberMe) {
+            localStorage.setItem('stay-logged-in', 'true');
+        } else {
+            localStorage.setItem('stay-logged-in', 'false');
+        }
         this.authService.updateAuth(userAuth);
     }
 

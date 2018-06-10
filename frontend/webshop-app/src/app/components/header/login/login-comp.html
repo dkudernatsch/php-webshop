@@ -70,7 +70,8 @@
                                    placeholder="Enter password"
                                    required
                                    #registerPassRepeat="ngModel">
-                            <span *ngIf="registerPass.touched && registerPassRepeat.touched && password_repeat !== newUser.password" class="form-text text-muted">Passwords have to match!</span>
+                            <span *ngIf="registerPass.touched && registerPassRepeat.touched && password_repeat !== newUser.password"
+                                  class="form-text text-muted">Passwords have to match!</span>
                         </div>
                     </div>
                 </div>
@@ -211,7 +212,7 @@
             <button type="submit"
                     class="btn btn-outline-dark"
                     [disabled]="!registerForm.valid">
-                    Register
+                Register
             </button>
             <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Close</button>
         </div>
@@ -261,7 +262,21 @@
             Login
         </button>
     </form>
-    <span class="register-text">Not a member yet? </span><a class="register-text" (click)="open(content)" onclick="return false" href="#">Register</a>
+    <div class="container-fluid">
+        <div class="form-check mb-2 mr-sm-2">
+            <input class="form-check-input" type="checkbox" id="inlineFormCheck" checked [(ngModel)]="rememberMe">
+            <label class="form-check-label" for="inlineFormCheck">
+                Remember me
+            </label>
+        </div>
+
+
+            <span class="register-text">Not a member yet? </span>
+            <a class="register-text"
+               (click)="open(content)"
+               onclick="return false" href="#">Register</a>
+
+    </div>
 
 </ng-template>
 
