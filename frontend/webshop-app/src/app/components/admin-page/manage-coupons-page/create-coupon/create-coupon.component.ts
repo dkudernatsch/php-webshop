@@ -33,7 +33,7 @@ export class CreateCouponComponent implements OnInit {
         const date = new Date(this.model.year,
                             this.model.month,
                             this.model.day, 23, 59, 59).toISOString();
-        console.log(date)
+        console.log(date);
         this.couponService.create({
             value: this.value,
             expiration_date: date
