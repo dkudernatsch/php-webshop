@@ -15,7 +15,7 @@ import {AuthService} from '../../../../services/auth/auth.service';
 })
 export class UpdateFormComponent {
 
-     private user:  User = {
+    private user: User = {
         id: -1,
         username: '',
         mail: '',
@@ -25,7 +25,8 @@ export class UpdateFormComponent {
         address: '',
         post_code: '',
         city: '',
-        is_admin: false
+        is_admin: false,
+        is_active: true,
     };
 
     constructor(private userAuthService: UserAuthService,
@@ -42,7 +43,7 @@ export class UpdateFormComponent {
         modalRef.componentInstance.userToUpdate = this.user;
         modalRef.result
             .then((result) => {
-                    this.authService.refresh();
+                this.authService.refresh();
             });
     }
 
