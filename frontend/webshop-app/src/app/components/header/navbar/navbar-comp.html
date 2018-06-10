@@ -5,9 +5,9 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="nav nav-tabs mr-auto" role="tablist">
-      <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-        <a class="nav-link custom-link" routerLink="/">Home</a>
-      </li>
+      <!--<li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">-->
+        <!--<a class="nav-link custom-link" routerLink="/">Home</a>-->
+      <!--</li>-->
       <li *ngIf="!(this.isAdmin$ | async)" class="nav-item" routerLinkActive="active">
         <a class="nav-link custom-link" routerLink="/products">Products</a>
       </li>

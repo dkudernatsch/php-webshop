@@ -3,8 +3,6 @@ import {Observable} from 'rxjs';
 import {catchError, map} from 'rxjs/operators';
 import {ApiRequest, ApiResponse, isFailedResponse, isSuccessResponse} from '../../types/api-request';
 import {HttpClient} from '@angular/common/http';
-import {of} from 'rxjs';
-import {Error} from 'tslint/lib/error';
 import {MessageModalService} from '../message-modal/message-modal.service';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {MessageModalComponent} from '../../components/message-modal/message-modal.component';
