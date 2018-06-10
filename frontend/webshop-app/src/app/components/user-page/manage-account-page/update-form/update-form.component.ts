@@ -12,7 +12,7 @@ import {map} from 'rxjs/operators';
 })
 export class UpdateFormComponent {
 
-     private user:  User = {
+    private user: User = {
         id: -1,
         username: '',
         mail: '',
@@ -22,7 +22,8 @@ export class UpdateFormComponent {
         address: '',
         post_code: '',
         city: '',
-        is_admin: false
+        is_admin: false,
+        is_active: true
     };
 
     constructor(private userAuthService: UserAuthService,
