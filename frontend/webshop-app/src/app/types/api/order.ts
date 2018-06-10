@@ -7,9 +7,7 @@ export interface Order {
     user_id: number,
     payment_id: number,
     coupon_id: number | null,
-    products: [
-        OrderItem
-        ]
+    products: OrderItem[]
 }
 
 export interface Invoice {
