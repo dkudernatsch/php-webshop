@@ -7,13 +7,14 @@
     </button>
 </div>
 <div class="modal-body">
-    <form>
+    <form #buyingForm="ngForm">
         <div *ngIf="paymentMethods$ | async as paymentMethods" class="form-group">
-            <label for="paymentMethods">PaymentMethods</label>
-            <select name="paymentMethods"
-                    id="paymentMethods"
+            <label for="paymentMethod">PaymentMethods</label>
+            <select name="paymentMethod"
+                    id="paymentMethod"
                     class="form-control"
-                    ngModel>
+                    ngModel
+                    required>
                 <option *ngFor="let paymentMethod of paymentMethods"
                         [ngValue]="paymentMethod">
                     {{paymentMethod.method}}
@@ -23,21 +24,27 @@
 
 
         <div *ngIf="coupons$ | async as coupons" class="form-group">
-            <label for="coupons">PaymentMethods</label>
-            <select name="coupons"
-                    id="coupons"
+            <label for="coupon">Use Coupon</label>
+            <select name="coupon"
+                    id="coupon"
                     class="form-control"
                     ngModel>
                 <option *ngFor="let coupon of coupons"
                         [ngValue]="coupon">
                     {{coupon.code}} {{coupon.value}}€
                 </option>
+                <option></option>
             </select>
         </div>
     </form>
 
 </div>
 <div class="modal-footer">
-    <button type="button" class="btn btn-outline-dark" (click)="onSubmit()">Create</button>
+    <button type="submit"
+            class="btn btn-outline-dark"
+            (click)="onSubmit()"
+            [disabled]="!buyingForm.valid">
+        Create
+    </button>
 </div>
 

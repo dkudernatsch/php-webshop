@@ -7,14 +7,15 @@ Authorization: Bearer {{user_token}}
 
 {
     "user_id": 1,
-    "payment_id": 7,
-    "coupon_id": 16,
+    "payment_id": 1,
+    "coupon_id": 1,
     "products": [
         {
-            "id": 10,
+            "id": 1,
             "count": 2
-        },{
-            "id": 11,
+        },
+        {
+            "id": 2,
             "count": 3
         }
     ]
@@ -22,7 +23,7 @@ Authorization: Bearer {{user_token}}
 
 ###
 
-GET https://api.webshop.at/invoice/7
+GET https://api.webshop.at/invoice/1
 Accept: application/json
 Cache-Control: no-cache
 Content-Type: application/json

@@ -46,7 +46,7 @@ export class UserEndpointService extends ApiResourceEndPoint<User, RegisterNew> 
         });
     }
 
-    getCouponsOf(userID: number): Observable<[Date, Coupon]> {
+    getCouponsOf(userID: number): Observable<Coupon[]> {
         return this.requestor.request<null>({
             resource: `user/${userID}/coupon/`,
             scope: ['user'],

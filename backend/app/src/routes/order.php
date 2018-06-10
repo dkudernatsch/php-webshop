@@ -39,4 +39,4 @@ $app->post('/order/', function (Request $request, Response $response, array $arg
     }else{
         throw new \errors\HttpServerException(400, "Malformed request. Unable to extract order details from request body.");
     }
-})->add(new ScopedJWTAuth(["user", "admin"]));
+})->add(new ScopedJWTAuth(["user"]));

@@ -64,6 +64,7 @@ import {RedeemCouponComponent} from "./components/user-page/manage-coupon-page/r
 import {ManageAccountPageComponent} from "./components/user-page/manage-account-page/manage-account-page";
 import {ManageCouponPageComponent} from "./components/user-page/manage-coupon-page/manage-coupon-page";
 import {ManagePaymentPageComponent} from "./components/user-page/manage-payment-page/manage-payment-page";
+import {OrderEndpointService} from "./services/api/order-endpoint.service";
 
 
 @NgModule({
@@ -123,6 +124,7 @@ import {ManagePaymentPageComponent} from "./components/user-page/manage-payment-
         AdminAuthGuard,
         UserAuthGuard,
         NotAdminAuthGuard,
+        OrderEndpointService,
         {provide: HTTP_INTERCEPTORS, useClass: AuthIntercepterService, multi: true}
     ],
     entryComponents: [
