@@ -70,7 +70,8 @@
                                    placeholder="Enter password"
                                    required
                                    #registerPassRepeat="ngModel">
-                            <span *ngIf="registerPass.touched && registerPassRepeat.touched && password_repeat !== newUser.password" class="form-text text-muted">Passwords have to match!</span>
+                            <span *ngIf="registerPass.touched && registerPassRepeat.touched && password_repeat !== newUser.password"
+                                  class="form-text text-muted">Passwords have to match!</span>
                         </div>
                     </div>
                 </div>
@@ -261,7 +262,7 @@
             Login
         </button>
     </form>
-    <span class="register-text">Not a member yet? </span><a class="register-text" (click)="onRegisterNew()" onclick="return false" href="#">Register</a>
+    <span class="register-text">Not a member yet? </span><a class="register-text" (click)="open(content)" onclick="return false" href="#">Register</a>
 
 </ng-template>
 

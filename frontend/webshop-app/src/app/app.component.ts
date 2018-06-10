@@ -1,11 +1,22 @@
-import { Component } from '@angular/core';
+import {Component, HostListener, OnDestroy} from '@angular/core';
+import {AuthService} from './services/auth/auth.service';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+    selector: 'app-root',
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'app';
+    constructor(private authService: AuthService) {
+        this.authService.updateAuth({}, false);
+    }
+
+    title = 'app';
+
+    @HostListener('window:beforeunload', ['$event'])
+    beforeUnloadHandler(event) {
+        if (localStorage.getItem('stay-logged-in') === 'false')
+            this.authService.updateAuth({}, true);
+    }
 
 }

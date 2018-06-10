@@ -24,6 +24,20 @@ export class LoginComponent {
     private user$: Observable<User | null>;
     private password_repeat = '';
 
+    private rememberMe = true;
+
+    private newUser: NewUser = {
+        username: '',
+        password: '',
+        mail: '',
+        appellation: '',
+        first_name: '',
+        last_name: '',
+        address: '',
+        post_code: '',
+        city: ''
+    };
+
     constructor(private modalService: NgbModal,
                 private userAuthService: UserAuthService,
                 private authService: AuthService,
@@ -47,7 +61,22 @@ export class LoginComponent {
         this.login({username: this.loginForm.value.username, password: this.loginForm.value.password});
     }
 
+    onSubmitRegister() {
+        const newRegister: RegisterNew = {
+            user: this.newUser
+        };
+        console.log(this.newUser);
+        this.userEndpointService.create({user: this.newUser}).subscribe((response) => {
+            console.log(response);
+        });
+    }
+
     login(userAuth: UserAuth) {
+        if (this.rememberMe) {
+            localStorage.setItem('stay-logged-in', 'true');
+        } else {
+            localStorage.setItem('stay-logged-in', 'false');
+        }
         this.authService.updateAuth(userAuth);
     }
 

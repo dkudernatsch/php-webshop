@@ -28,7 +28,7 @@
                 </tbody>
             </table>
             <p>
-             <span><h5>Order value:</h5> {{invoice.sum}}</span>
+             <span><h5>Order value:</h5> {{invoice.sum | currency: 'EUR'}}</span>
             </p>
         </ng-template>
     </ngb-panel>

@@ -7,6 +7,7 @@ import {LoginService} from './login.service';
 import {Observable} from 'rxjs/internal/Observable';
 import {Token, UserAuth} from './userAuth';
 import {ReplaySubject} from 'rxjs';
+import {debounceTime} from 'rxjs/operators';
 
 @Injectable({
     providedIn: 'root'
@@ -16,7 +17,6 @@ export class AuthService {
     private token$: Subject<Token> = new ReplaySubject(1);
 
     constructor(private cacheService: RequestCacheService, private loginService: LoginService) {
-        this.updateAuth({}, false);
     }
 
     token(): Observable<Token> {
