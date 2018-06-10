@@ -5,13 +5,13 @@ import {Observable} from 'rxjs/internal/Observable';
 import {PaymentEndpointService} from '../../../services/api/payment-endpoint.service';
 import {UserAuthService} from '../../../services/auth/user-auth.service';
 import {flatMap, map} from 'rxjs/operators';
-import {Coupon} from "../../../types/api/coupon";
-import {CouponEndpointService} from "../../../services/api/coupon-endpoint.service";
-import {UserEndpointService} from "../../../services/api/user-endpoint-service";
-import {OrderEndpointService} from "../../../services/api/order-endpoint.service";
-import {ShoppingCartService} from "../../../services/products/shoppingCart.service";
-import {OrderItem, OrderItem} from "../../../types/api/order";
-import {NgForm} from "@angular/forms";
+import {Coupon} from '../../../types/api/coupon';
+import {CouponEndpointService} from '../../../services/api/coupon-endpoint.service';
+import {UserEndpointService} from '../../../services/api/user-endpoint-service';
+import {OrderEndpointService} from '../../../services/api/order-endpoint.service';
+import {ShoppingCartService} from '../../../services/products/shoppingCart.service';
+import {OrderItem, OrderItem} from '../../../types/api/order';
+import {NgForm} from '@angular/forms';
 
 @Component({
     selector: 'app-paying-modal',
@@ -37,14 +37,14 @@ export class PayingModalComponent {
             flatMap((userID: number | null) =>
                 this.userEndPointService.getCouponsOf(userID)
             )
-        )
+        );
     }
 
     onSubmit() {
-        let paymentMethod = this.buyingForm.value.paymentMethod;
-        let coupon = this.buyingForm.value.coupon;
-        let couponID = coupon ? coupon.id : null;
-        let orderItems = this.shoppingCartService.getAsOrderItems();
+        const paymentMethod = this.buyingForm.value.paymentMethod;
+        const coupon = this.buyingForm.value.coupon;
+        const couponID = coupon ? coupon.id : null;
+        const orderItems = this.shoppingCartService.getAsOrderItems();
         this.userAuthService.userID$.pipe(
             flatMap((userID: number | null) =>
                 this.orderEndPointService.placeOrder({
