@@ -70,6 +70,9 @@ import { AdminUserDetailsComponent } from './components/admin-page/manage-users-
 import { AdminOrderListComponent } from './components/admin-page/manage-users-page/admin-order-list/admin-order-list.component';
 import {InvoiceEndpointService} from './services/api/InvoiceEndpointService';
 import { PasswordVerificationModalComponent } from './components/user-page/password-verification-modal/password-verification-modal.component';
+import {RegisterModalComponent} from "./components/header/register-modal/register-modal.component";
+import {MessageModalService} from "./services/message-modal/message-modal.service";
+import {MessageModalComponent} from "./components/message-modal/message-modal.component";
 
 
 @NgModule({
@@ -113,6 +116,8 @@ import { PasswordVerificationModalComponent } from './components/user-page/passw
         AdminUserDetailsComponent,
         AdminOrderListComponent,
         PasswordVerificationModalComponent,
+        RegisterModalComponent,
+        MessageModalComponent
     ],
     imports: [
         BrowserModule,
@@ -135,6 +140,7 @@ import { PasswordVerificationModalComponent } from './components/user-page/passw
         NotAdminAuthGuard,
         InvoiceEndpointService,
         OrderEndpointService,
+        MessageModalService,
         {provide: HTTP_INTERCEPTORS, useClass: AuthIntercepterService, multi: true}
     ],
     entryComponents: [
@@ -142,6 +148,8 @@ import { PasswordVerificationModalComponent } from './components/user-page/passw
         AdminEditProductModalComponent,
         PayingModalComponent,
         PasswordVerificationModalComponent,
+        RegisterModalComponent,
+        MessageModalComponent
     ],
     bootstrap: [AppComponent]
 })

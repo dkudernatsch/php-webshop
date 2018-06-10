@@ -9,6 +9,7 @@ import {NewUser, RegisterNew, User} from '../../../types/api/user';
 import {Observable} from 'rxjs/internal/Observable';
 import {map} from 'rxjs/operators';
 import {Router} from '@angular/router';
+import {RegisterModalComponent} from "../register-modal/register-modal.component";
 
 @Component({
     selector: 'app-login',
@@ -21,8 +22,6 @@ export class LoginComponent {
     @ViewChild('loginForm') loginForm: NgForm;
     private isUser$;
     private user$: Observable<User | null>;
-    closeResult: string;
-
     private password_repeat = '';
 
     private rememberMe = true;
@@ -49,22 +48,9 @@ export class LoginComponent {
         this.user$ = this.userAuthService.user$;
     }
 
-    open(content) {
-        this.modalService.open(content).result.then((result) => {
-            this.closeResult = `Closed with: ${result}`;
-        }, (reason) => {
-            this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-        });
-    }
-
-    private getDismissReason(reason: any): string {
-        if (reason === ModalDismissReasons.ESC) {
-            return 'by pressing ESC';
-        } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
-            return 'by clicking on a backdrop';
-        } else {
-            return `with: ${reason}`;
-        }
+    onRegisterNew() {
+        console.log('opening register modal');
+        const modalRef = this.modalService.open(RegisterModalComponent);
     }
 
     onSubmitLogin() {
