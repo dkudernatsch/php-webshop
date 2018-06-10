@@ -22,7 +22,6 @@ import {ManageCouponPageComponent} from "./components/user-page/manage-coupon-pa
 
 // set up the routes
 const appRoutes: Routes = [
-    {path: '', component: HomePageComponent},
     {path: 'products', canActivate: [NotAdminAuthGuard], component: ProductPageComponent},
     {path: 'cart', canActivate: [NotAdminAuthGuard], component: ShoppingCartPageComponent},
     {
@@ -56,6 +55,7 @@ const appRoutes: Routes = [
     },
     {path: 'not-found', component: PageNotFoundPageComponent},
     // has to be last entry!
+    {path: '', redirectTo: 'products', pathMatch: 'full'},
     {path: '**', redirectTo: '/not-found'}
 ];
 
