@@ -7,19 +7,17 @@ Authorization: Bearer {{user_token}}
 
 {
     "user_id": 1,
-    "payment_id": 7,
-    "coupon_id": null,
+    "payment_id": 1,
+    "coupon_id": 1,
     "products": [
         {
-            "id": 14,
-            "count": 4
-        },{
-            "id": 12,
+            "id": 1,
             "count": 2
-        },{
-             "id": 11,
-             "count": 1
-         }
+        },
+        {
+            "id": 2,
+            "count": 3
+        }
     ]
 }
 

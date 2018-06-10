@@ -22,7 +22,7 @@ export class PaymentEndpointService {
             resource: `user/${userId}/paymentMethod/`,
             scope: ['user'],
             method: 'POST',
-            body: {newPM}
+            body: newPM
         });
     }
 

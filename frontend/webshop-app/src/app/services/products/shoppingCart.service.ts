@@ -2,6 +2,7 @@ import {CartEntry, Product} from '../../types/api/product';
 import {BehaviorSubject} from 'rxjs/internal/BehaviorSubject';
 import {Observable} from 'rxjs/internal/Observable';
 import {map, tap} from 'rxjs/operators';
+import {OrderItem} from "../../types/api/order";
 
 export class ShoppingCartService {
 
@@ -23,6 +24,7 @@ export class ShoppingCartService {
                     sum + (cart[key].product.price * cart[key].amount), 0
                 )
             ),
+            map((sum: number ) => sum > 1 ? sum.toPrecision(4) : sum.toPrecision(3)),
             tap((a) => console.log(a))
         );
     }
@@ -69,7 +71,23 @@ export class ShoppingCartService {
         this.cartSubject.next(this.cart);
     }
 
-    getCart(): Map<number, CartEntry> {
+    getAsOrderItems(): OrderItem[] {
+        let orderItems: OrderItem[] = [];
+        for(let key of Object.keys(this.cart)) {
+            orderItems.push({
+                id: this.cart[key].product.id,
+                count: this.cart[key].amount
+            })
+        }
+        return orderItems;
+    }
+
+    getCart() {
         return this.cart;
+    }
+
+    resetCart(): void {
+        this.cart = new Map();
+        this.cartSubject.next(this.cart);
     }
 }

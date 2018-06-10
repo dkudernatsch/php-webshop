@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {NgbDateStruct} from '@ng-bootstrap/ng-bootstrap';
 import {CouponEndpointService} from '../../../../services/api/coupon-endpoint.service';
 import {flatMap} from 'rxjs/operators';
-import {Coupon, Id} from '../../../../types/api/coupon';
+import {Coupon, Id, NewCoupon} from '../../../../types/api/coupon';
 
 @Component({
     selector: 'app-create-coupon',
@@ -33,7 +33,7 @@ export class CreateCouponComponent implements OnInit {
         const date = new Date(this.model.year,
                             this.model.month,
                             this.model.day, 23, 59, 59).toISOString();
-        console.log(date);
+        console.log(date)
         this.couponService.create({
             value: this.value,
             expiration_date: date
