@@ -24,7 +24,9 @@ export class HttpRequestorService {
     public request<T>(request: ApiRequest<T>): Observable<T> {
         return this.sendRequest(request).pipe(
             catchError(
-                (err, _) =>  this.openErrorModal('Error', 'Oops something went wrong!')
+                (err, obs) =>  {this.openErrorModal('Error', 'Oops something went wrong!');
+                    return obs;
+                }
             ),
             map(
                 (response: ApiResponse<T>) => {
