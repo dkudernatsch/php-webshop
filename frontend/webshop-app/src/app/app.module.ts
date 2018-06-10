@@ -70,6 +70,7 @@ import { AdminUserDetailsComponent } from './components/admin-page/manage-users-
 import { AdminOrderListComponent } from './components/admin-page/manage-users-page/admin-order-list/admin-order-list.component';
 import {InvoiceEndpointService} from './services/api/InvoiceEndpointService';
 import { PasswordVerificationModalComponent } from './components/user-page/password-verification-modal/password-verification-modal.component';
+import {RegisterModalComponent} from "./components/header/register-modal/register-modal.component";
 
 
 @NgModule({
@@ -113,6 +114,7 @@ import { PasswordVerificationModalComponent } from './components/user-page/passw
         AdminUserDetailsComponent,
         AdminOrderListComponent,
         PasswordVerificationModalComponent,
+        RegisterModalComponent
     ],
     imports: [
         BrowserModule,
@@ -142,6 +144,7 @@ import { PasswordVerificationModalComponent } from './components/user-page/passw
         AdminEditProductModalComponent,
         PayingModalComponent,
         PasswordVerificationModalComponent,
+        RegisterModalComponent
     ],
     bootstrap: [AppComponent]
 })

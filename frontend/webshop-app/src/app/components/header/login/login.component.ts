@@ -9,6 +9,7 @@ import {NewUser, RegisterNew, User} from '../../../types/api/user';
 import {Observable} from 'rxjs/internal/Observable';
 import {map} from 'rxjs/operators';
 import {Router} from '@angular/router';
+import {RegisterModalComponent} from "../register-modal/register-modal.component";
 
 @Component({
     selector: 'app-login',
@@ -21,21 +22,7 @@ export class LoginComponent {
     @ViewChild('loginForm') loginForm: NgForm;
     private isUser$;
     private user$: Observable<User | null>;
-    closeResult: string;
-
     private password_repeat = '';
-
-    private newUser: NewUser = {
-        username: '',
-        password: '',
-        mail: '',
-        appellation: '',
-        first_name: '',
-        last_name: '',
-        address: '',
-        post_code: '',
-        city: ''
-    };
 
     constructor(private modalService: NgbModal,
                 private userAuthService: UserAuthService,
@@ -47,22 +34,9 @@ export class LoginComponent {
         this.user$ = this.userAuthService.user$;
     }
 
-    open(content) {
-        this.modalService.open(content).result.then((result) => {
-            this.closeResult = `Closed with: ${result}`;
-        }, (reason) => {
-            this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-        });
-    }
-
-    private getDismissReason(reason: any): string {
-        if (reason === ModalDismissReasons.ESC) {
-            return 'by pressing ESC';
-        } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
-            return 'by clicking on a backdrop';
-        } else {
-            return `with: ${reason}`;
-        }
+    onRegisterNew() {
+        console.log('opening register modal');
+        const modalRef = this.modalService.open(RegisterModalComponent);
     }
 
     onSubmitLogin() {
@@ -71,16 +45,6 @@ export class LoginComponent {
         console.log(this.loginForm.value.username);
         console.log(this.loginForm.value.password);
         this.login({username: this.loginForm.value.username, password: this.loginForm.value.password});
-    }
-
-    onSubmitRegister() {
-        const newRegister: RegisterNew = {
-            user: this.newUser
-        };
-        console.log(this.newUser);
-        this.userEndpointService.create({user: this.newUser}).subscribe((response) => {
-            console.log(response);
-        });
     }
 
     login(userAuth: UserAuth) {
