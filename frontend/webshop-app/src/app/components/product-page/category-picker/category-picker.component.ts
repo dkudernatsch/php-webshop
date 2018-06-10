@@ -10,7 +10,7 @@ import {Category} from '../../../types/api/product';
 })
 export class CategoryPickerComponent {
 
-    @ViewChild("select") selectTag: HTMLSelectElement;
+    @ViewChild('select') selectTag: HTMLSelectElement;
 
     categories$: Observable<Category[]>;
 
@@ -27,7 +27,7 @@ export class CategoryPickerComponent {
     }
 
 
-    compCategory(cat1: Category, cat2: Category){
+    compCategory(cat1: Category, cat2: Category) {
         return cat1 && cat2 ? cat1.id === cat2.id : cat1 === cat2;
     }
 

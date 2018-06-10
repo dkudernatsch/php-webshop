@@ -10,7 +10,7 @@ import {ProductEndpointService} from "../../services/api/product-endpoint.servic
     selector: 'app-product-page',
     templateUrl: './product-page-comp.html'
 })
-export class ProductPageComponent implements OnInit{
+export class ProductPageComponent implements OnInit {
 
     constructor(private productService: ProductEndpointService) {
     }
@@ -30,14 +30,16 @@ export class ProductPageComponent implements OnInit{
         this.productSearchString$ = null;
     }
 
-    onSearch(event){
+    onSearch(event) {
         this.productList$.next([event]);
     }
 
     ngOnInit(): void {
         this.activeCategory$.subscribe( (cat) => {
-                this.productService.byCategorySearch(cat.id, '')
-                    .subscribe((ps) => this.productList$.next(ps));
+                if (cat) {
+                    this.productService.byCategorySearch(cat.id, '')
+                        .subscribe((ps) => this.productList$.next(ps));
+                }
             }
         );
     }

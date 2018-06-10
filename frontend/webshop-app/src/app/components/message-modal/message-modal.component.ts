@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
-import {MessageModalService} from "../../services/message-modal/message-modal.service";
+import {MessageModalService} from '../../services/message-modal/message-modal.service';
 
 @Component({
     selector: 'app-paying-modal',

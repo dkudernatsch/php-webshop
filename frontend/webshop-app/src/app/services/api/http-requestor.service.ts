@@ -1,10 +1,13 @@
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
-import {map} from 'rxjs/operators';
+import {catchError, map} from 'rxjs/operators';
 import {ApiRequest, ApiResponse, isFailedResponse, isSuccessResponse} from '../../types/api-request';
 import {HttpClient} from '@angular/common/http';
 import {of} from 'rxjs';
 import {Error} from 'tslint/lib/error';
+import {MessageModalService} from '../message-modal/message-modal.service';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {MessageModalComponent} from '../../components/message-modal/message-modal.component';
 
 @Injectable({
     providedIn: 'root'
@@ -13,11 +16,16 @@ export class HttpRequestorService {
 
     private readonly apiUrl = 'https://api.webshop.at';
 
-    constructor(private http: HttpClient) {
+    constructor(private http: HttpClient,
+                private messageModalService: MessageModalService,
+                private modalService: NgbModal) {
     }
 
     public request<T>(request: ApiRequest<T>): Observable<T> {
         return this.sendRequest(request).pipe(
+            catchError(
+                (err, _) =>  this.openErrorModal('Error', 'Oops something went wrong!')
+            ),
             map(
                 (response: ApiResponse<T>) => {
                 if (response === null
@@ -25,7 +33,7 @@ export class HttpRequestorService {
                     return null;
                 }
                 if (isFailedResponse(response)) {
-                    throw new Error('Request failed please try again');
+                    this.openErrorModal('Error', 'Oops something went wrong!');
                 }
                 if (isSuccessResponse<T>(response)) {
                     return response.success;
@@ -45,5 +53,11 @@ export class HttpRequestorService {
             case 'DELETE' :
                 return this.http.delete<ApiResponse<T>>(this.apiUrl + '/' + request.resource, {});
         }
+    }
+
+    openErrorModal(title: string, body: string) {
+        this.messageModalService.setTitle(title);
+        this.messageModalService.setMessage(body);
+        const modalRef = this.modalService.open(MessageModalComponent);
     }
 }

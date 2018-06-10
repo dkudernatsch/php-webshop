@@ -4,7 +4,7 @@ import {PaymentMethod} from '../../../types/api/user';
 import {Observable} from 'rxjs/internal/Observable';
 import {PaymentEndpointService} from '../../../services/api/payment-endpoint.service';
 import {UserAuthService} from '../../../services/auth/user-auth.service';
-import {flatMap} from 'rxjs/operators';
+import {flatMap, switchMap} from 'rxjs/operators';
 import {Coupon} from '../../../types/api/coupon';
 import {UserEndpointService} from '../../../services/api/user-endpoint-service';
 import {OrderEndpointService} from '../../../services/api/order-endpoint.service';
@@ -32,11 +32,11 @@ export class PayingModalComponent {
                 private messageModalService: MessageModalService,
                 private modalService: NgbModal) {
         this.paymentMethods$ = this.userAuthService.userID$.pipe(
-            flatMap((userID: number | null) =>
+            switchMap((userID: number | null) =>
                 this.paymentEndPointService.getPaymentMethods(userID))
         );
         this.coupons$ = this.userAuthService.userID$.pipe(
-            flatMap((userID: number | null) =>
+            switchMap((userID: number | null) =>
                 this.userEndPointService.getCouponsOf(userID)
             )
         );
@@ -55,16 +55,14 @@ export class PayingModalComponent {
         const couponID = coupon ? coupon.id : null;
         const orderItems = this.shoppingCartService.getAsOrderItems();
 
-        this.userAuthService.userID$.pipe(
-            flatMap((userID: number | null) =>
-                this.orderEndPointService.placeOrder({
-                    user_id: userID,
-                    payment_id: paymentMethod.id,
-                    coupon_id: couponID,
-                    products: orderItems
-                })
-            )
-        ).subscribe((response: any) => console.log(response));
+        this.userAuthService.userID$.toPromise()
+            .then((userID) => this.orderEndPointService.placeOrder({
+                user_id: userID,
+                payment_id: paymentMethod.id,
+                coupon_id: couponID,
+                products: orderItems
+            }));
+
         this.shoppingCartService.resetCart();
         this.activeModal.close('Close click');
 

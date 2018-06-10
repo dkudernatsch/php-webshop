@@ -1,14 +1,19 @@
 <h2 class="text-center">Our Products</h2>
-
-
 <div class="container-fluid">
-    <div class="row mb-4">
-        <div class="col-1 m-0 p-0">
-            <app-category-picker></app-category-picker>
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col-8">
+            <div class="row mb-5">
+                <div class="col-2 m-0 p-0">
+                    <app-category-picker></app-category-picker>
+                </div>
+                <div class="col-10 m-0 p-0">
+                    <app-search-product (searchEvent)="onSearch($event)"
+                                        [productList$]="productList$"></app-search-product>
+                </div>
+            </div>
+            <app-product-list [productList$]="productList$"></app-product-list>
         </div>
-        <div class="col-11 m-0 p-0">
-            <app-search-product (searchEvent)="onSearch($event)" [productList$] = "productList$" ></app-search-product>
-        </div>
+        <div class="col-2"></div>
     </div>
-    <app-product-list [productList$] = "productList$"></app-product-list>
 </div>
