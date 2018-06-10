@@ -55,6 +55,7 @@ export class PayingModalComponent {
                 })
             )
         ).subscribe((response: any) => console.log(response));
+        this.shoppingCartService.resetCart();
         this.activeModal.close('Close click');
     }
 }

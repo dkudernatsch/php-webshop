@@ -39,3 +39,21 @@ Content-Type: application/json
     client.global.set('admin_token', response.body.token);
 %}
 ###
+
+### get another user token
+POST https://api.webshop.at/token
+Accept: application/json
+Cache-Control: no-cache
+Content-Type: application/json
+
+{
+    "username": "test",
+    "password": "Test1"
+}
+
+> {%
+    client.assert(response.status === 201, "Token creation failed");
+    client.global.set('user_token', response.body.token);
+%}
+
+###
