@@ -91,7 +91,7 @@ class UserDAO extends Dao
             ['s' => $user->post_code],
             ['s' => $user->city],
             ['i' => 0],
-            ['i' => 0]
+            ['i' => 1]
         ]);
         return $this->db->get_last_auto_inc();
     }
