@@ -42,14 +42,18 @@ $app->post("/user/", function (Request $request, Response $response, array $args
     if(!isset($body['user'])) {
         throw new \errors\HttpServerException(400, "Malformed request: Missing field user");
     }
+    $repo = new \PDOs\User\UserDAO($this->db);
 
     $newUser = \PDOs\JsonMapper::map(NewUser::class, $body['user']);
-    $repo = new \PDOs\User\UserDAO($this->db);
-    $userId = $repo->insertNew($newUser);
+    if($newUser->validate()) {
+        $userId = $repo->insertNew($newUser);
 
-    return $response
-        ->withStatus(200)
-        ->withJson(["success" => ["id" => $userId]]);
+        return $response
+            ->withStatus(200)
+            ->withJson(["success" => ["id" => $userId]]);
+    }else{
+        throw new \errors\HttpServerException(400, "Not a valid user format!");
+    }
 })->add(new ScopedJWTAuth(["anonymous"]));
 /**
  *
