@@ -44,11 +44,7 @@ export class LoginComponent {
         this.isUser$ = userAuthService.hasScope('user');
 
         // Observable<User> to show Login info
-        this.user$ = this.userAuthService.user$.pipe(
-            map((user: any | null) => {
-                return user === null ? null : user.user;
-            })
-        );
+        this.user$ = this.userAuthService.user$;
     }
 
     open(content) {
