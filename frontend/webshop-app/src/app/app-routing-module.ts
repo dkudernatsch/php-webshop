@@ -14,6 +14,8 @@ import {ManageProductsPageComponent} from './components/admin-page/manage-produc
 import {AdminAuthGuard} from './admin-auth-guard.service';
 import {UserAuthGuard} from './user-auth-guard.service';
 import {NotAdminAuthGuard} from './not-admin-auth-guard';
+import {AdminUserDetailsComponent} from './components/admin-page/manage-users-page/admin-user-details/admin-user-details.component';
+import {AdminUserListComponent} from './components/admin-page/manage-users-page/admin-user-list/admin-user-list.component';
 import {ManageAccountPageComponent} from "./components/user-page/manage-account-page/manage-account-page";
 import {ManagePaymentPageComponent} from "./components/user-page/manage-payment-page/manage-payment-page";
 import {ManageCouponPageComponent} from "./components/user-page/manage-coupon-page/manage-coupon-page";
@@ -54,10 +56,10 @@ const appRoutes: Routes = [
 
 
 @NgModule({
-    imports: [
-        RouterModule.forRoot(appRoutes)
-    ],
-    exports: [RouterModule]
+  imports: [
+    RouterModule.forRoot(appRoutes)
+  ],
+  exports: [RouterModule]
 })
 export class AppRoutingModule {
 

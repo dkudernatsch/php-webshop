@@ -1,0 +1,45 @@
+<div *ngIf="user$ | async as user">
+    <table class="table">
+        <thead class="thead-dark">
+        <tr>
+            <th>User</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <th scope="row">User ID</th>
+            <td>{{user.id}}</td>
+        </tr>
+        <tr>
+            <th scope="row">Username</th>
+            <td>{{user.username}}</td>
+        </tr>
+        <tr>
+            <th scope="row">First name</th>
+            <td>{{user.first_name}}</td>
+        </tr>
+        <tr>
+            <th scope="row">Last name</th>
+            <td>{{user.last_name}}</td>
+        </tr>
+        <tr>
+            <th scope="row">Email</th>
+            <td>{{user.mail}}</td>
+        </tr>
+        <tr>
+            <th scope="row">city</th>
+            <td>{{user.city}}</td>
+        </tr>
+        <tr>
+            <th scope="row">Address</th>
+            <td>{{user.address}}</td>
+        </tr>
+        <tr>
+            <th scope="row">Post code</th>
+            <td>{{user.post_code}}</td>
+        </tr>
+
+        </tbody>
+    </table>
+</div>

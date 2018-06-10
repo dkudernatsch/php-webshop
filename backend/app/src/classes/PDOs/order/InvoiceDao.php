@@ -10,6 +10,7 @@ namespace PDOs\order;
 
 
 use PDOs\Dao;
+use PDOs\product\ProductDao;
 
 class InvoiceDao extends Dao
 {
@@ -29,6 +30,38 @@ class InvoiceDao extends Dao
 
 
     private const delete_product_stub = "DELETE FROM ORDER_POSITION WHERE op_id = ?";
+
+
+    /**
+     * @param Invoice[] $invoices
+     * @param ProductDao $productDao
+     * @return array
+     * @throws \errors\DatabaseException
+     */
+    public function getWithProduct(array $invoices, ProductDao $productDao){
+        $ret = [];
+
+        foreach ($invoices as $invoice){
+            $in_ret = [];
+            foreach ($invoice->orderPositions as $orderpos){
+                $p = $productDao->getById($orderpos->product_id);
+                $in_ret[] = [
+                    "product" => $p,
+                    "count" => $orderpos->count,
+                    "id" => $orderpos->id,
+                ];
+            }
+            $ret[] = [
+                "user_id" => $invoice->user_id,
+                "id" => $invoice->id,
+                "sum" => $invoice->sum,
+                "invoiceNumber" => $invoice->invoiceNumber,
+                "timeStamp" => $invoice->timeStamp,
+                "orderPositions" => $in_ret,
+            ];
+        }
+        return $ret;
+    }
 
     /**
      * @param NewInvoice $invoice
@@ -66,6 +99,19 @@ class InvoiceDao extends Dao
         $invoice->orderPositions = $products;
 
         return $invoice;
+    }
+
+    /**
+     * @param int $user_id
+     * @return array
+     * @throws \errors\DatabaseException
+     */
+    public function byUser(int $user_id){
+        $invoices = $this->db->prepare_and_run("Select i_id as id from INVOICE where fk_i_u_id = ?",
+            [["i" => $user_id]], null, true);
+        return array_map(function ($id) {
+            return $this->byId($id);
+        }, $invoices);
     }
 
     /**

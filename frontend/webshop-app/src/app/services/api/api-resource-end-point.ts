@@ -21,7 +21,7 @@ export abstract class ApiResourceEndPoint<T, NewT> {
             scope: endpoint.scope,
             body: {}
         };
-        return this.requestor.request(request);
+        return this.requestor.request<T>(request);
     }
 
     all(): Observable<T[]> {
@@ -33,7 +33,7 @@ export abstract class ApiResourceEndPoint<T, NewT> {
             scope: endpoint.scope,
             body: {}
         };
-        return this.requestor.request(request);
+        return this.requestor.request<T[]>(request);
     }
 
     create(t: NewT): Observable<Id> {

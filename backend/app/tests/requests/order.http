@@ -23,7 +23,15 @@ Authorization: Bearer {{user_token}}
 
 ###
 
-GET https://api.webshop.at/invoice/1
+GET https://api.webshop.at/invoice/7
+Accept: application/json
+Cache-Control: no-cache
+Content-Type: application/json
+Authorization: Bearer {{user_token}}
+
+###
+
+GET https://api.webshop.at/user/1/invoice/
 Accept: application/json
 Cache-Control: no-cache
 Content-Type: application/json

@@ -18,12 +18,17 @@ $app->post('/order/', function (Request $request, Response $response, array $arg
 
     if(($order->user_id = $parsedBody['user_id'])
     && ($order->payment_id = $parsedBody['payment_id'])
-    && ($order->coupon_id = $parsedBody['coupon_id'])
     && ($order->products =
                 array_map(function ($entry){
-                    return new \PDOs\order\ProductOrder($entry['id'], $entry['count']);
+                    return new \PDOs\order\ProductOrder(0, $entry['id'], $entry['count']);
                 }, $parsedBody['products'])))
     {
+        if(isset($parsedBody['coupon_id'])){
+            $order->coupon_id = $parsedBody['coupon_id'];
+        }else{
+            $order->coupon_id = null;
+        }
+
        $orderService = new \PDOs\OrderService(
            new \PDOs\order\InvoiceDao($this->db),
            new \PDOs\product\ProductDao($this->db),

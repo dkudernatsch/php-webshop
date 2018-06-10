@@ -9,6 +9,7 @@
 namespace PDOs\coupon;
 
 
+use errors\HttpServerException;
 use PDOs\Dao;
 use PDOs\User\UserDAO;
 
@@ -62,6 +63,10 @@ class CouponDao extends Dao
 
         if ($user === null) return null;
         if ($coupon->user_id !== null) return null;
+
+        if(new \DateTime($coupon->expiration_date) < new \DateTime()) {
+            throw new HttpServerException(400, "Coupon already expired");
+        }
 
         $this->db->prepare_and_run($this::update_stub, [
             ["s" => $coupon->code],

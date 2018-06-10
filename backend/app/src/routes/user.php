@@ -15,7 +15,7 @@ $app->get('/user/', function (Request $request, Response $response, array $args)
     if($user) {
         return $response
             ->withStatus(200)
-            ->withJson(["success" => ["users" => $user]]);
+            ->withJson(["success" => $user]);
     } else {
         throw new \errors\HttpServerException(404, "Users not found");
     }
@@ -29,7 +29,7 @@ $app->get('/user/{id}', function (Request $request, Response $response, array $a
     if($user) {
         return $response
             ->withStatus(200)
-            ->withJson(["success" => ["user" => $user]]);
+            ->withJson(["success" => $user]);
     }else{
         throw new \errors\HttpServerException(404, "Users not found");
     }
@@ -73,7 +73,6 @@ $app->put("/user/{id}", function (Request $request, Response $response, array $a
         ->withStatus(200)
         ->withJson(["success" => ["id" => $updateUser->id]]);
 })->add(new ScopedJWTAuth(["user"]));
-
 /**
  *
  */
@@ -89,11 +88,9 @@ $app->get("/user/{id}/paymentMethod/", function(Request $request, Response $resp
         ->withJson(["success" => $payment_methods]);
 
 })->add(new ScopedJWTAuth(["user"]));
-
 /**
  *
  */
-
 $app->post("/user/{id}/paymentMethod/", function(Request $request, Response $response, array $args){
     $token = $request->getAttribute("token");
     if($token->decoded['sub'] != $args['id'] && !$token->has_scope(["admin"])){
@@ -139,3 +136,42 @@ $app->get("/user/{id}/coupon/", function(Request $request, Response $response, a
         ->withJson(["success" => $coupons]);
 
 })->add(new ScopedJWTAuth(["user"]));
+/**
+ *
+ */
+$app->get("/user/{id}/invoice/",  function(Request $request, Response $response, array $args){
+    $token = $request->getAttribute("token");
+    if($token->decoded['sub'] != $args['id'] && !$token->has_scope(["admin"])){
+        throw new \errors\HttpServerException(403, "Token does not have rights for this resource instance");
+    }
+
+    $invoiceDao = new \PDOs\order\InvoiceDao($this->db);
+    $invoices = $invoiceDao->byUser(intval($args['id']));
+    $invoices = $invoiceDao->getWithProduct($invoices, new \PDOs\product\ProductDao($this->db));
+    return $response
+        ->withStatus(200)
+        ->withJson(["success" => $invoices]);
+
+})->add(new ScopedJWTAuth(['user']));
+/**
+ *
+ */
+$app->put("/user/{id}/activate/", function (Request $request, Response $response, array $args){
+
+    $dao = new UserDAO($this->db);
+    $dao->activate(intval($args['id']));
+    return $response
+        ->withStatus(204);
+
+})->add(new ScopedJWTAuth(["admin"]));
+/**
+ *
+ */
+$app->put("/user/{id}/deactivate/", function (Request $request, Response $response, array $args){
+
+    $dao = new UserDAO($this->db);
+    $dao->deactivate(intval($args['id']));
+    return $response
+        ->withStatus(204);
+
+})->add(new ScopedJWTAuth(["admin"]));

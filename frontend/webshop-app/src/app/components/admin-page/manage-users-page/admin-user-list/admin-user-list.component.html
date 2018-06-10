@@ -1,0 +1,31 @@
+<h4>User</h4>
+<table class="table">
+    <thead class="thead-dark">
+    <tr>
+        <th>User ID</th>
+        <th>Info</th>
+        <th>Username</th>
+        <th>Email</th>
+        <th></th>
+        <th></th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody *ngIf="users$ | async as users">
+        <tr *ngFor="let user of users"
+            [class.table-dark]="!user.is_active"
+            [class.table-success]="user.is_admin">
+
+            <td>{{user.id}}</td>
+            <td><span *ngIf="user.is_admin">Admin </span><span *ngIf="!user.is_active">Inactive</span></td>
+            <td>{{user.username}}</td>
+            <td>{{user.mail}}</td>
+            <td><button *ngIf="!user.is_admin" class="btn btn-default" (click)="this.router.navigate([user.id], {relativeTo: this.route})">View Orders</button></td>
+            <td>
+                <button (click)="this.deactivate(user.id)" *ngIf="!user.is_admin && user.is_active" class="btn btn-danger">Deactivate</button>
+                <button (click)="this.activate(user.id)" *ngIf="!user.is_admin && !user.is_active" class="btn btn-success">Activate</button>
+            </td>
+
+        </tr>
+    </tbody>
+</table>

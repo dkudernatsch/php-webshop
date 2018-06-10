@@ -15,5 +15,10 @@ export interface Id {
     id: number;
 }
 
+export interface NewCoupon {
+    value: number;
+    code: string;
+    user_id: number;
+}
 
 

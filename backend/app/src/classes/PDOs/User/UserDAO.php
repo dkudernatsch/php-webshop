@@ -24,6 +24,7 @@ class UserDAO extends Dao
             u_city as city,
             u_mail as mail,
             u_username as username,
+            u_isActive as is_active,
             u_isadmin as is_admin
         FROM USERS";
 
@@ -59,7 +60,7 @@ class UserDAO extends Dao
      */
     public function getAll(): array
     {
-        return $this->db->prepare_and_run($this::select_stub, [], "PDOs\User\User", true);
+        return $this->db->prepare_and_run($this::select_stub, [], User::class, true);
     }
 
     /**
@@ -121,13 +122,33 @@ class UserDAO extends Dao
      */
     public function authenticate(string $username, string $password): ?User {
         $id_and_hash = $this->db->prepare_and_run(/** @lang MySQL */
-            "SELECT u_id as id, u_password as password FROM USERS WHERE u_username = (?)", [['s' => $username]]);
+            "SELECT u_id as id, u_password as `password` FROM USERS WHERE (u_isActive = true || u_isAdmin = true) && u_username = (?)", [['s' => $username]]);
 
         if(password_verify($password, $id_and_hash['password'])){
             return $this->byId($id_and_hash['id']);
         }else{
             return null;
         }
-
     }
+
+    /**
+     * @param int $id
+     * @throws \errors\DatabaseException
+     */
+    public function activate(int $id){
+        $this->db->prepare_and_run("UPDATE USERS SET u_isActive = TRUE where u_id = ?", [
+            ["i" => $id]
+        ]);
+    }
+
+    /**
+     * @param int $id
+     * @throws \errors\DatabaseException
+     */
+    public function deactivate(int $id){
+        $this->db->prepare_and_run("UPDATE USERS SET u_isActive = FALSE where u_id = ?", [
+            ["i" => $id]
+        ]);
+    }
+
 }

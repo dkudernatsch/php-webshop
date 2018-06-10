@@ -65,6 +65,10 @@ import {ManageAccountPageComponent} from "./components/user-page/manage-account-
 import {ManageCouponPageComponent} from "./components/user-page/manage-coupon-page/manage-coupon-page";
 import {ManagePaymentPageComponent} from "./components/user-page/manage-payment-page/manage-payment-page";
 import {OrderEndpointService} from "./services/api/order-endpoint.service";
+import { AdminUserListComponent } from './components/admin-page/manage-users-page/admin-user-list/admin-user-list.component';
+import { AdminUserDetailsComponent } from './components/admin-page/manage-users-page/admin-user-details/admin-user-details.component';
+import { AdminOrderListComponent } from './components/admin-page/manage-users-page/admin-order-list/admin-order-list.component';
+import {InvoiceEndpointService} from './services/api/InvoiceEndpointService';
 
 
 @NgModule({
@@ -103,7 +107,10 @@ import {OrderEndpointService} from "./services/api/order-endpoint.service";
         RedeemCouponComponent,
         ManageAccountPageComponent,
         ManageCouponPageComponent,
-        ManagePaymentPageComponent
+        ManagePaymentPageComponent,
+        AdminUserListComponent,
+        AdminUserDetailsComponent,
+        AdminOrderListComponent,
     ],
     imports: [
         BrowserModule,
@@ -124,6 +131,7 @@ import {OrderEndpointService} from "./services/api/order-endpoint.service";
         AdminAuthGuard,
         UserAuthGuard,
         NotAdminAuthGuard,
+        InvoiceEndpointService,
         OrderEndpointService,
         {provide: HTTP_INTERCEPTORS, useClass: AuthIntercepterService, multi: true}
     ],
