@@ -35,14 +35,14 @@ export class PayingModalComponent {
             flatMap((userID: number | null) =>
                 this.userEndPointService.getCouponsOf(userID)
             )
-        )
+        );
     }
 
     onSubmit() {
-        let paymentMethod = this.buyingForm.value.paymentMethod;
-        let coupon = this.buyingForm.value.coupon;
-        let couponID = coupon ? coupon.id : null;
-        let orderItems = this.shoppingCartService.getAsOrderItems();
+        const paymentMethod = this.buyingForm.value.paymentMethod;
+        const coupon = this.buyingForm.value.coupon;
+        const couponID = coupon ? coupon.id : null;
+        const orderItems = this.shoppingCartService.getAsOrderItems();
         this.userAuthService.userID$.pipe(
             flatMap((userID: number | null) =>
                 this.orderEndPointService.placeOrder({

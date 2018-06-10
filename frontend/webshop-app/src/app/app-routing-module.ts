@@ -45,7 +45,12 @@ const appRoutes: Routes = [
         children: [
             {path: 'products', component: ManageProductsPageComponent},
             {path: 'coupons', component: ManageCouponsPageComponent},
-            {path: 'users', component: ManageUsersPageComponent},
+            {
+                path: 'users', component: ManageUsersPageComponent, children: [
+                    {path: '', component: AdminUserListComponent},
+                    {path: ':id', component: AdminUserDetailsComponent}
+                ]
+            },
             {path: '', redirectTo: 'products', pathMatch: 'full'},
         ]
     },

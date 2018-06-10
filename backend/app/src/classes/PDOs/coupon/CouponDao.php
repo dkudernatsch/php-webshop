@@ -26,7 +26,7 @@ class CouponDao extends Dao
      * @throws \errors\DatabaseException
      */
     public function getAllForUser($user_id): array {
-        return $this->db->prepare_and_run($this::select_stub. " WHERE fk_c_u_user = ? && c_expiration_date > NOW()", [["i" => $user_id]], Coupon::class, true);
+        return $this->db->prepare_and_run($this::select_stub. " WHERE fk_c_u_user = ? && c_value > 0", [["i" => $user_id]], Coupon::class, true);
     }
 
     /**
