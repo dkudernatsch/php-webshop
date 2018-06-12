@@ -15,6 +15,7 @@ export class AppComponent {
 
     @HostListener('window:beforeunload', ['$event'])
     beforeUnloadHandler(event) {
+        // TODO: save shopping cart in local storage
         if (localStorage.getItem('stay-logged-in') === 'false')
             this.authService.updateAuth({}, true);
     }

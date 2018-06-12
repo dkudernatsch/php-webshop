@@ -24,9 +24,7 @@ export class ShoppingCartPageComponent {
     onBuyProducts() {
         console.log('opening buying modal');
         const modalRef = this.modalService.open(PayingModalComponent);
-        // TODO: empty cart and show thanks for buying or something
     }
 
-    // TODO: implement routing when logging in or out -> stay on cart when logging in!!
 
 }

@@ -6,6 +6,8 @@ import {OrderItem} from "../../types/api/order";
 
 export class ShoppingCartService {
 
+    // TODO make load/save from shoppingCartService
+
     // workaround for a map id => amount
     private cart: Map<number, CartEntry> = new Map();
     // make subject private so not everyone that uses service can call next on it!
