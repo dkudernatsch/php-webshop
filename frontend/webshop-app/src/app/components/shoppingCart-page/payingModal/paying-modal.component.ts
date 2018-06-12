@@ -12,6 +12,7 @@ import {ShoppingCartService} from '../../../services/products/shoppingCart.servi
 import {NgForm} from '@angular/forms';
 import {MessageModalService} from "../../../services/message-modal/message-modal.service";
 import {MessageModalComponent} from "../../message-modal/message-modal.component";
+import {pluck} from "rxjs/internal/operators";
 
 @Component({
     selector: 'app-paying-modal',
@@ -55,17 +56,23 @@ export class PayingModalComponent {
         const couponID = coupon ? coupon.id : null;
         const orderItems = this.shoppingCartService.getAsOrderItems();
 
-        this.userAuthService.userID$.toPromise()
-            .then((userID) => this.orderEndPointService.placeOrder({
-                user_id: userID,
-                payment_id: paymentMethod.id,
-                coupon_id: couponID,
-                products: orderItems
-            }));
 
-        this.shoppingCartService.resetCart();
-        this.activeModal.close('Close click');
-
-        const modalRef = this.modalService.open(MessageModalComponent);
+        this.userAuthService.user$.pipe(
+            pluck('id'),
+            switchMap(
+                (id: number) => {
+                    return this.orderEndPointService.placeOrder({
+                        coupon_id: couponID,
+                        payment_id: paymentMethod.id,
+                        user_id: id,
+                        products: orderItems
+                    })
+                }
+            )
+        ).subscribe(() => {
+            this.shoppingCartService.resetCart();
+            this.modalService.open(MessageModalComponent);
+        });
+        this.activeModal.close('Sent');
     }
 }
