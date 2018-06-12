@@ -1,0 +1,81 @@
+<ngb-accordion *ngIf="invoices$ | async as invoices">
+    <ngb-panel *ngFor="let invoice of invoices">
+        <ng-template ngbPanelTitle>
+            <span>Order {{invoice.invoiceNumber}} &nbsp;&nbsp; {{invoice.timeStamp | date}}</span>
+        </ng-template>
+        <ng-template ngbPanelContent>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Product Id</th>
+                    <th></th>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Count</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let orderPos of invoice.orderPositions">
+                    <td>{{orderPos.product.id}}</td>
+                    <td><img class="img-fluid" src="{{orderPos.product.imagePath}}" alt="productimage"></td>
+                    <td>{{orderPos.product.name}}</td>
+                    <td>{{orderPos.product.price}}</td>
+                    <td>{{orderPos.count}}</td>
+
+                </tr>
+                </tbody>
+            </table>
+            <p>
+                <span><h5>Order value:</h5> {{invoice.sum | currency: 'EUR'}}</span>
+            </p>
+
+            <button class="btn btn-secondary" (click)="this.print(invoice)">Print</button>
+
+        </ng-template>
+    </ngb-panel>
+
+</ngb-accordion>
+
+<div id="print-section" style="display: none">
+    <div #printDiv *ngIf="invoiceToPrint !== null" class="container-fluid">
+        <h1>Your order</h1>
+        <p>Invoice: {{invoiceToPrint.invoiceNumber}} from {{invoiceToPrint.timeStamp | date}}</p>
+        <div class="row">
+            <div class="col-4 float-right" *ngIf="user$ | async as user">
+                <h5>To:</h5>
+                <ul>
+                    <li>{{user.appellation}} {{user.last_name}} {{user.first_name}}</li>
+                    <li>{{user.post_code}} {{user.city}}</li>
+                    <li>{{user.address}}</li>
+                    <li>{{user.mail}}</li>
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <table class="table col-10">
+                <thead class="thead-dark">
+                <tr>
+                    <th>Product</th>
+                    <th>á</th>
+                    <th>Count</th>
+                    <th>Value</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let productPos of invoiceToPrint.orderPositions">
+                    <td>{{productPos.product.name}}</td>
+                    <td>{{productPos.product.price | currency: 'EUR'}}</td>
+                    <td>{{productPos.count}}</td>
+                    <td>{{productPos.product.price * productPos.count| currency: 'EUR'}}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="row">
+            <div class="float-left">
+                <p>Total:&nbsp;&nbsp;&nbsp;{{invoiceToPrint.sum | currency: 'EUR'}}</p>
+            </div>
+        </div>
+    </div>
+</div>

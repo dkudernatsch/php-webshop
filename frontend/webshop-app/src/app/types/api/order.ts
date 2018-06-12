@@ -1,3 +1,5 @@
+import {Product} from "./product";
+
 export interface OrderItem {
     id: number;
     count: number;
@@ -22,5 +24,5 @@ export interface Invoice {
 export interface OrderPosition {
     id: number;
     count: number;
-    product: number;
+    product: Product;
 }

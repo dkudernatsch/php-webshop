@@ -73,6 +73,8 @@ import { PasswordVerificationModalComponent } from './components/user-page/passw
 import {RegisterModalComponent} from "./components/header/register-modal/register-modal.component";
 import {MessageModalService} from "./services/message-modal/message-modal.service";
 import {MessageModalComponent} from "./components/message-modal/message-modal.component";
+import {ManageOrderPageComponent} from "./components/user-page/manage-order-page/manage-order-page";
+import { UserOrderListComponent } from './components/user-page/manage-order-page/user-order-list/user-order-list.component';
 
 
 @NgModule({
@@ -117,7 +119,9 @@ import {MessageModalComponent} from "./components/message-modal/message-modal.co
         AdminOrderListComponent,
         PasswordVerificationModalComponent,
         RegisterModalComponent,
-        MessageModalComponent
+        MessageModalComponent,
+        ManageOrderPageComponent,
+        UserOrderListComponent,
     ],
     imports: [
         BrowserModule,

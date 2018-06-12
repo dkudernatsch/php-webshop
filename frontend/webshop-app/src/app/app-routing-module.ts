@@ -19,6 +19,7 @@ import {AdminUserListComponent} from './components/admin-page/manage-users-page/
 import {ManageAccountPageComponent} from "./components/user-page/manage-account-page/manage-account-page";
 import {ManagePaymentPageComponent} from "./components/user-page/manage-payment-page/manage-payment-page";
 import {ManageCouponPageComponent} from "./components/user-page/manage-coupon-page/manage-coupon-page";
+import {ManageOrderPageComponent} from "./components/user-page/manage-order-page/manage-order-page";
 
 // set up the routes
 const appRoutes: Routes = [
@@ -33,6 +34,7 @@ const appRoutes: Routes = [
             {path: 'user-data', component: ManageAccountPageComponent},
             {path: 'coupon', component: ManageCouponPageComponent},
             {path: 'payment', component: ManagePaymentPageComponent},
+            {path: 'order', component: ManageOrderPageComponent},
             {path: '', redirectTo: 'user-data', pathMatch: 'full'},
         ]
     },
