@@ -1,5 +1,6 @@
-import {Component, HostListener, OnDestroy} from '@angular/core';
+import {Component, HostListener} from '@angular/core';
 import {AuthService} from './services/auth/auth.service';
+import {ShoppingCartService} from './services/products/shoppingCart.service';
 
 @Component({
     selector: 'app-root',
@@ -7,7 +8,8 @@ import {AuthService} from './services/auth/auth.service';
     styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-    constructor(private authService: AuthService) {
+    constructor(private authService: AuthService,
+                private shoppingCartService: ShoppingCartService) {
         this.authService.updateAuth({}, false);
     }
 
@@ -15,9 +17,10 @@ export class AppComponent {
 
     @HostListener('window:beforeunload', ['$event'])
     beforeUnloadHandler(event) {
-        // TODO: save shopping cart in local storage
-        if (localStorage.getItem('stay-logged-in') === 'false')
+        this.shoppingCartService.saveInLocalStorage();
+        if (localStorage.getItem('stay-logged-in') === 'false') {
             this.authService.updateAuth({}, true);
+        }
     }
 
 }

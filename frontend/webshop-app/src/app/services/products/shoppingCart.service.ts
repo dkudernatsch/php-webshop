@@ -1,17 +1,33 @@
 import {CartEntry, Product} from '../../types/api/product';
 import {BehaviorSubject} from 'rxjs/internal/BehaviorSubject';
 import {Observable} from 'rxjs/internal/Observable';
-import {map, tap} from 'rxjs/operators';
-import {OrderItem} from "../../types/api/order";
+import {isEmpty, map, tap} from 'rxjs/operators';
+import {OrderItem} from '../../types/api/order';
 
 export class ShoppingCartService {
-
     // TODO make load/save from shoppingCartService
 
     // workaround for a map id => amount
     private cart: Map<number, CartEntry> = new Map();
     // make subject private so not everyone that uses service can call next on it!
     private cartSubject = new BehaviorSubject<Map<number, CartEntry>>(this.cart);
+
+    constructor() {
+        this.loadFromLocalStorage();
+    }
+
+    saveInLocalStorage() {
+        const json: string = JSON.stringify(this.cart);
+        localStorage.setItem('cart', json);
+    }
+
+    loadFromLocalStorage() {
+        const json: string = localStorage.getItem('cart');
+        if (json) {
+            this.cart = JSON.parse(json);
+            this.cartSubject.next(this.cart);
+        }
+    }
 
     // function to be able to subscribe to the Cart
     subscribeCart(): Observable<Map<number, CartEntry>> {
@@ -51,6 +67,7 @@ export class ShoppingCartService {
             this.cart[product.id] = {product: product, amount: 1};
         }
         this.cartSubject.next(this.cart);
+        this.saveInLocalStorage();
     }
 
     // can be called from outside and emits .next fo all Subscribers (who took the cart with cart())
@@ -73,12 +90,12 @@ export class ShoppingCartService {
     }
 
     getAsOrderItems(): OrderItem[] {
-        let orderItems: OrderItem[] = [];
-        for(let key of Object.keys(this.cart)) {
+        const orderItems: OrderItem[] = [];
+        for (const key of Object.keys(this.cart)) {
             orderItems.push({
                 id: this.cart[key].product.id,
                 count: this.cart[key].amount
-            })
+            });
         }
         return orderItems;
     }
