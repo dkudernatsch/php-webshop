@@ -2,8 +2,9 @@ import {Component, Input} from '@angular/core';
 import {NewPaymentMethod, PaymentMethod} from '../../../../types/api/user';
 import {PaymentEndpointService} from '../../../../services/api/payment-endpoint.service';
 import {UserAuthService} from '../../../../services/auth/user-auth.service';
-import {flatMap} from 'rxjs/operators';
+import {first, flatMap, switchMap} from 'rxjs/operators';
 import {Observable} from 'rxjs/internal/Observable';
+import {pluck} from "rxjs/internal/operators";
 
 
 @Component({
@@ -21,26 +22,40 @@ export class PaymentMethodListComponent {
         }
     };
 
+//     this.userAuthService.user$.pipe(
+//         pluck('id'),
+//     switchMap(
+// (id: number) => {
+//     return this.orderEndPointService.placeOrder({
+//                                                     coupon_id: couponID,
+//                                                     payment_id: paymentMethod.id,
+//     user_id: id,
+//     products: orderItems
+// })
+// }
+// )
+// ).subscribe(() => {
+
     constructor(private paymentEndPointService: PaymentEndpointService,
                 private userAuthService: UserAuthService) {
         this.paymentMethods$ = this.userAuthService.userID$.pipe(
-            flatMap((userID: number | null) =>
+            switchMap((userID: number | null) =>
                 this.paymentEndPointService.getPaymentMethods(userID))
         );
     }
 
     refreshList() {
         this.paymentMethods$ = this.userAuthService.userID$.pipe(
-            flatMap((userID: number | null) =>
+            switchMap((userID: number | null) =>
                 this.paymentEndPointService.getPaymentMethods(userID))
         );
     }
 
     onAddPaymentMethod() {
         this.userAuthService.userID$.pipe(
-            flatMap((userID: number | null) =>
+            switchMap((userID: number | null) =>
                 this.paymentEndPointService.addPaymentMethod(this.newPaymentMethod, userID))
-        ).subscribe(
+        ).pipe(first()).subscribe(
             (response: any) => {
                 this.refreshList();
             }
@@ -50,9 +65,9 @@ export class PaymentMethodListComponent {
     // gets called from list elements as event $event is the id of the paymentMethod
     onDeletePaymentMethod($event: number) {
         this.userAuthService.userID$.pipe(
-            flatMap((userID: number | null) =>
+            switchMap((userID: number | null) =>
                 this.paymentEndPointService.deletePaymentMethod(userID, $event))
-        ).subscribe(
+        ).pipe(first()).subscribe(
             (response: any) => {
                 this.refreshList();
             }

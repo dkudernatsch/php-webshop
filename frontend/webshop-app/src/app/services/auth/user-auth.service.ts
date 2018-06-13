@@ -71,5 +71,9 @@ export class UserAuthService {
         );
     }
 
+    userIdObservable(): Promise<number|null> {
+        return this.userID$.toPromise();
+    }
+
 }
 
