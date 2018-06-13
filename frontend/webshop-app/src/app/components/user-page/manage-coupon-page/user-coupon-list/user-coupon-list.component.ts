@@ -2,7 +2,7 @@ import {Component, Input} from '@angular/core';
 import {Observable} from 'rxjs/internal/Observable';
 import {Coupon} from '../../../../types/api/coupon';
 import {CouponEndpointService} from "../../../../services/api/coupon-endpoint.service";
-import {flatMap, map, tap} from "rxjs/operators";
+import {first, flatMap, map, switchMap, tap} from "rxjs/operators";
 import {UserAuthService} from "../../../../services/auth/user-auth.service";
 import {UserEndpointService} from "../../../../services/api/user-endpoint-service";
 
@@ -28,7 +28,7 @@ export class UserCouponListComponent {
 
     refreshCoupons() {
         this.coupons$ = this.userAuthService.userID$.pipe(
-            flatMap((userID: number) =>
+            switchMap((userID: number) =>
                 this.userEndPointService.getCouponsOf(userID)
             )
         ).pipe(
@@ -42,11 +42,11 @@ export class UserCouponListComponent {
 
     onRedeemCoupon() {
         this.userAuthService.userID$.pipe(
-            flatMap((userID: number) =>
+            switchMap((userID: number) =>
                 this.couponService.redeemCoupon(this.couponCode, userID)
             )
-        ).subscribe((response: any) => console.log(response));
-        // update the coupon list
-        setTimeout(() => this.refreshCoupons(), 500);
+        ).pipe((first())).subscribe((response: any) =>  // update the coupon list
+            this.refreshCoupons()
+        );
     }
 }

@@ -22,20 +22,6 @@ export class PaymentMethodListComponent {
         }
     };
 
-//     this.userAuthService.user$.pipe(
-//         pluck('id'),
-//     switchMap(
-// (id: number) => {
-//     return this.orderEndPointService.placeOrder({
-//                                                     coupon_id: couponID,
-//                                                     payment_id: paymentMethod.id,
-//     user_id: id,
-//     products: orderItems
-// })
-// }
-// )
-// ).subscribe(() => {
-
     constructor(private paymentEndPointService: PaymentEndpointService,
                 private userAuthService: UserAuthService) {
         this.paymentMethods$ = this.userAuthService.userID$.pipe(
