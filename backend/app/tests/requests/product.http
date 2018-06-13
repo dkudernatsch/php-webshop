@@ -15,6 +15,64 @@ Authorization: Bearer {{admin_token}}
 > {%
     client.global.set('last_product', response.body.success.id);
 %}
+
+###
+
+POST https://api.webshop.at/product/
+Accept: application/json
+Cache-Control: no-cache
+Content-Type: application/json
+Authorization: Bearer {{admin_token}}
+
+{
+    "name": "Vanilla Dream",
+    "price": "4.99",
+    "imageData":"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkBAMAAACCzIhnAAAAG1BMVEXMzMyWlpacnJy+vr6jo6PFxcW3t7eqqqqxsbHbm8QuAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAAiklEQVRYhe3QMQ6EIBAF0C+GSInF9mYTs+1ewRsQbmBlayysKefYO2asXbbYxvxHQj6ECQMAEREREf2NQ/fCtp5Zky6vtRMkSJEzhyISynWJnzH6Z8oQlzS7lEc/fLmmQUSvc16OrCPqRl1JePxQYo1ZSWVj9nxrrOb5esw+eXdvzTWfTERERHRXH4tWFZGswQ2yAAAAAElFTkSuQmCC",
+    "rating": "4",
+    "categories": [1, 3]
+}
+> {%
+    client.global.set('last_product', response.body.success.id);
+%}
+
+###
+
+POST https://api.webshop.at/product/
+Accept: application/json
+Cache-Control: no-cache
+Content-Type: application/json
+Authorization: Bearer {{admin_token}}
+
+{
+    "name": "Morning Boost",
+    "price": "4.99",
+    "imageData":"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkBAMAAACCzIhnAAAAG1BMVEXMzMyWlpacnJy+vr6jo6PFxcW3t7eqqqqxsbHbm8QuAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAAiklEQVRYhe3QMQ6EIBAF0C+GSInF9mYTs+1ewRsQbmBlayysKefYO2asXbbYxvxHQj6ECQMAEREREf2NQ/fCtp5Zky6vtRMkSJEzhyISynWJnzH6Z8oQlzS7lEc/fLmmQUSvc16OrCPqRl1JePxQYo1ZSWVj9nxrrOb5esw+eXdvzTWfTERERHRXH4tWFZGswQ2yAAAAAElFTkSuQmCC",
+    "rating": "4",
+    "categories": [1, 2]
+}
+> {%
+    client.global.set('last_product', response.body.success.id);
+%}
+
+###
+
+POST https://api.webshop.at/product/
+Accept: application/json
+Cache-Control: no-cache
+Content-Type: application/json
+Authorization: Bearer {{admin_token}}
+
+{
+    "name": "Fiber Blast",
+    "price": "3.49",
+    "imageData":"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkBAMAAACCzIhnAAAAG1BMVEXMzMyWlpacnJy+vr6jo6PFxcW3t7eqqqqxsbHbm8QuAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAAiklEQVRYhe3QMQ6EIBAF0C+GSInF9mYTs+1ewRsQbmBlayysKefYO2asXbbYxvxHQj6ECQMAEREREf2NQ/fCtp5Zky6vtRMkSJEzhyISynWJnzH6Z8oQlzS7lEc/fLmmQUSvc16OrCPqRl1JePxQYo1ZSWVj9nxrrOb5esw+eXdvzTWfTERERHRXH4tWFZGswQ2yAAAAAElFTkSuQmCC",
+    "rating": "3",
+    "categories": [1, 2]
+}
+> {%
+    client.global.set('last_product', response.body.success.id);
+%}
+
 ###
 
 

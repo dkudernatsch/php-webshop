@@ -17,7 +17,7 @@ export class NotAdminAuthGuard implements CanActivate {
         let notAdmin = false;
         this.isAdmin$.subscribe((value: boolean) => {
             if (value === true) {
-                this.router.navigate(['']);
+                this.router.navigate(['/admin']);
             } else {
                 notAdmin = true;
             }
