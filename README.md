@@ -10,7 +10,7 @@ You already need to have Docker installed on your machine. But that is it for re
 Everything else will be installed inside the containers.
 1. pull the whole project
 2. `./rev-proxy/certs/make_certs.sh` to generate certificates for https
-3. navigate back to the root directory and execute `docker-compose-up` to bring the servers up
+3. navigate back to the root directory and execute `docker-compose up` to bring the servers up
 4. connect to the database(MariaDB) via
     * Host: localhost
     * database name: webshop
